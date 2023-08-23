@@ -3,10 +3,10 @@ package com.example.CampusCarpool.engineering;
 import com.example.CampusCarpool.bean.DriverBean;
 import com.example.CampusCarpool.bean.PassengerBean;
 
+// Sessione utente che memorizza le info del conducente e del passeggero
 public class Session {
 
     private static Session sessionInstance = null;
-
     private DriverBean driverBean;
     private PassengerBean passengerBean;
 
@@ -19,27 +19,28 @@ public class Session {
         }
     }
 
+    // Impostazione istanza della sessione solo se non ne esiste già una attiva
     public static void setSessionInstance(Object obj) {
-        // Viene creata una nuova sessione solo se non esiste già una sessione attiva
         if(sessionInstance == null)
             sessionInstance = new Session(obj);
     }
 
-    // Metodo per chiudere la sessione corrente
+    // Chiude la sessione corrente
     public static void closeSession() {
         sessionInstance = null;
     }
 
+    // Restituisce l'istanza corrente della sessione
     public static Session getCurrentSession() {
         return sessionInstance;
     }
 
-    // Metodo per restituire l'oggetto DriverBean associato alla sessione corrente
+    // Restituisce l'oggetto DriverBean associato alla sessione corrente
     public DriverBean getDriverBean() {
         return driverBean;
     }
 
-    // Metodo per restituire l'oggetto PassengerBean associato alla sessione corrente
+    // Restituisce l'oggetto PassengerBean associato alla sessione corrente
     public PassengerBean getPassengerBean() {
         return passengerBean;
     }
