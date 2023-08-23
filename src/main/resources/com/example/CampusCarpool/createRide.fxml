@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" styleClass="primary-color" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.CampusCarpool.graphiccontroller.CreateRideGUIController">
+   <top>
+      <AnchorPane prefHeight="78.0" prefWidth="1000.0" styleClass="primary-color" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="403.0" layoutY="11.0" text="Create Ride">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="logoutIcon" fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="24.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true" styleClass="clickableImageView">
+               <image>
+                  <Image url="@../../../img/logout.png" />
+               </image></ImageView>
+            <ImageView fx:id="accountIcon" fitHeight="32.0" fitWidth="32.0" layoutX="947.0" layoutY="23.0" onMouseClicked="#toProfile" pickOnBounds="true" preserveRatio="true" styleClass="clickableImageView">
+               <image>
+                  <Image url="@../../../img/user.png" />
+               </image></ImageView>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="78.0" prefWidth="1000.0" styleClass="primary-color" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="backIcon" fitHeight="32.0" fitWidth="32.0" layoutX="66.0" layoutY="25.0" onMouseClicked="#toPreviousScreen" pickOnBounds="true" preserveRatio="true" styleClass="clickableImageView">
+               <image>
+                  <Image url="@../../../img/back.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="homeIcon" fitHeight="32.0" fitWidth="32.0" layoutX="19.0" layoutY="25.0" onMouseClicked="#toHomepage" pickOnBounds="true" preserveRatio="true" styleClass="clickableImageView">
+               <image>
+                  <Image url="@../../../img/home.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </bottom>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="primary-color" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="CENTER_LEFT" layoutX="140.0" layoutY="27.0" prefHeight="345.0" prefWidth="750.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="654.0">
+                     <children>
+                        <Label text="Departure Date-Time">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="64.0" prefWidth="72.0" />
+                        <DatePicker fx:id="dateDataPicker" prefHeight="27.0" prefWidth="195.0" promptText="YYYY-MM-DD" styleClass="datePicker" />
+                        <Pane prefHeight="64.0" prefWidth="64.0" />
+                        <Spinner fx:id="hourSpinner" prefHeight="26.0" prefWidth="70.0" />
+                        <Label text="  :  ">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Spinner fx:id="minuteSpinner" prefHeight="26.0" prefWidth="70.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="654.0">
+                     <children>
+                        <Label text="Departure Location">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="64.0" prefWidth="87.0" />
+                        <TextField fx:id="departureLocationTextField" prefHeight="26.0" prefWidth="414.0" promptText="Piazza dei Tribuni, 00175 Roma RM" styleClass="text-input">
+                           <font>
+                              <Font size="15.0" />
+                           </font></TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="654.0">
+                     <children>
+                        <Label text="Destination Location">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="64.0" prefWidth="76.0" />
+                        <TextField fx:id="destinationLocationTextField" prefHeight="26.0" prefWidth="414.0" promptText="Via del Politecnico, 1, 00133 Roma RM">
+                           <font>
+                              <Font size="15.0" />
+                           </font></TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="64.0" prefWidth="654.0">
+                     <children>
+                        <Label text="Available Seats">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Pane prefHeight="64.0" prefWidth="121.0" />
+                        <Spinner fx:id="availableSeatsSpinner" prefHeight="26.0" prefWidth="65.0" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+            <Button fx:id="createRideButton" layoutX="442.0" layoutY="354.0" mnemonicParsing="false" onAction="#createRide" prefHeight="61.0" prefWidth="142.0" text="Create ride">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

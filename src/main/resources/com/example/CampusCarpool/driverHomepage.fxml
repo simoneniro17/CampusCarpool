@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.CampusCarpool.graphiccontroller.DriverGUIController">
+   <top>
+      <AnchorPane prefHeight="78.0" prefWidth="1000.0" styleClass="primary-color" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" layoutX="361.0" layoutY="13.0" text="Driver Homepage">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="logoutIcon" fitHeight="32.0" fitWidth="32.0" layoutX="14.0" layoutY="24.0" onMouseClicked="#logout" pickOnBounds="true" preserveRatio="true" styleClass="clickableImageView">
+               <image>
+                  <Image url="@../../../img/logout.png" />
+               </image></ImageView>
+            <ImageView fx:id="accountIcon" fitHeight="32.0" fitWidth="32.0" layoutX="947.0" layoutY="23.0" onMouseClicked="#toProfile" pickOnBounds="true" preserveRatio="true" styleClass="clickableImageView">
+               <image>
+                  <Image url="@../../../img/user.png" />
+               </image></ImageView>
+         </children>
+      </AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="78.0" prefWidth="1000.0" styleClass="primary-color" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="backIcon" fitHeight="32.0" fitWidth="32.0" layoutX="66.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 25%;">
+               <image>
+                  <Image url="@../../../img/back.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="homeIcon" fitHeight="32.0" fitWidth="32.0" layoutX="19.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true" style="-fx-opacity: 25%;">
+               <image>
+                  <Image url="@../../../img/home.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </bottom>
+   <center>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="primary-color" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="requestsButton" layoutX="201.0" layoutY="31.0" mnemonicParsing="false" prefHeight="400.0" prefWidth="265.0" text="Requests">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Button>
+            <Button fx:id="createRideButton" layoutX="536.0" layoutY="32.0" mnemonicParsing="false" onAction="#toCreateRide" prefHeight="400.0" prefWidth="265.0" text="Create Ride">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

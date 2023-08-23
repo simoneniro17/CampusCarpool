@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="200.0" prefWidth="350.0" styleClass="primary-color" stylesheets="@../../../values/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.CampusCarpool.graphiccontroller.MessageBoxGUIController">
+    <Label fx:id="messageTxt" alignment="CENTER" contentDisplay="CENTER" layoutY="14.0" prefHeight="97.0" prefWidth="350.0" text="Messaggio di errore" textAlignment="CENTER">
+        <font>
+            <Font size="15.0" />
+        </font>
+    </Label>
+    <Button fx:id="ErrorBtn" layoutX="133.0" layoutY="138.0" mnemonicParsing="false" onAction="#close" prefHeight="35.0" prefWidth="87.0" stylesheets="@../../../values/style.css" text="OK">
+        <font>
+            <Font size="14.0" />
+        </font>
+    </Button>
+   <effect>
+      <InnerShadow height="10.0" radius="4.5" width="10.0">
+         <color>
+            <Color red="0.22745098173618317" green="0.5333333611488342" blue="0.48627451062202454" />
+         </color>
+      </InnerShadow>
+   </effect>
+</AnchorPane>

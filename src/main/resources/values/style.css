@@ -1,0 +1,108 @@
+/*
+527462
+3A887C
+D5DCDC
+C0C49B
+*/
+
+.primary-color {
+    -fx-background-color: #D5DCDC;
+}
+
+.secondary-color {
+    -fx-background-color: #3A887C;
+}
+
+.button {
+    -fx-background-color: #3A887C;
+    -fx-background-radius: 30;
+
+    -fx-text-fill: #D5DCDC;
+}
+
+.button:hover {
+    -fx-background-color: #2c695f;
+
+    -fx-cursor: hand;
+}
+
+.text-input {
+    -fx-background-color: rgba(0,0,0,0);
+
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #3A887C;
+
+    -fx-text-inner-color: #000;
+
+    -fx-highlight-fill: #3A887C;
+}
+
+.clickableLabel:hover {
+    -fx-text-fill: #3A887C;
+
+    -fx-cursor: hand;
+}
+
+.clickableImageView:hover {
+    -fx-opacity: 0.7;
+
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+
+    -fx-cursor: hand;
+}
+
+.spinner {
+    -fx-background-color: rgba(0,0,0,0);
+
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #3A887C;
+
+    -fx-text-inner-color: #000;
+    -fx-font-size: 15;
+}
+
+.spinner:hover {
+    -fx-cursor: hand;
+}
+
+.increment-arrow-button {
+    -fx-background-color: rgba(0,0,0,0);
+
+    -fx-border-width: 1 1 0 1;
+    -fx-border-color: #3A887C;
+
+    -fx-text-inner-color: #000;
+}
+
+.decrement-arrow-button {
+    -fx-background-color: rgba(0,0,0,0);
+
+    -fx-border-width: 1 1 1 1;
+    -fx-border-color: #3A887C;
+
+    -fx-text-inner-color: #000;
+}
+
+.datePicker {
+    -fx-background-color: rgba(0,0,0,0);
+
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #3A887C;
+
+    -fx-text-inner-color: #000;
+    -fx-font-size: 15;
+}
+
+.datePicker:hover {
+    -fx-cursor: hand;
+}
+
+.arrow-button {
+    -fx-background-color: rgba(0,0,0,0);
+
+    -fx-border-width: 1 1 1 1;
+    -fx-border-color: #3A887C;
+
+    -fx-text-inner-color: #000;
+}
