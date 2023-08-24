@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class FormViewCLI {
 
-    // Riferimento al controller per la gestione del modulo di compilazione
+    // CLIController per la gestione del modulo di compilazione
     FormCLIController formCLIController;
     SearchRideController searchRideController;
 
@@ -22,7 +22,7 @@ public class FormViewCLI {
         this.searchRideController = new SearchRideController();
     }
 
-    // Metodo per ottenere la data di partenza
+    // Per ottenere la data di partenza
     public LocalDate printDepartureDate() {
         LocalDate departureDate = null;
 
@@ -38,7 +38,7 @@ public class FormViewCLI {
         return departureDate;
     }
 
-    // Metodo per ottenere l'orario di partenza
+    // Per ottenere l'orario di partenza
     public LocalTime printDepartureTime() {
         LocalTime departureTime = null;
 
@@ -54,7 +54,7 @@ public class FormViewCLI {
         return departureTime;
     }
 
-    // Metodo per ottenere la località di partenza
+    // Per ottenere la località di partenza
     public String printDepartureLocation() {
         String departureLocation = null;
 
@@ -71,7 +71,7 @@ public class FormViewCLI {
         return departureLocation;
     }
 
-    // Metodo per ottenere la località di destinazione
+    // Per ottenere la località di destinazione
     public String printDestinationLocation() {
         String destinationLocation = null;
 
@@ -88,7 +88,7 @@ public class FormViewCLI {
         return destinationLocation;
     }
 
-    // Metodo per ottenere il numero di posti disponibili
+    // Per ottenere il numero di posti disponibili
     public int printAvailableSeats() {
         int availableSeats = 0;
 

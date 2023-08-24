@@ -17,7 +17,7 @@ public class LoginViewCLI {
 
     // Avvio CLI di login
     public void run()  {
-
+        // Opzioni di login
         Printer.printMessage("\n-------------------------------------------- MAIN PAGE --------------------------------------------");
         Printer.printMessage("1) Login \n2) Login with Facebook \n3) Login with Google \n4) Sign up");
 
@@ -43,6 +43,7 @@ public class LoginViewCLI {
         String password = scanner.nextLine();
 
         try {
+            // Verifica credenziali
             loginCLIController.checkLogin(email, password);
         }
         catch (Exception e){

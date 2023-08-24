@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public class CreateRideFormViewCLI {
-
     private CreateRideCLIController createRideCLIController;
     private FormViewCLI formViewCLI;
 
@@ -19,10 +18,11 @@ public class CreateRideFormViewCLI {
         this.formViewCLI = new FormViewCLI();
     }
 
+    // Visualizzazione form di creazione di una corsa
     public void run(){
-
         Printer.printMessage("\n-------------------------------------------- CREATE RIDE FORM --------------------------------------------");
 
+        // Ottenimento dettagli corsa
         LocalDate departureDate = formViewCLI.printDepartureDate();
         LocalTime departureTime = formViewCLI.printDepartureTime();
         String departureLocation = formViewCLI.printDepartureLocation();
@@ -30,6 +30,7 @@ public class CreateRideFormViewCLI {
         int availableSeats = formViewCLI.printAvailableSeats();
 
         try {
+            // Creazione e aggiunta della corsa
             createRideCLIController.createRide(departureDate, departureTime, departureLocation, departureDestination, availableSeats);
             createRideCLIController.addRide();
             createRideCLIController.displayCreatedRideMessage();

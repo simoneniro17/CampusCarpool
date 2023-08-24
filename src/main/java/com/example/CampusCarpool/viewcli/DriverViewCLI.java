@@ -9,16 +9,15 @@ import com.example.CampusCarpool.graphiccontroller.cli.DriverCLIController;
 import java.util.Scanner;
 
 public class DriverViewCLI {
-
     private final DriverCLIController driverCLIController;
 
     public DriverViewCLI(DriverCLIController driverCLIController) {
         this.driverCLIController = driverCLIController;
     }
 
-    // Avvio visualizzazione del menu per il driver
+    // Visualizzazione menu Driver
     public void run() {
-
+        // Opzioni disponibili
         Printer.printMessage("\n-------------------------------------------- DRIVER HOMEPAGE --------------------------------------------");
         Printer.printMessage("1) Create Ride \n2) Manage Requests \n3) View Profile \n4) Logout");
 
@@ -26,13 +25,8 @@ public class DriverViewCLI {
         String inputLine = scanner.nextLine();
 
         try {
-
-            // Esecuzione comando selezionato dall'utente attraverso il controller
             this.driverCLIController.executeCommand(inputLine);
-
         } catch (CommandErrorException | NotImplementedException e) {
-
-            // Gestione eventuali eccezioni e richiamo alla visualizzazione del menu
             ShowExceptionSupport.showExceptionCLI(e.getMessage());
             run();
         }
