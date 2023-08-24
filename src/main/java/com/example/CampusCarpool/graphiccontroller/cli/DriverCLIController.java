@@ -13,7 +13,6 @@ public class DriverCLIController implements GraphicCLIController {
     private static final String VIEW_PROFILE = "3";
     private static final String LOGOUT = "4";
 
-    // ViewCLI per la gestione delle interazioni con la UI
     DriverViewCLI driverViewCLI;
 
     @Override
@@ -24,11 +23,8 @@ public class DriverCLIController implements GraphicCLIController {
 
     // Esecuzione comando specificato dall'utente
     public void executeCommand(String inputLine) throws CommandErrorException, NotImplementedException {
-
         switch(inputLine) {
             case CREATE_RIDE -> {
-
-                // Avviamento controller per la creazione di una corsa
                 CreateRideCLIController createRideCLIController = new CreateRideCLIController();
                 createRideCLIController.start();
 
@@ -36,13 +32,7 @@ public class DriverCLIController implements GraphicCLIController {
                 this.start();
             }
 
-            case VIEW_PROFILE -> {
-                throw new NotImplementedException();
-            }
-
             case CHECK_REQUESTS -> {
-
-                // Avviamento controller per la gestione delle richieste
                 DriverRequestsCLIController driverRequestsCLIController = new DriverRequestsCLIController();
                 driverRequestsCLIController.start();
 
@@ -50,9 +40,9 @@ public class DriverCLIController implements GraphicCLIController {
                 this.start();
             }
 
-            case LOGOUT -> {
+            case VIEW_PROFILE -> throw new NotImplementedException();
 
-                // Logout dell'utente corrente
+            case LOGOUT -> {
                 LogoutController logoutController = new LogoutController();
                 logoutController.logout();
 
@@ -60,7 +50,6 @@ public class DriverCLIController implements GraphicCLIController {
                 LoginCLIController loginCLIController = new LoginCLIController();
                 loginCLIController.start();
             }
-
             default -> throw new CommandErrorException();
         }
     }

@@ -9,15 +9,14 @@ import com.example.CampusCarpool.exception.DuplicateRequestException;
 import com.example.CampusCarpool.exception.MessageException;
 import com.example.CampusCarpool.exception.NotFoundException;
 
-
 public class BookRideCLIController implements GraphicCLIController {
 
     @Override
     public void start() {
     }
 
+    // Per inviare la richiesta alla corsa specificata tramite ID
     public void sendRideRequest(int idRide) {
-
         try {
             String passengerEmail = Session.getCurrentSession().getPassengerBean().getEmail();
             RideRequestBean rideRequestBean = new RideRequestBean(idRide, passengerEmail, 0);

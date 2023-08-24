@@ -13,7 +13,6 @@ public class PassengerCLIController implements GraphicCLIController {
     private final static String VIEW_PROFILE = "3";
     private final static String LOGOUT = "4";
 
-    // ViewCLI per la gestione delle interazioni con la UI
     PassengerViewCLI passengerViewCLI;
 
     @Override
@@ -24,7 +23,6 @@ public class PassengerCLIController implements GraphicCLIController {
 
     // Esecuzione comando specificato dall'utente
     public void executeCommand(String inputLine) throws CommandErrorException, NotImplementedException {
-
         switch(inputLine) {
             case SEARCH_RIDE -> {
                 SearchRideCLIController searchRideCLIController = new SearchRideCLIController();
@@ -38,14 +36,13 @@ public class PassengerCLIController implements GraphicCLIController {
                 PassengerRequestsCLIController passengerRequestsCLIController = new PassengerRequestsCLIController();
                 passengerRequestsCLIController.start();
 
+                // Ritorno al menu del passenger dopo aver completato l'operazione
                 this.start();
             }
 
             case VIEW_PROFILE -> throw new NotImplementedException();
 
             case LOGOUT -> {
-
-                // Logout dell'utente corrente
                 LogoutController logoutController = new LogoutController();
                 logoutController.logout();
 

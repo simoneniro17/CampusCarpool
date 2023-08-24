@@ -14,7 +14,6 @@ public class LoginCLIController implements GraphicCLIController {
     private static final String LOGIN_WITH_GOOGLE = "3";
     private static final String SIGN_UP = "4";
 
-    // View del login in interfaccia a riga di comando
     private LoginViewCLI loginViewCLI;
 
     @Override
@@ -26,7 +25,6 @@ public class LoginCLIController implements GraphicCLIController {
 
     // Esecuzione comando specificato dall'utente
     public void executeCommand(String inputLine) throws CommandErrorException, NotImplementedException {
-
         switch (inputLine) {
 
             // Avvio della procedura di login
@@ -35,7 +33,6 @@ public class LoginCLIController implements GraphicCLIController {
             // Altre opzioni non implementate
             case LOGIN_WITH_FACEBOOK, LOGIN_WITH_GOOGLE, SIGN_UP -> throw new NotImplementedException();
 
-            // Se il comando non è riconosciuto, viene lanciata un'eccezione
             default -> throw new CommandErrorException();
         }
     }
@@ -51,33 +48,25 @@ public class LoginCLIController implements GraphicCLIController {
             // Verifica dell'utente
             loginController.checkUser(loginBean);
 
+            // Utente riconosciuto come guidatore
             if (loginBean.getRole() == 1) {
-
-                // Utente riconosciuto come guidatore
                 loginController.driverLogin(loginBean);
+
                 DriverCLIController driverCLIController = new DriverCLIController();
-
-                // Avvio schermata del guidatore
                 driverCLIController.start();
-
-            } else if (loginBean.getRole() == 2) {
-
-                // Utente riconosciuto come passeggero
+            }
+            // Utente riconosciuto come passeggero
+            else if (loginBean.getRole() == 2) {
                 loginController.passengerLogin(loginBean);
+
                 PassengerCLIController passengerCLIController = new PassengerCLIController();
-
-                // Avvio schermata del passeggero
                 passengerCLIController.start();
-
-            } else {
-
-                // Utente non riconosciuto
+            }
+            // Utente non riconosciuto
+            else {
                 throw new UserNotFoundException();
             }
-
         } catch (EmailFormatException | NotFoundException | UserNotFoundException e) {
-
-            //  Messaggio di errore in caso di eccezione e riavvio schermata di login
             ShowExceptionSupport.showExceptionCLI(e.getMessage());
             start();
         }

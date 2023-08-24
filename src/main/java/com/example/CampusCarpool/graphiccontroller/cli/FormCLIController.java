@@ -9,6 +9,7 @@ import java.time.format.DateTimeParseException;
 
 public class FormCLIController {
 
+    // Per validare e restituire la data di partenza
     public LocalDate validateDepartureDate(String inputLine) throws MessageException {
         LocalDate departureDate;
 
@@ -21,6 +22,7 @@ public class FormCLIController {
         return departureDate;
     }
 
+    // Per validare e restituire l'ora di partenza
     public LocalTime validateDepartureTime(String inputLine) throws MessageException {
         LocalTime departureTime;
 
@@ -33,11 +35,11 @@ public class FormCLIController {
         return departureTime;
     }
 
+    // Per formattare correttamente il luogo inserito
     public String executeLocation(String inputLine) throws MessageException {
         StringBuilder formattedLocation = new StringBuilder();
 
         try {
-
             // Rimozione spazi all'inizio e alla fine della stringa
             String trimmedInput = inputLine.trim();
 
@@ -49,7 +51,6 @@ public class FormCLIController {
             String[] words = trimmedInput.split("\\s+");
 
             // Costruzione nuova stringa in cui ogni parola inizia con una maiuscola
-
             for (String word : words) {
                 if (!word.isEmpty()) {  // Ignoriamo eventuali spazi multipli
                     String formattedWord = word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase();
@@ -59,25 +60,22 @@ public class FormCLIController {
             throw new MessageException("An error occurred while formatting your location. Please, re-insert your values.");
         }
 
-        // Rimozione spazio finale e restituzione la stringa risultante
+        // Rimozione spazio finale e restituzione stringa risultante
         return formattedLocation.toString().trim();
     }
 
+    // Per controllare e restituire il numero di posti disponibili
     public int executeAvailableSeats(String inputLine) throws MessageException {
         int seats;
 
         try {
             seats = Integer.parseInt(inputLine);
-
             if (seats < 1 || seats > 4) {
                 throw new MessageException("Number of seats must be between 1 and 4!");
             }
         } catch (NumberFormatException e) {
             throw new MessageException("Invalid input for number of seats.");
         }
-
-
         return seats;
     }
-
 }

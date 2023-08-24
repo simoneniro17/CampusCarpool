@@ -87,6 +87,4 @@ public class Ride {
     public String getDriverPhoneNumber() {
         return driverPhoneNumber;
     }
-
 }
-

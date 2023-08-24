@@ -23,16 +23,11 @@ public class RideRequest {
     private LocalDate passengerBirth;
     private String passengerPhoneNumber;
 
-
     public RideRequest(int idRideRequest, int idRide, String passengerEmail, int status) {
         this.idRideRequest = idRideRequest;
         this.idRide = idRide;
         this.passengerEmail = passengerEmail;
         this.status = status;
-    }
-
-    public void setIdRideRequest(int idRideRequest) {
-        this.idRideRequest = idRideRequest;
     }
 
     public int getIdRideRequest() {
