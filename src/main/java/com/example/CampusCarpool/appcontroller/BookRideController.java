@@ -9,7 +9,7 @@ import com.example.CampusCarpool.exception.NotFoundException;
 
 public class BookRideController {
 
-    public void sendRequest(RideRequestBean rideRequestBean) throws NotFoundException, MessageException, DuplicateRequestException {
+    public void sendRequest(RideRequestBean rideRequestBean) throws DuplicateRequestException {
         RideRequestDAO.newRequest(rideRequestBean.getIdRide(), rideRequestBean.getPassengerEmail());
     }
 }
