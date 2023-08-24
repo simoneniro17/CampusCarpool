@@ -14,8 +14,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+// Gestisce l'accesso ai dati delle richieste
 public class RideRequestDAO {
-
+    // Costanti per i nomi delle colonne
     private static final String ID = "idRideRequest";
     private static final String ID_RIDE = "idRide";
     private static final String PASSENGER_EMAIL = "passengerEmail";
@@ -25,15 +26,15 @@ public class RideRequestDAO {
 
     }
 
+    // Per aggiungere una nuova richiesta
     public static void newRequest(int idRide, String passengerEmail) throws DuplicateRequestException {
-
         Connection connection;
 
         try {
             connection = ConnectionDB.getConnection();
-
             ResultSet resultSet = RetrieveQueries.retrieveDistinctRequest(connection, idRide, passengerEmail);
 
+            // Il passeggero non ha già inviato una richiesta per la stessa corsa
             if (!resultSet.first()) {
                 CRUDQueries.insertRideRequest(connection, idRide, passengerEmail);
             } else {
@@ -45,19 +46,17 @@ public class RideRequestDAO {
         }
     }
 
+    // Per recuperare la lista delle richieste in sospeso di un passeggero
     public static List<RideRequest> retrievePendingPassengersRequests(String passengerEmail) {
-
         Connection connection;
-
         RideRequest rideRequest;
         List<RideRequest> rideRequestsList = new ArrayList<>();
 
-
         try {
             connection = ConnectionDB.getConnection();
-
             ResultSet resultSet = RetrieveQueries.retrievePendingPassengerRequests(connection, passengerEmail);
 
+            // Non ci sono richieste in sospeso
             if (!resultSet.first()) {
                 throw new NotFoundException("You don't have any pending request!");
             }
@@ -78,19 +77,17 @@ public class RideRequestDAO {
         return rideRequestsList;
     }
 
+    // Per recuperare la lista delle richieste confermate di un passeggero
     public static List<RideRequest> retrieveConfirmedPassengersRequests(String passengerEmail) {
-
         Connection connection;
-
         RideRequest rideRequest;
         List<RideRequest> rideRequestsList = new ArrayList<>();
 
-
         try {
             connection = ConnectionDB.getConnection();
-
             ResultSet resultSet = RetrieveQueries.retrieveConfirmedPassengerRequests(connection, passengerEmail);
 
+            // Non ci sono richieste confermate
             if (!resultSet.first()) {
                 throw new NotFoundException("You don't have any confirmed request!");
             }
@@ -111,19 +108,17 @@ public class RideRequestDAO {
         return rideRequestsList;
     }
 
+    // Per recuperare la lista delle richieste rifiutate di un passeggero
     public static List<RideRequest> retrieveRejectedPassengersRequests(String passengerEmail) {
-
         Connection connection;
-
         RideRequest rideRequest;
         List<RideRequest> rideRequestsList = new ArrayList<>();
 
-
         try {
             connection = ConnectionDB.getConnection();
-
             ResultSet resultSet = RetrieveQueries.retrieveRejectedPassengerRequests(connection, passengerEmail);
 
+            // Non ci sono richieste rifiutate
             if (!resultSet.first()) {
                 throw new NotFoundException("You don't have any rejected request!");
             }
@@ -144,19 +139,17 @@ public class RideRequestDAO {
         return rideRequestsList;
     }
 
+    // Per recuperare la lista delle richieste di corse future in sospeso a un guidatore
     public static List<RideRequest> retrievePendingDriverRequests(String driverEmail) {
-
         Connection connection;
-
         RideRequest rideRequest;
         List<RideRequest> rideRequestsList = new ArrayList<>();
 
-
         try {
             connection = ConnectionDB.getConnection();
-
             ResultSet resultSet = RetrieveQueries.retrievePendingDriverRequests(connection, driverEmail);
 
+            // Il guidatore non ha ricevuto richieste
             if (!resultSet.first()) {
                 throw new NotFoundException("No pending request yet!");
             }
@@ -177,19 +170,17 @@ public class RideRequestDAO {
         return rideRequestsList;
     }
 
+    // Per recuperare la lista delle richieste di corse future confermate da un guidatore
     public static List<RideRequest> retrieveConfirmedDriverRequests(String driverEmail) {
-
         Connection connection;
-
         RideRequest rideRequest;
         List<RideRequest> rideRequestsList = new ArrayList<>();
 
-
         try {
             connection = ConnectionDB.getConnection();
-
             ResultSet resultSet = RetrieveQueries.retrieveConfirmedDriverRequests(connection, driverEmail);
 
+            // Il guidatore non ha confermato richieste per corse future
             if (!resultSet.first()) {
                 throw new NotFoundException("No confirmed request yet!");
             }
@@ -210,6 +201,7 @@ public class RideRequestDAO {
         return rideRequestsList;
     }
 
+    // Per aggiornare lo stato di una richiesta
     public static void updateStatus(int idRideRequest, int status) {
         Connection connection;
 
@@ -221,6 +213,7 @@ public class RideRequestDAO {
         }
     }
 
+    // Estrae i dati dal ResultSet e restituisce un nuovo oggetto RideRequest
     private static RideRequest setRideRequestData(ResultSet resultSet) throws NotFoundException, SQLException {
         int idRideRequest = resultSet.getInt(ID);
         int idRide = resultSet.getInt(ID_RIDE);

@@ -7,10 +7,10 @@ import com.example.CampusCarpool.model.UserProfile;
 
 import java.io.*;
 
-// Classe che gestisce l'accesso ai dati degli utenti memorizzati in un file CSV
+// Implementazione del LoginDAO usando un file CSV per l'accesso ai dati degli utenti
 public class LoginDAOCSV implements LoginDAO {
 
-    // Percorso del file CSV contenente i dati degli utenti
+    // Percorso file CSV contenente i dati degli utenti
     private static final String CSV_FILE_NAME = "src/main/res/Users.csv";
 
     // Indici delle colonne nel file CSV
@@ -19,10 +19,9 @@ public class LoginDAOCSV implements LoginDAO {
     private static final int ROLE = 2;
 
 
-    // Metodo che verifica se le credenziali di accesso fornite corrispondono a un utente registrato
+    // Verifica se credenziali di accesso fornite corrispondono a un utente registrato
     @Override
     public UserProfile checkUser(String username, String password) throws UserNotFoundException {
-
         int role;
         UserProfile userProfile = null;
         File file = new File(CSV_FILE_NAME);
@@ -44,6 +43,7 @@ public class LoginDAOCSV implements LoginDAO {
                 }
             }
 
+            // L'utente non è stato trovato
             if(userProfile == null){
                 throw new UserNotFoundException();
             }

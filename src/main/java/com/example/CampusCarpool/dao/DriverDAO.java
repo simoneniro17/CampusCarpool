@@ -1,20 +1,19 @@
 package com.example.CampusCarpool.dao;
 
 import com.example.CampusCarpool.connection.ConnectionDB;
-import com.example.CampusCarpool.dao.queries.CRUDQueries;
 import com.example.CampusCarpool.dao.queries.RetrieveQueries;
 import com.example.CampusCarpool.engineering.Printer;
 import com.example.CampusCarpool.exception.NotFoundException;
 import com.example.CampusCarpool.model.Driver;
 
-import java.io.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+// Gestisce l'accesso ai dati dei guidatori
 public class DriverDAO {
-
+    // Costanti per i nomi delle colonne
     private static final String FIRST_NAME = "firstName";
     private static final String LAST_NAME = "lastName";
     private static final String DATE_OF_BIRTH = "dateOfBirth";
@@ -26,14 +25,13 @@ public class DriverDAO {
 
     }
 
+    // Per cercare un guidatore in base al suo username
     public static Driver findDriverByUsername(String username) throws NotFoundException {
         Connection connection;
-
         Driver driver = null;
 
         try {
             connection = ConnectionDB.getConnection();
-
             ResultSet resultSet = RetrieveQueries.retrieveDriverByUsername(connection, username);
 
             if (!resultSet.first()) {
@@ -53,6 +51,7 @@ public class DriverDAO {
         return driver;
     }
 
+    // Estrae i dati dal ResultSet e restituisce un nuovo oggetto Driver
     public static Driver setDriverData(ResultSet resultSet) throws SQLException {
         String driverFirstName = resultSet.getString(FIRST_NAME);
         String driverLastName = resultSet.getString(LAST_NAME);
@@ -61,8 +60,6 @@ public class DriverDAO {
         String driverEmail = resultSet.getString(EMAIL);
         String driverPhoneNumber = resultSet.getString(PHONE_NUMBER);
 
-        Driver driver = new Driver(driverFirstName, driverLastName, driverDateOfBirth, driverGender, driverEmail, driverPhoneNumber);
-
-        return driver;
+        return new Driver(driverFirstName, driverLastName, driverDateOfBirth, driverGender, driverEmail, driverPhoneNumber);
     }
 }

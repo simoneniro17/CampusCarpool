@@ -14,7 +14,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
+// Implementazione del RideDAO usando JDBC per l'accesso ai dati delle corse
 public class RideDAOJDBC extends RideDAO {
+    // Costanti per specificare i nomi delle colonne
     private static final String ID = "idRide";
     private static final String DATE = "departureDate";
     private static final String TIME = "departureTime";
@@ -26,6 +28,7 @@ public class RideDAOJDBC extends RideDAO {
     private static final String DRIVER_EMAIL = "driverEmail";
     private static final String DRIVER_PHONE = "driverPhoneNumber";
 
+    // Per recuperare una corsa dal database in base al suo ID
     @Override
     public Ride findRideById(int idRide) {
         Connection connection;
@@ -33,7 +36,6 @@ public class RideDAOJDBC extends RideDAO {
 
         try {
             connection = ConnectionDB.getConnection();
-
             ResultSet resultSet = RetrieveQueries.retrieveRidesById(connection, idRide);
 
             if(!resultSet.first()){
@@ -53,6 +55,7 @@ public class RideDAOJDBC extends RideDAO {
         return ride;
     }
 
+    // Per recuperare una lista di viaggi in base a dei parametri di ricerca
     @Override
     public List<Ride> retrieveRides(LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation) {
         Connection connection;
@@ -61,7 +64,6 @@ public class RideDAOJDBC extends RideDAO {
 
         try {
             connection = ConnectionDB.getConnection();
-
             ResultSet resultSet = RetrieveQueries.retrieveRidesByInfo(connection, departureDate, departureTime, departureLocation, destinationLocation);
 
             if(!resultSet.first()) {
@@ -84,6 +86,7 @@ public class RideDAOJDBC extends RideDAO {
         return rideList;
     }
 
+    // Per estrarre i dati da un ResultSet e restituire un nuovo oggetto Ride
     private Ride setRideData(ResultSet resultSet) throws NotFoundException, SQLException {
         int idRide = resultSet.getInt(ID);
         Date departureDate = resultSet.getDate(DATE);
@@ -96,19 +99,17 @@ public class RideDAOJDBC extends RideDAO {
         String driverEmail = resultSet.getString(DRIVER_EMAIL);
         String driverPhone = resultSet.getString(DRIVER_PHONE);
 
-        Ride ride = new Ride(idRide, departureDate.toLocalDate(), departureTime.toLocalTime(), departureLocation, destinationLocation, availableSeats,
+        return new Ride(idRide, departureDate.toLocalDate(), departureTime.toLocalTime(), departureLocation, destinationLocation, availableSeats,
                 driverFirstName, driverLastName, driverEmail, driverPhone);
-
-        return ride;
     }
 
+    // Per aggiornare il numero di posti disponibili di una corsa
     @Override
     public void updateRideAvailableSeats(int idRide) {
         Connection connection;
 
         try {
             connection = ConnectionDB.getConnection();
-
             ResultSet resultSet = RetrieveQueries.retrieveRidesAvailableSeats(connection, idRide);
             resultSet.first();
 
@@ -116,6 +117,7 @@ public class RideDAOJDBC extends RideDAO {
 
             resultSet.close();
 
+            // Se ci sono ancora posti disponibili, il valore viene aggiornato
             if(currentSeats > 0) {
                 CRUDQueries.updateRideAvailableSeats(connection, idRide);
             } else {

@@ -9,18 +9,23 @@ import java.sql.*;
 
 import java.util.Properties;
 
+// Per gestire la connessione al database
 public class ConnectionDB {
 
-    private ConnectionDB() {}
+    // Costruttore privato per evitare istanze esterne
+    private ConnectionDB() {
+    }
 
     private static Connection connection;
 
+    // Per ottenere la connessione al database
     public static Connection getConnection() {
         String user;
         String password;
         String url;
         String driverClassName;
 
+        // Creazione connessione se non esistente
         if (connection == null) {
             try{
                 Properties db = loadProperties();
@@ -39,17 +44,19 @@ public class ConnectionDB {
         return connection;
     }
 
+    // Per chiudere la connessione al database
     public static void closeConnection() throws SQLException {
         connection.close();
     }
 
+    // Per caricare le proprietà del database da un file db.properties
     private static Properties loadProperties() throws IOException {
         Properties properties = new Properties();
 
-        //closing the resource fileInputStream is handled automatically by the try-with-resources
         try(FileInputStream fileInputStream = new FileInputStream("src/main/java/com/example/CampusCarpool/connection/db.properties")){
             properties.load(fileInputStream);
         }
+
         return properties;
     }
 }
