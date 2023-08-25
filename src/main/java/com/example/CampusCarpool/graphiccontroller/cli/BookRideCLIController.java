@@ -6,8 +6,6 @@ import com.example.CampusCarpool.engineering.Printer;
 import com.example.CampusCarpool.engineering.Session;
 import com.example.CampusCarpool.engineering.ShowExceptionSupport;
 import com.example.CampusCarpool.exception.DuplicateRequestException;
-import com.example.CampusCarpool.exception.MessageException;
-import com.example.CampusCarpool.exception.NotFoundException;
 
 public class BookRideCLIController implements GraphicCLIController {
 
@@ -25,7 +23,7 @@ public class BookRideCLIController implements GraphicCLIController {
             bookRideController.sendRequest(rideRequestBean);
 
             displayRequestSentMessage();
-        } catch (MessageException | NotFoundException | DuplicateRequestException e) {
+        } catch (DuplicateRequestException e) {
             ShowExceptionSupport.showExceptionCLI(e.getMessage());
         }
     }

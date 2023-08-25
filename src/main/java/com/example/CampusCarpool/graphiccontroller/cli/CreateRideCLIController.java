@@ -24,6 +24,7 @@ public class CreateRideCLIController implements GraphicCLIController {
         this.createRideFormViewCLI.run();
     }
 
+    // Per creare il RideBean con i dati del Driver che sta creando la corsa
     public void createRide(LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation, int availableSeats) {
         DriverBean driverBean = Session.getCurrentSession().getDriverBean();
 
@@ -31,11 +32,13 @@ public class CreateRideCLIController implements GraphicCLIController {
                 driverBean.getFirstName(), driverBean.getLastName(), driverBean.getEmail(), driverBean.getPhoneNumber());
     }
 
+    // Aggiunta corsa al database
     public void addRide() throws DuplicateRideException, MessageException {
         CreateRideController createRideController = new CreateRideController();
         createRideController.createRide(rideBean);
     }
 
+    // Per far visualizzare un messaggio di conferma per la creazione della corsa
     public void displayCreatedRideMessage() {
         Printer.printMessage("\nYour ride has been successfully created!\n");
     }
