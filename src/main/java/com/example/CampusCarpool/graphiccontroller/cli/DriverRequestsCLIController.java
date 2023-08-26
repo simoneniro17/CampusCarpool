@@ -145,7 +145,7 @@ public class DriverRequestsCLIController implements GraphicCLIController {
     // Per accettare la richiesta
     private void acceptRequest() {
         ManageRideRequestController manageRideRequestController = new ManageRideRequestController();
-        manageRideRequestController.confirmRideRequest(rideRequestBean);
+        manageRideRequestController.confirmRideRequest(rideRequestBean, null);
         rideRequestBean = null;
 
         Printer.printMessage("\nRequest successfully confirmed.");
@@ -155,7 +155,7 @@ public class DriverRequestsCLIController implements GraphicCLIController {
     // Per rifiutare la richiesta
     private void rejectRequest() {
         ManageRideRequestController manageRideRequestController = new ManageRideRequestController();
-        manageRideRequestController.rejectRideRequest(rideRequestBean);
+        manageRideRequestController.rejectRideRequest(rideRequestBean, null);
         rideRequestBean = null;
 
         Printer.printMessage("\nRequest successfully rejected.");

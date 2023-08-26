@@ -1,9 +1,11 @@
 package com.example.CampusCarpool.model;
 
+import com.example.CampusCarpool.engineering.observer.Subject;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class RideRequest {
+public class RideRequest extends Subject {
     private int idRideRequest;
     private int idRide;
     private String passengerEmail;

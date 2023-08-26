@@ -11,6 +11,7 @@ import com.example.CampusCarpool.exception.NotFoundException;
 import com.example.CampusCarpool.model.Passenger;
 import com.example.CampusCarpool.model.Ride;
 import com.example.CampusCarpool.model.RideRequest;
+import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +26,20 @@ public class ManageRideRequestController {
         return retrieveDriverRequests(driverBean, 1);
     }
 
-    public void confirmRideRequest(RideRequestBean rideRequestBean) {
+    public void confirmRideRequest(RideRequestBean rideRequestBean, Pane pane) {
         updateRideRequestStatus(rideRequestBean, 1);
-        //rideRequestBean.notifyObserversDriver(rideRequestBean);
+        rideRequestBean.setStatus(1);
+        if(pane != null) {
+            rideRequestBean.notifyObserversPassenger(rideRequestBean, pane);
+        }
     }
 
-    public void rejectRideRequest(RideRequestBean rideRequestBean) {
+    public void rejectRideRequest(RideRequestBean rideRequestBean, Pane pane) {
         updateRideRequestStatus(rideRequestBean, 2);
-        //rideRequestBean.notifyObserversDriver(rideRequestBean);
+        rideRequestBean.setStatus(2);
+        if (pane != null) {
+            rideRequestBean.notifyObserversPassenger(rideRequestBean, pane);
+        }
     }
 
     private RideRequestsListBean retrieveDriverRequests(DriverBean driverBean, int status) throws NotFoundException {

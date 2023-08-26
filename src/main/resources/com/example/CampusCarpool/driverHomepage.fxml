@@ -47,12 +47,12 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="primary-color" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="requestsButton" layoutX="201.0" layoutY="31.0" mnemonicParsing="false" prefHeight="400.0" prefWidth="265.0" text="Requests">
+            <Button fx:id="requestsButton" layoutX="208.0" layoutY="149.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="250.0" text="Requests">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>
             </Button>
-            <Button fx:id="createRideButton" layoutX="536.0" layoutY="32.0" mnemonicParsing="false" onAction="#toCreateRide" prefHeight="400.0" prefWidth="265.0" text="Create Ride">
+            <Button fx:id="createRideButton" layoutX="558.0" layoutY="149.0" mnemonicParsing="false" onAction="#toCreateRide" prefHeight="150.0" prefWidth="250.0" text="Create ride">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>

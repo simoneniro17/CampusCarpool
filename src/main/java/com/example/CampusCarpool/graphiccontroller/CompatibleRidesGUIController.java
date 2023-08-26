@@ -1,7 +1,9 @@
 package com.example.CampusCarpool.graphiccontroller;
 
 import com.example.CampusCarpool.Main;
+import com.example.CampusCarpool.bean.CompatibleRideBean;
 import com.example.CampusCarpool.bean.CompatibleRidesListBean;
+import com.example.CampusCarpool.bean.RideRequestBean;
 import com.example.CampusCarpool.engineering.Printer;
 import com.example.CampusCarpool.engineering.ShowExceptionSupport;
 import javafx.fxml.FXML;
@@ -19,49 +21,48 @@ import java.util.List;
 import java.util.Objects;
 
 public class CompatibleRidesGUIController {
-
     @FXML
-    private GridPane rideGrid = new GridPane();
+    private GridPane grid = new GridPane();
 
-
-    public int displayCompatibleRides(List<CompatibleRidesListBean> compatibleRides) {
+    public int displayCompatibleRides(List<CompatibleRideBean> compatibleRides, RideRequestBean rideRequestBean) {
         int column = 0;
         int row = 1;
         int count = 0;
 
         try {
-
-            for (CompatibleRidesListBean ride : compatibleRides) {
+            for (CompatibleRideBean ride : compatibleRides) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
                 fxmlLoader.setLocation(getClass().getResource("compatibleRidesItem.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 CompatibleRidesItemGUIController compatibleRidesItemGUIController = fxmlLoader.getController();
 
-                count++;
+                if(count == 0) {
+                    count++;
+                }
 
-                if (column == 3) {
+                compatibleRidesItemGUIController.setData(ride, rideRequestBean);
+
+                if (column == 2) {
                     column = 0;
                     row++;
                 }
 
-                rideGrid.add(anchorPane, column++, row);
+                grid.add(anchorPane, column++, row);
 
-                rideGrid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                rideGrid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                rideGrid.setMaxWidth(Region.USE_PREF_SIZE);
+                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+                grid.setMaxWidth(Region.USE_PREF_SIZE);
 
-                rideGrid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                rideGrid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                rideGrid.setMaxHeight(Region.USE_PREF_SIZE);
+                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+                grid.setMaxHeight(Region.USE_PREF_SIZE);
 
                 GridPane.setMargin(anchorPane, new Insets(10));
             }
-
         } catch (IOException e) {
             Printer.printError(e.getMessage());
         }
-
         return count;
     }
 
@@ -84,7 +85,7 @@ public class CompatibleRidesGUIController {
 
     public void toPreviousScreen() throws IOException {
         Stage stage = Main.getStage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("driverHomepage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("passengerHomepage.fxml")));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

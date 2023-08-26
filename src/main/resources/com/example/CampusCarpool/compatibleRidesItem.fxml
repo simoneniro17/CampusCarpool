@@ -109,7 +109,7 @@
                   <Insets left="10.0" right="10.0" />
                </VBox.margin>
             </HBox>
-            <Button fx:id="bookRideButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0" stylesheets="@../../../values/style.css" text="Send request">
+            <Button fx:id="bookRideButton" mnemonicParsing="false" prefHeight="35.0" prefWidth="120.0"  onAction="#sendRequest" stylesheets="@../../../values/style.css" text="Send request">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
