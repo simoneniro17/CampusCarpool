@@ -34,32 +34,26 @@ public class DriverRequestsGUIController implements Observer {
         List<RideRequest> pendingRequestsList = (manageRideRequestController.retrieveDriverPendingRequests(driverBean)).getRideRequestsList();
         List<RideRequest> confirmedRequestsList = (manageRideRequestController.retrieveDriverConfirmedRequests(driverBean)).getRideRequestsList();
 
-        for(RideRequest rideRequest: pendingRequestsList) {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("driverRequestsItem.fxml"));
-            Pane requestBox = fxmlLoader.load();
-            rideRequest.register(this);
+        loadRequests(pendingRequestsList, pendingReqList);
+        loadRequests(confirmedRequestsList, confirmedReqList);
+    }
 
-            DriverRequestsItemGUIController driverRequestsItemGUIController = fxmlLoader.getController();
-            driverRequestsItemGUIController.setPane(requestBox);
-            driverRequestsItemGUIController.setRideRequest(rideRequest);
+    public void loadRequests(List<RideRequest> rideRequestList, HBox container) throws IOException {
+        for (RideRequest rideRequest : rideRequestList) {
+            try {
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("driverRequestsItem.fxml"));
+                Pane requestBox = fxmlLoader.load();
+                rideRequest.register(this);
 
-            pendingReqList.getChildren().add(requestBox);
+                DriverRequestsItemGUIController driverRequestsItemGUIController = fxmlLoader.getController();
+                driverRequestsItemGUIController.setPane(requestBox);
+                driverRequestsItemGUIController.setRideRequest(rideRequest);
+
+                container.getChildren().add(requestBox);
+            } catch (IOException e) {
+                ShowExceptionSupport.showException(e.getMessage());
+            }
         }
-
-        for(RideRequest rideRequest: confirmedRequestsList) {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("driverRequestsItem.fxml"));
-            Pane requestBox = fxmlLoader.load();
-            rideRequest.register(this);
-
-            DriverRequestsItemGUIController driverRequestsItemGUIController = fxmlLoader.getController();
-            driverRequestsItemGUIController.setPane(requestBox);
-            driverRequestsItemGUIController.setRideRequest(rideRequest);
-
-            confirmedReqList.getChildren().add(requestBox);
-        }
-
     }
 
     @Override
@@ -94,7 +88,7 @@ public class DriverRequestsGUIController implements Observer {
 
     public void toHomepage() throws IOException {
         Stage stage = Main.getStage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("passengerHomepage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("driverHomepage.fxml")));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -102,7 +96,7 @@ public class DriverRequestsGUIController implements Observer {
 
     public void toPreviousScreen() throws IOException {
         Stage stage = Main.getStage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("passengerHomepage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("driverHomepage.fxml")));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

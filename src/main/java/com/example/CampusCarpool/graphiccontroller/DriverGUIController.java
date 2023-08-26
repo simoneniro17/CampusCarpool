@@ -29,4 +29,15 @@ public class DriverGUIController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void toManageRequests() throws IOException {
+        Stage stage = Main.getStage();
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(Main.class.getResource("driverRequests.fxml"));
+
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setScene(scene);
+        stage.show();
+    }
 }

@@ -121,7 +121,7 @@
             </VBox>
             <Button fx:id="createRideButton" layoutX="442.0" layoutY="354.0" mnemonicParsing="false" onAction="#createRide" prefHeight="61.0" prefWidth="142.0" text="Create ride">
                <font>
-                  <Font size="15.0" />
+                  <Font name="System Bold" size="15.0" />
                </font></Button>
          </children>
       </AnchorPane>

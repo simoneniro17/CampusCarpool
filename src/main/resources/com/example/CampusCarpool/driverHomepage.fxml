@@ -47,7 +47,7 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="primary-color" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="requestsButton" layoutX="208.0" layoutY="149.0" mnemonicParsing="false" prefHeight="150.0" prefWidth="250.0" text="Requests">
+            <Button fx:id="requestsButton" layoutX="208.0" layoutY="149.0" onAction="#toManageRequests" mnemonicParsing="false" prefHeight="150.0" prefWidth="250.0" text="Requests">
                <font>
                   <Font name="System Bold" size="36.0" />
                </font>

@@ -77,7 +77,7 @@ public class CompatibleRidesGUIController {
 
     public void toHomepage() throws IOException {
         Stage stage = Main.getStage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("driverHomepage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("passengerHomepage.fxml")));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -85,7 +85,7 @@ public class CompatibleRidesGUIController {
 
     public void toPreviousScreen() throws IOException {
         Stage stage = Main.getStage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("passengerHomepage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("searchRide.fxml")));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
