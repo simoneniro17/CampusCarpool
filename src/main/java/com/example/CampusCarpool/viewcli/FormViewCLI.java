@@ -24,83 +24,95 @@ public class FormViewCLI {
 
     // Per ottenere la data di partenza
     public LocalDate printDepartureDate() {
-        LocalDate departureDate = null;
-
-        Printer.printMessage("\nInsert departure date with format yyyy-MM-dd:");
+        LocalDate departureDate;
         Scanner scanner = new Scanner(System.in);
 
-        try {
-            departureDate = formCLIController.validateDepartureDate(scanner.nextLine());
-        } catch (MessageException e) {
-            ShowExceptionSupport.showExceptionCLI(e.getMessage());
-            printDepartureDate();
-        }
+        do {
+            Printer.printMessage("\nInsert departure date with format yyyy-MM-dd:");
+
+            try {
+                departureDate = formCLIController.validateDepartureDate(scanner.nextLine());
+                break;
+            } catch (MessageException e) {
+                ShowExceptionSupport.showExceptionCLI(e.getMessage());
+            }
+        } while (true);
+
         return departureDate;
     }
 
     // Per ottenere l'orario di partenza
     public LocalTime printDepartureTime() {
-        LocalTime departureTime = null;
-
-        Printer.printMessage("\nInsert departure time with format HH:mm:ss:");
+        LocalTime departureTime;
         Scanner scanner = new Scanner(System.in);
 
-        try {
-            departureTime = formCLIController.validateDepartureTime(scanner.nextLine());
-        } catch (MessageException e) {
-            ShowExceptionSupport.showExceptionCLI(e.getMessage());
-            printDepartureTime();
-        }
+        do {
+            Printer.printMessage("\nInsert departure time with format HH:mm:ss:");
+
+            try {
+                departureTime = formCLIController.validateDepartureTime(scanner.nextLine());
+                break;
+            } catch (MessageException e) {
+                ShowExceptionSupport.showExceptionCLI(e.getMessage());
+            }
+        } while (true);
+
         return departureTime;
     }
 
     // Per ottenere la località di partenza
     public String printDepartureLocation() {
-        String departureLocation = null;
-
-        Printer.printMessage("\nInsert departure location:");
+        String departureLocation;
         Scanner scanner = new Scanner(System.in);
 
-        try {
-            departureLocation = formCLIController.executeLocation(scanner.nextLine());
-        } catch (MessageException e) {
-            ShowExceptionSupport.showExceptionCLI(e.getMessage());
-            printDepartureLocation();
-        }
+        do {
+            Printer.printMessage("\nInsert departure location:");
+
+            try {
+                departureLocation = formCLIController.executeLocation(scanner.nextLine());
+                break;
+            } catch (MessageException e) {
+                ShowExceptionSupport.showExceptionCLI(e.getMessage());
+            }
+        } while (true);
 
         return departureLocation;
     }
 
     // Per ottenere la località di destinazione
     public String printDestinationLocation() {
-        String destinationLocation = null;
-
-        Printer.printMessage("\nInsert destination location:");
+        String destinationLocation;
         Scanner scanner = new Scanner(System.in);
 
-        try {
-            destinationLocation = formCLIController.executeLocation(scanner.nextLine());
-        } catch (MessageException e) {
-            ShowExceptionSupport.showExceptionCLI(e.getMessage());
-            printDestinationLocation();
-        }
+        do {
+            Printer.printMessage("\nInsert destination location:");
+
+            try {
+                destinationLocation = formCLIController.executeLocation(scanner.nextLine());
+                break;
+            } catch (MessageException e) {
+                ShowExceptionSupport.showExceptionCLI(e.getMessage());
+            }
+        } while (true);
 
         return destinationLocation;
     }
 
     // Per ottenere il numero di posti disponibili
     public int printAvailableSeats() {
-        int availableSeats = 0;
-
-        Printer.printMessage("\nInsert the number of available seats:");
+        int availableSeats;
         Scanner scanner = new Scanner(System.in);
 
-        try {
-            availableSeats = formCLIController.executeAvailableSeats(scanner.nextLine());
-        } catch (MessageException e) {
-            ShowExceptionSupport.showExceptionCLI(e.getMessage());
-            printAvailableSeats();
-        }
+        do {
+            Printer.printMessage("\nInsert the number of available seats:");
+
+            try {
+                availableSeats = formCLIController.executeAvailableSeats(scanner.nextLine());
+                break;
+            } catch (MessageException e) {
+                ShowExceptionSupport.showExceptionCLI(e.getMessage());
+            }
+        } while (true);
 
         return availableSeats;
     }

@@ -1,6 +1,7 @@
 package com.example.CampusCarpool.viewcli;
 
 import com.example.CampusCarpool.engineering.Printer;
+import com.example.CampusCarpool.engineering.ScannerSupport;
 import com.example.CampusCarpool.engineering.ShowExceptionSupport;
 import com.example.CampusCarpool.exception.MessageException;
 import com.example.CampusCarpool.graphiccontroller.cli.BookRideCLIController;
@@ -57,5 +58,10 @@ public class SearchRideFormViewCLI {
         int idRide = scanner.nextInt();
 
         searchRideCLIController.executeSelectedId(idRide);
+    }
+
+    public void printContinue() {
+        Printer.printMessage("\nPress ENTER to continue");
+        ScannerSupport.waitEnter();
     }
 }

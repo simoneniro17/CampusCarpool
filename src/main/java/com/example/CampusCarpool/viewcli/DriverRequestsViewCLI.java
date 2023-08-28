@@ -7,7 +7,6 @@ import com.example.CampusCarpool.exception.CommandErrorException;
 import com.example.CampusCarpool.exception.NotFoundException;
 import com.example.CampusCarpool.graphiccontroller.cli.DriverRequestsCLIController;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class DriverRequestsViewCLI {

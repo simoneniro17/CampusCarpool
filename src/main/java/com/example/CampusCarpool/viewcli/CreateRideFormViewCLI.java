@@ -1,6 +1,7 @@
 package com.example.CampusCarpool.viewcli;
 
 import com.example.CampusCarpool.engineering.Printer;
+import com.example.CampusCarpool.engineering.ScannerSupport;
 import com.example.CampusCarpool.engineering.ShowExceptionSupport;
 import com.example.CampusCarpool.exception.DuplicateRideException;
 import com.example.CampusCarpool.exception.MessageException;
@@ -37,5 +38,10 @@ public class CreateRideFormViewCLI {
         } catch (DuplicateRideException | MessageException e) {
             ShowExceptionSupport.showExceptionCLI(e.getMessage());
         }
+    }
+
+    public static void printContinue() {
+        Printer.printMessage("\nPress ENTER to continue");
+        ScannerSupport.waitEnter();
     }
 }

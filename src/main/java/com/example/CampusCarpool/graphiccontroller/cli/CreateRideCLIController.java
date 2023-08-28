@@ -12,7 +12,6 @@ import com.example.CampusCarpool.viewcli.CreateRideFormViewCLI;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-
 public class CreateRideCLIController implements GraphicCLIController {
 
     private CreateRideFormViewCLI createRideFormViewCLI;
@@ -40,6 +39,7 @@ public class CreateRideCLIController implements GraphicCLIController {
 
     // Per far visualizzare un messaggio di conferma per la creazione della corsa
     public void displayCreatedRideMessage() {
-        Printer.printMessage("\nYour ride has been successfully created!\n");
+        Printer.printMessage("\nYour ride has been successfully created!");
+        CreateRideFormViewCLI.printContinue();
     }
 }

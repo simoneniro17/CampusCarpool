@@ -7,6 +7,7 @@ import com.example.CampusCarpool.engineering.Printer;
 import com.example.CampusCarpool.engineering.ShowExceptionSupport;
 import com.example.CampusCarpool.exception.MessageException;
 import com.example.CampusCarpool.model.Ride;
+import com.example.CampusCarpool.viewcli.PassengerViewCLI;
 import com.example.CampusCarpool.viewcli.SearchRideFormViewCLI;
 
 import java.time.LocalDate;
