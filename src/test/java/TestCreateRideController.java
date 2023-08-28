@@ -1,20 +1,16 @@
-package com.example.CampusCarpool;
-
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import com.example.CampusCarpool.appcontroller.CreateRideController;
 import com.example.CampusCarpool.bean.RideBean;
 import com.example.CampusCarpool.exception.MessageException;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TestCreateRideController {
 
     /* Il seguente test verifica che venga sollevata un'eccezione quando viene creata una corsa con
         una data di partenza precedente a quella corrente */
-
-    /*
     @Test
     void testCreateRide() {
         int validDate = 0;
@@ -33,5 +29,5 @@ class TestCreateRideController {
 
         // Il test ha successo perché la data di partenza è precedente al giorno corrente e viene sollevata l'eccezione
         assertEquals(2, validDate);
-    } */
+    }
 }

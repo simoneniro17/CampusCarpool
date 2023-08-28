@@ -1,21 +1,18 @@
-package com.example.CampusCarpool;
-
 import com.example.CampusCarpool.connection.ConnectionDB;
 import com.example.CampusCarpool.dao.RideRequestDAO;
 import com.example.CampusCarpool.dao.queries.RetrieveQueries;
 import com.example.CampusCarpool.exception.NotFoundException;
-
-
 import java.sql.Connection;
 import java.sql.ResultSet;
+import org.junit.jupiter.api.Test;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TestRideRequestDAO {
 
     /* Il seguente test verifica che dopo l'aggiunta di una nuova richiesta per una corsa, chiamando un metodo
-    * del DAO che restituisce il numero di richiesta per quella corsa, questo venga incrementato di 1 */
-/*
+     * del DAO che restituisce il numero di richiesta per quella corsa, questo venga incrementato di 1 */
+
     @Test
     void testNewRequest() {
         Connection connection;
@@ -27,7 +24,7 @@ class TestRideRequestDAO {
             connection = ConnectionDB.getConnection();
             resultSet = RetrieveQueries.getNumberOfRequests(connection, 5);
 
-            if(!resultSet.first()) {
+            if (!resultSet.first()) {
                 throw new NotFoundException("No ride found");
             }
 
@@ -38,7 +35,7 @@ class TestRideRequestDAO {
 
             resultSet = RetrieveQueries.getNumberOfRequests(connection, 5);
 
-            if(!resultSet.first()) {
+            if (!resultSet.first()) {
                 throw new NotFoundException("No ride found");
             }
 
@@ -49,5 +46,5 @@ class TestRideRequestDAO {
 
         // Il test ha successo perché la richiesta viene aggiunta correttamente
         assertEquals(count + 1, newCount);
-    } */
+    }
 }

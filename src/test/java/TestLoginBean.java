@@ -1,15 +1,14 @@
-package com.example.CampusCarpool;
-
 import com.example.CampusCarpool.bean.LoginBean;
 import com.example.CampusCarpool.exception.EmailFormatException;
+import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class TestLoginBean {
 
     /* Verifichiamo se viene lanciata l'eccezione EmailFormatException quando
        viene creata un'istanza di LoginBean passando una mail con un formato sintatticamente errato */
-/*
-    @Test
+   @Test
     void testValidEmail() {
 
         int validFormat;
@@ -22,6 +21,7 @@ class TestLoginBean {
         }
 
         // Il test ha successo perché l'eccezione viene sollevata assegnando il valore 0 a validFormat
-        Assertions.assertEquals(0, validFormat);
-    } */
+        assertEquals(0, validFormat);
+    }
+
 }
