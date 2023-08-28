@@ -94,5 +94,4 @@ public class DriverRequestsItemGUIController implements Observer {
     public void updateDriverPage(RideRequestBean rideRequestBean, Pane pane) {
         // Ignore
     }
-
 }

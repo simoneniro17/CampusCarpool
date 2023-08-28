@@ -8,7 +8,7 @@ import com.example.CampusCarpool.model.UserProfile;
 class TestLoginDAO {
 
     /* Verifichiamo che venga ritornato il tipo di ruolo corretto quando
-       viene effettuato il login con il profilo di una passeggero */
+       viene effettuato il login con il profilo di un passeggero */
 
 /*    @Test
     void testCheckUser() throws UserNotFoundException {

@@ -5,10 +5,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="reqPane" prefHeight="200.0" prefWidth="550.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.CampusCarpool.graphiccontroller.DriverRequestsItemGUIController">
+<AnchorPane fx:id="reqPane" prefHeight="200.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.CampusCarpool.graphiccontroller.DriverRequestsItemGUIController">
     <children>
         <VBox alignment="TOP_CENTER" layoutX="41.0" layoutY="-18.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
             <children>
@@ -72,7 +73,7 @@
                   </HBox>
                </children>
             </HBox>
-                <Label text="----- Passenger's infromation -----">
+                <Label text="----- Passenger's information -----">
                     <font>
                         <Font name="System Bold" size="12.0" />
                     </font>
@@ -151,5 +152,13 @@
             </HBox>
             </children>
         </VBox>
+      <HBox fx:id="manageReqBox" alignment="CENTER" layoutX="10.0" layoutY="10.0">
+         <children>
+            <Pane HBox.hgrow="ALWAYS" />
+            <Pane HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <Pane layoutX="10.0" layoutY="10.0" />
+      <Pane layoutX="10.0" layoutY="10.0" />
     </children>
 </AnchorPane>
