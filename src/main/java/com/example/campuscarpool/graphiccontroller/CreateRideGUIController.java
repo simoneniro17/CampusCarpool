@@ -46,6 +46,8 @@ public class CreateRideGUIController {
     @FXML
     private Spinner availableSeatsSpinner;
 
+    private static final String DRIVER_HP = "driverHomepage.fxml";
+
     public void initialize() {
         hourSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23));
         hourSpinner.getValueFactory().setConverter(new IntegerStringConverter());
@@ -108,7 +110,7 @@ public class CreateRideGUIController {
             createRideController.createRide(rideBean);
 
             Stage stage = Main.getStage();
-            Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("driverHomepage.fxml")));
+            Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(DRIVER_HP)));
             Scene scene = new Scene(root);
             stage.setScene(scene);
             stage.show();
@@ -136,7 +138,7 @@ public class CreateRideGUIController {
 
     public void toHomepage() throws IOException {
         Stage stage = Main.getStage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("driverHomepage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(DRIVER_HP)));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
@@ -144,7 +146,7 @@ public class CreateRideGUIController {
 
     public void toPreviousScreen() throws IOException {
         Stage stage = Main.getStage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("driverHomepage.fxml")));
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(DRIVER_HP)));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

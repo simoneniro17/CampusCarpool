@@ -14,10 +14,10 @@ import java.util.List;
 public class PassengerRequestsCLIController implements GraphicCLIController {
 
     // Costanti per le opzioni del menu
-    private final static String PENDING_REQUESTS = "1";
-    private final static String ACCEPTED_REQUESTS = "2";
-    private final static String REJECTED_REQUESTS = "3";
-    private final static String BACK = "4";
+    private static final String PENDING_REQUESTS = "1";
+    private static final String ACCEPTED_REQUESTS = "2";
+    private static final String REJECTED_REQUESTS = "3";
+    private static final String BACK = "4";
 
     @Override
     public void start() {

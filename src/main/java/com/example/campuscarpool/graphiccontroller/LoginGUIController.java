@@ -26,6 +26,7 @@ public class LoginGUIController {
     @FXML
     PasswordField pswdTextField;
 
+    private static final String NOT_IMPLEMENTED = "Not implemented yet!";
 
     public void checkLogin() throws IOException, NotFoundException {
 
@@ -63,14 +64,14 @@ public class LoginGUIController {
     }
 
     public void facebookLogin() throws IOException {
-        ShowExceptionSupport.showException("Not implemented yet!");
+        ShowExceptionSupport.showException(NOT_IMPLEMENTED);
     }
 
     public void googleLogin() throws IOException {
-        ShowExceptionSupport.showException("Not implemented yet!");
+        ShowExceptionSupport.showException(NOT_IMPLEMENTED);
     }
 
     public void createNewAccount() throws IOException {
-        ShowExceptionSupport.showException("Not implemented yet!");
+        ShowExceptionSupport.showException(NOT_IMPLEMENTED);
     }
 }

@@ -17,8 +17,8 @@ public class SearchRideController {
 
         RideDAO rideDAO = RideDAOFactory.getInstance().createRideDAO();
 
-        CompatibleRidesListBean compatibleRidesListBean = new CompatibleRidesListBean(rideDAO.retrieveRides(searchRideBean.getDepartureDate(), searchRideBean.getDepartureTime(), searchRideBean.getDepartureLocation(), searchRideBean.getDestinationLocation()));
-        return compatibleRidesListBean;
+        return  new CompatibleRidesListBean(rideDAO.retrieveRides(searchRideBean.getDepartureDate(), searchRideBean.getDepartureTime(),
+                searchRideBean.getDepartureLocation(), searchRideBean.getDestinationLocation()));
     }
 
     private void checkSearchedLocations(String departureLocation, String destinationLocation) throws MessageException {

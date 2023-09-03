@@ -87,7 +87,7 @@ public class RideDAOJDBC extends RideDAO {
     }
 
     // Per estrarre i dati da un ResultSet e restituire un nuovo oggetto Ride
-    private Ride setRideData(ResultSet resultSet) throws NotFoundException, SQLException {
+    private Ride setRideData(ResultSet resultSet) throws SQLException {
         int idRide = resultSet.getInt(ID);
         Date departureDate = resultSet.getDate(DATE);
         Time departureTime = resultSet.getTime(TIME);
@@ -113,7 +113,7 @@ public class RideDAOJDBC extends RideDAO {
             ResultSet resultSet = RetrieveQueries.retrieveRidesAvailableSeats(connection, idRide);
             resultSet.first();
 
-            int currentSeats = resultSet.getInt(0);
+            int currentSeats = resultSet.getInt(1);
 
             resultSet.close();
 

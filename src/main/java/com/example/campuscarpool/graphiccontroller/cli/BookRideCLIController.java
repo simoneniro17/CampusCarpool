@@ -8,11 +8,7 @@ import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.exception.DuplicateRequestException;
 import com.example.campuscarpool.viewcli.CreateRideFormViewCLI;
 
-public class BookRideCLIController implements GraphicCLIController {
-
-    @Override
-    public void start() {
-    }
+public class BookRideCLIController {
 
     // Per inviare la richiesta alla corsa specificata tramite ID
     public void sendRideRequest(int idRide) {

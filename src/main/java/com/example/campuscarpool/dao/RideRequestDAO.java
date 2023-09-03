@@ -214,7 +214,7 @@ public class RideRequestDAO {
     }
 
     // Estrae i dati dal ResultSet e restituisce un nuovo oggetto RideRequest
-    private static RideRequest setRideRequestData(ResultSet resultSet) throws NotFoundException, SQLException {
+    private static RideRequest setRideRequestData(ResultSet resultSet) throws SQLException {
         int idRideRequest = resultSet.getInt(ID);
         int idRide = resultSet.getInt(ID_RIDE);
         String passengerEmail = resultSet.getString(PASSENGER_EMAIL);

@@ -8,10 +8,10 @@ import com.example.campuscarpool.viewcli.PassengerViewCLI;
 public class PassengerCLIController implements GraphicCLIController {
 
     // Costanti per le opzioni del menu
-    private final static String SEARCH_RIDE = "1";
-    private final static String MY_REQUESTS = "2";
-    private final static String VIEW_PROFILE = "3";
-    private final static String LOGOUT = "4";
+    private static final String SEARCH_RIDE = "1";
+    private static final String MY_REQUESTS = "2";
+    private static final String VIEW_PROFILE = "3";
+    private static final String LOGOUT = "4";
 
     PassengerViewCLI passengerViewCLI;
 
