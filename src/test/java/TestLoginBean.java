@@ -1,5 +1,5 @@
-import com.example.CampusCarpool.bean.LoginBean;
-import com.example.CampusCarpool.exception.EmailFormatException;
+import com.example.campuscarpool.bean.LoginBean;
+import com.example.campuscarpool.exception.EmailFormatException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

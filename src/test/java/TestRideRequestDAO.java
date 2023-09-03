@@ -1,7 +1,7 @@
-import com.example.CampusCarpool.connection.ConnectionDB;
-import com.example.CampusCarpool.dao.RideRequestDAO;
-import com.example.CampusCarpool.dao.queries.RetrieveQueries;
-import com.example.CampusCarpool.exception.NotFoundException;
+import com.example.campuscarpool.connection.ConnectionDB;
+import com.example.campuscarpool.dao.RideRequestDAO;
+import com.example.campuscarpool.dao.queries.RetrieveQueries;
+import com.example.campuscarpool.exception.NotFoundException;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import org.junit.jupiter.api.Test;

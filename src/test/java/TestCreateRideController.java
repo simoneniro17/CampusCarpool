@@ -1,6 +1,6 @@
-import com.example.CampusCarpool.appcontroller.CreateRideController;
-import com.example.CampusCarpool.bean.RideBean;
-import com.example.CampusCarpool.exception.MessageException;
+import com.example.campuscarpool.appcontroller.CreateRideController;
+import com.example.campuscarpool.bean.RideBean;
+import com.example.campuscarpool.exception.MessageException;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import org.junit.jupiter.api.Test;

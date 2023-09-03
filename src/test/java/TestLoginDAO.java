@@ -1,7 +1,7 @@
-import com.example.CampusCarpool.dao.LoginDAO;
-import com.example.CampusCarpool.engineering.factory.LoginDAOFactory;
-import com.example.CampusCarpool.exception.UserNotFoundException;
-import com.example.CampusCarpool.model.UserProfile;
+import com.example.campuscarpool.dao.LoginDAO;
+import com.example.campuscarpool.engineering.factory.LoginDAOFactory;
+import com.example.campuscarpool.exception.UserNotFoundException;
+import com.example.campuscarpool.model.UserProfile;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
