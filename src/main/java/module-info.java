@@ -1,4 +1,4 @@
-module com.example.CampusCarpool {
+module com.example.campuscarpool {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.logging;
@@ -19,11 +19,19 @@ module com.example.CampusCarpool {
     exports com.example.campuscarpool.bean;
     opens com.example.campuscarpool.bean to javafx.fxml;
 
-    exports com.example.campuscarpool.engineering;
-    opens com.example.campuscarpool.engineering to javafx.fxml;
+    exports com.example.campuscarpool.engineering.factory;
+    opens com.example.campuscarpool.engineering.factory to javafx.fxml;
+
+    exports com.example.campuscarpool.engineering.observer;
+    opens com.example.campuscarpool.engineering.observer to javafx.fxml;
 
     exports com.example.campuscarpool.appcontroller;
     opens com.example.campuscarpool.appcontroller to javafx.fxml;
 
+    exports com.example.campuscarpool.connection;
+    opens com.example.campuscarpool.connection to javafx.fxml;
+
     exports com.example.campuscarpool.dao;
+    exports com.example.campuscarpool.dao.queries;
+
 }

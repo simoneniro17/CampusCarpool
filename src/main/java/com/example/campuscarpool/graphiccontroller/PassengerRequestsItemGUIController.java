@@ -9,9 +9,6 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
 public class PassengerRequestsItemGUIController implements Observer {
-    private RideRequestBean rideRequestBean;
-    private Pane pane;
-
     @FXML
     private Label departureDateLabel;
 
@@ -39,6 +36,9 @@ public class PassengerRequestsItemGUIController implements Observer {
     @FXML
     private AnchorPane reqPane;
 
+    private RideRequestBean rideRequestBean;
+    private Pane pane;
+
     public void setPane(Pane pane) {
         this.pane = pane;
     }
@@ -57,10 +57,7 @@ public class PassengerRequestsItemGUIController implements Observer {
     }
 
     private void setRideRequestBean(RideRequest rideRequest) {
-        this.rideRequestBean.setIdRideRequest(rideRequest.getIdRideRequest());
-        this.rideRequestBean.setIdRide(rideRequest.getIdRide());
-        this.rideRequestBean.setPassengerEmail(rideRequest.getPassengerEmail());
-        this.rideRequestBean.setStatus(rideRequest.getStatus());
+        this.rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(), rideRequest.getPassengerEmail(), rideRequest.getStatus());
     }
 
     @Override

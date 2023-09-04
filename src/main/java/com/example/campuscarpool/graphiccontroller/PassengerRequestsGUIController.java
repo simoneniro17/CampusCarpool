@@ -1,18 +1,14 @@
-package com.example.CampusCarpool.graphiccontroller;
+package com.example.campuscarpool.graphiccontroller;
 
-import com.example.CampusCarpool.Main;
-import com.example.CampusCarpool.appcontroller.ManageRideRequestController;
-import com.example.CampusCarpool.appcontroller.RideRequestController;
-import com.example.CampusCarpool.bean.DriverBean;
-import com.example.CampusCarpool.bean.PassengerBean;
-import com.example.CampusCarpool.bean.RideRequestBean;
-import com.example.CampusCarpool.engineering.Session;
-import com.example.CampusCarpool.engineering.ShowExceptionSupport;
-import com.example.CampusCarpool.engineering.observer.Observer;
-import com.example.CampusCarpool.exception.NotFoundException;
-import com.example.CampusCarpool.model.Passenger;
-import com.example.CampusCarpool.model.Ride;
-import com.example.CampusCarpool.model.RideRequest;
+import com.example.campuscarpool.Main;
+import com.example.campuscarpool.appcontroller.RideRequestController;
+import com.example.campuscarpool.bean.PassengerBean;
+import com.example.campuscarpool.bean.RideRequestBean;
+import com.example.campuscarpool.engineering.Printer;
+import com.example.campuscarpool.engineering.Session;
+import com.example.campuscarpool.engineering.ShowExceptionSupport;
+import com.example.campuscarpool.engineering.observer.Observer;
+import com.example.campuscarpool.model.RideRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -46,21 +42,20 @@ public class PassengerRequestsGUIController implements Observer {
         loadRequests(rejectedRequestsList, rejectedReqList);
     }
 
-    public void loadRequests(List<RideRequest> rideRequestList, HBox container) throws IOException {
+    private void loadRequests(List<RideRequest> rideRequestList, HBox container) throws IOException {
         for (RideRequest rideRequest : rideRequestList) {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("passengerRequestsItem.fxml"));
-                Pane requestBox = fxmlLoader.load();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(Main.class.getResource("passengerRequestsItem.fxml"));
+            Pane requestBox = fxmlLoader.load();
+
+            //TODO
+            if(container == pendingReqList || container == rejectedReqList )
                 rideRequest.register(this);
 
-                PassengerRequestsItemGUIController passengerRequestsItemGUIController = fxmlLoader.getController();
-                passengerRequestsItemGUIController.setPane(requestBox);
-                passengerRequestsItemGUIController.setRideRequest(rideRequest);
+            PassengerRequestsItemGUIController passengerRequestsItemGUIController = fxmlLoader.getController();
+            passengerRequestsItemGUIController.setRideRequest(rideRequest);
 
-                container.getChildren().add(requestBox);
-            } catch (IOException e) {
-                ShowExceptionSupport.showException(e.getMessage());
-            }
+            container.getChildren().add(requestBox);
         }
     }
 

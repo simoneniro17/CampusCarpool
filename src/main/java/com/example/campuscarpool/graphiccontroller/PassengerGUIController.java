@@ -1,7 +1,7 @@
-package com.example.CampusCarpool.graphiccontroller;
+package com.example.campuscarpool.graphiccontroller;
 
-import com.example.CampusCarpool.Main;
-import com.example.CampusCarpool.engineering.ShowExceptionSupport;
+import com.example.campuscarpool.Main;
+import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -27,6 +27,10 @@ public class PassengerGUIController {
         fxmlLoader.setLocation(Main.class.getResource("passengerRequests.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());
+
+        PassengerRequestsGUIController passengerRequestsGUIController = fxmlLoader.getController();
+        passengerRequestsGUIController.displayRequests();
+
         stage.setScene(scene);
         stage.show();
     }
