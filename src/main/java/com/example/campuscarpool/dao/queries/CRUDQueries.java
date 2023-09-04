@@ -85,7 +85,7 @@ public class CRUDQueries {
     }
 
     public static int updateRideAvailableSeats(Connection connection, int idRide) throws SQLException {
-        String updateStatement = "UPDATE ride SET (availableSeats = availableSeats - 1) WHERE idRide = ?";
+        String updateStatement = "UPDATE ride SET availableSeats = availableSeats - 1 WHERE idRide = ?";
 
         preparedStatement = connection.prepareStatement(updateStatement, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 

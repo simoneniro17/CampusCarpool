@@ -59,17 +59,13 @@ public class DriverRequestsItemGUIController implements Observer {
     }
 
     private void setRideRequestBean(RideRequest rideRequest) {
-        this.rideRequestBean.setIdRideRequest(rideRequest.getIdRideRequest());
-        this.rideRequestBean.setIdRide(rideRequest.getIdRide());
-        this.rideRequestBean.setPassengerEmail(rideRequest.getPassengerEmail());
-        this.rideRequestBean.setStatus(rideRequest.getStatus());
+        this.rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(), rideRequest.getPassengerEmail(), rideRequest.getStatus());
     }
 
     public void acceptRequest() {
         ManageRideRequestController manageRideRequestController = new ManageRideRequestController();
         this.rideRequestBean.register(this);
         manageRideRequestController.confirmRideRequest(this.rideRequestBean, this.pane);
-
     }
 
     public void rejectRequest() {

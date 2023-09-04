@@ -40,19 +40,16 @@ public class DriverRequestsGUIController implements Observer {
 
     public void loadRequests(List<RideRequest> rideRequestList, HBox container, String fxmlResource) throws IOException {
         for (RideRequest rideRequest : rideRequestList) {
-            try {
-                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource(fxmlResource));
-                Pane requestBox = fxmlLoader.load();
-                rideRequest.register(this);
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(Main.class.getResource(fxmlResource));
+            Pane requestBox = fxmlLoader.load();
+            rideRequest.register(this);
 
-                DriverRequestsItemGUIController driverRequestsItemGUIController = fxmlLoader.getController();
-                driverRequestsItemGUIController.setPane(requestBox);
-                driverRequestsItemGUIController.setRideRequest(rideRequest);
+            DriverRequestsItemGUIController driverRequestsItemGUIController = fxmlLoader.getController();
+            driverRequestsItemGUIController.setPane(requestBox);
+            driverRequestsItemGUIController.setRideRequest(rideRequest);
 
-                container.getChildren().add(requestBox);
-            } catch (IOException e) {
-                ShowExceptionSupport.showException(e.getMessage());
-            }
+            container.getChildren().add(requestBox);
         }
     }
 
