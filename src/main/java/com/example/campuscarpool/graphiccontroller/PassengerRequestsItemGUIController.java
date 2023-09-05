@@ -68,6 +68,12 @@ public class PassengerRequestsItemGUIController implements Observer {
         lastNameLabel.setText(rideRequestBean.getDriverLastName());
         emailLabel.setText(rideRequestBean.getDriverEmail());
         phoneLabel.setText(rideRequestBean.getDriverPhoneNumber());
+
+        if(rideRequestBean.getStatus() == 2) {
+            reqPane.setStyle("-fx-background-color: rgba(255,0,0,0.2);");
+        } else if (rideRequestBean.getStatus() == 1) {
+            reqPane.setStyle("-fx-background-color: rgba(44,105,95,0.37);");
+        }
     }
 
     private void setRideRequestBean(RideRequestBean rideRequestBean) {

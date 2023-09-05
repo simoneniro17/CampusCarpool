@@ -37,14 +37,16 @@ public class CompatibleRidesGUIController {
                 fxmlLoader.setLocation(Main.class.getResource("compatibleRidesItem.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
+                count++;
+
                 CompatibleRidesItemGUIController compatibleRidesItemGUIController = fxmlLoader.getController();
 
                 compatibleRidesItemGUIController.setData(ride);
 
-                if (column == 2) {
+                /*if (column == 2) {
                     column = 0;
                     row++;
-                }
+                } */
 
                 grid.add(anchorPane, column++, row);
 

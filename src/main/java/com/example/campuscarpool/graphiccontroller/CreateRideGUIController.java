@@ -44,7 +44,7 @@ public class CreateRideGUIController {
     private TextField destinationLocationTextField;
 
     @FXML
-    private Spinner availableSeatsSpinner;
+    private Spinner<Integer> availableSeatsSpinner;
 
     private static final String DRIVER_HP = "driverHomepage.fxml";
 
@@ -73,6 +73,8 @@ public class CreateRideGUIController {
         });
 
         dateDataPicker.setValue(LocalDate.now());
+        hourSpinner.getValueFactory().setValue(LocalTime.now().getHour());
+        minuteSpinner.getValueFactory().setValue(LocalTime.now().getMinute());
     }
 
     @FXML

@@ -2,6 +2,7 @@ package com.example.campuscarpool.graphiccontroller;
 
 import com.example.campuscarpool.appcontroller.ManageRideRequestController;
 import com.example.campuscarpool.bean.RideRequestBean;
+import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.engineering.observer.Observer;
 import com.example.campuscarpool.model.RideRequest;
 import javafx.fxml.FXML;
@@ -9,6 +10,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+
+import java.io.IOException;
 
 public class DriverRequestsItemGUIController implements Observer {
     private RideRequestBean rideRequestBean;
@@ -90,17 +93,18 @@ public class DriverRequestsItemGUIController implements Observer {
 
  */
 
-    public void acceptRequest() {
+    public void acceptRequest() throws IOException {
         ManageRideRequestController manageRideRequestController = new ManageRideRequestController();
         this.rideRequestBean.register(this);
         manageRideRequestController.confirmRideRequest(this.rideRequestBean, this.pane);
+        ShowExceptionSupport.showException("Request accepted successfully!");
     }
 
-    public void rejectRequest() {
+    public void rejectRequest() throws IOException {
         ManageRideRequestController manageRideRequestController = new ManageRideRequestController();
         this.rideRequestBean.register(this);
         manageRideRequestController.rejectRideRequest(this.rideRequestBean, this.pane);
-
+        ShowExceptionSupport.showException("Request rejected");
     }
 
     @Override
