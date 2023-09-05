@@ -2,9 +2,12 @@ package com.example.campuscarpool.graphiccontroller;
 
 import com.example.campuscarpool.Main;
 import com.example.campuscarpool.bean.CompatibleRideBean;
+import com.example.campuscarpool.bean.CompatibleRidesListBean;
 import com.example.campuscarpool.bean.RideRequestBean;
+import com.example.campuscarpool.bean.SearchRideBean;
 import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
+import com.example.campuscarpool.model.Ride;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -23,7 +26,7 @@ public class CompatibleRidesGUIController {
     @FXML
     private GridPane grid = new GridPane();
 
-    public int displayCompatibleRides(List<CompatibleRideBean> compatibleRides, RideRequestBean rideRequestBean) {
+    public int displayCompatibleRides(List<CompatibleRideBean> compatibleRides, SearchRideBean searchRideBean) {
         int column = 0;
         int row = 1;
         int count = 0;
@@ -31,7 +34,7 @@ public class CompatibleRidesGUIController {
         try {
             for (CompatibleRideBean ride : compatibleRides) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(getClass().getResource("compatibleRidesItem.fxml"));
+                fxmlLoader.setLocation(Main.class.getResource("compatibleRidesItem.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 CompatibleRidesItemGUIController compatibleRidesItemGUIController = fxmlLoader.getController();
@@ -40,7 +43,7 @@ public class CompatibleRidesGUIController {
                     count++;
                 }
 
-                compatibleRidesItemGUIController.setData(ride, rideRequestBean);
+                compatibleRidesItemGUIController.setData(ride);
 
                 if (column == 2) {
                     column = 0;

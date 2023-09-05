@@ -55,9 +55,8 @@ public class CompatibleRidesItemGUIController {
         }
     }
 
-    public void setData(CompatibleRideBean compatibleRideBean, RideRequestBean rideRequestBean) {
+    public void setData(CompatibleRideBean compatibleRideBean) {
         this.compatibleRide = compatibleRideBean;
-        this.rideRequest = rideRequestBean;
 
         departureDateLabel.setText(String.valueOf(compatibleRideBean.getDepartureDate()));
         departureTimeLabel.setText(String.valueOf(compatibleRideBean.getDepartureTime()));

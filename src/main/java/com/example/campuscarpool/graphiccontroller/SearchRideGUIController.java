@@ -21,6 +21,7 @@ import javafx.util.converter.IntegerStringConverter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Objects;
 
 public class SearchRideGUIController {
@@ -64,7 +65,7 @@ public class SearchRideGUIController {
         dateDataPicker.setValue(LocalDate.now());
     }
 
-    public void searchRide() throws IOException {
+    public void toCompatibleRides() throws IOException {
         PassengerBean passengerBean = Session.getCurrentSession().getPassengerBean();
 
         try {
@@ -87,22 +88,25 @@ public class SearchRideGUIController {
                     departureLocationTextField.getText().trim(), destinationLocationTextField.getText().trim());
 
             SearchRideController searchRideController = new SearchRideController();
-            CompatibleRidesListBean rides = searchRideController.compatibleRides(searchRideBean);
+            List<CompatibleRideBean> rides = searchRideController.compatibleRides(searchRideBean);
+            //$$$ CompatibleRidesListBean rides = searchRideController.compatibleRides(searchRideBean);
 
             Stage stage = Main.getStage();
+
             FXMLLoader fxmlLoader = new FXMLLoader();
-            Parent root = fxmlLoader.load(Objects.requireNonNull(Main.class.getResource("compatibleRides.fxml")));
-            Scene scene = new Scene(root);
+            fxmlLoader.setLocation(Main.class.getResource("compatibleRides.fxml"));
+
+            Scene scene = new Scene(fxmlLoader.load());
 
             CompatibleRidesGUIController compatibleRidesGUIController = fxmlLoader.getController();
-            //int count = compatibleRidesGUIController.displayCompatibleRides()
+            int count = compatibleRidesGUIController.displayCompatibleRides(rides, searchRideBean);
 
             stage.setScene(scene);
             stage.show();
 
-            /*if(count == 0) {
+            if(count == 0) {
                 throw new MessageException("Compatible rides not found!");
-            }*/
+            }
 
         } catch (FormEmptyException | MessageException e) {
             ShowExceptionSupport.showException(e.getMessage());
@@ -116,6 +120,7 @@ public class SearchRideGUIController {
         return LocalTime.of(hour, minute);
     }
 
+    /*
     public void toCompatibleRides() throws IOException {
         Stage stage = Main.getStage();
 
@@ -123,9 +128,13 @@ public class SearchRideGUIController {
         fxmlLoader.setLocation(Main.class.getResource("compatibleRides.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load());
+
+        CompatibleRidesGUIController compatibleRidesGUIController = fxmlLoader.getController();
+        compatibleRidesGUIController.displayCompatibleRides();
+
         stage.setScene(scene);
         stage.show();
-    }
+    }*/
 
     public void logout() throws IOException {
         LogoutGUIController logoutGUIController = new LogoutGUIController();

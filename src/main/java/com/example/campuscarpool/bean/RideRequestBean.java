@@ -9,6 +9,7 @@ public class RideRequestBean extends Subject {
     private String passengerEmail;
     private int status;
 
+
     public RideRequestBean(int idRideRequest, int idRide, String passengerEmail, int status) {
         this.idRideRequest = idRideRequest;
         this.idRide = idRide;
