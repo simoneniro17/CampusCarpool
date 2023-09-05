@@ -26,7 +26,7 @@ public class CompatibleRidesGUIController {
     @FXML
     private GridPane grid = new GridPane();
 
-    public int displayCompatibleRides(List<CompatibleRideBean> compatibleRides, SearchRideBean searchRideBean) {
+    public int displayCompatibleRides(List<CompatibleRideBean> compatibleRides) {
         int column = 0;
         int row = 1;
         int count = 0;
@@ -38,10 +38,6 @@ public class CompatibleRidesGUIController {
                 AnchorPane anchorPane = fxmlLoader.load();
 
                 CompatibleRidesItemGUIController compatibleRidesItemGUIController = fxmlLoader.getController();
-
-                if(count == 0) {
-                    count++;
-                }
 
                 compatibleRidesItemGUIController.setData(ride);
 

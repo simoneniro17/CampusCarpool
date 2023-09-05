@@ -3,6 +3,7 @@ package com.example.campuscarpool.graphiccontroller;
 import com.example.campuscarpool.appcontroller.BookRideController;
 import com.example.campuscarpool.bean.CompatibleRideBean;
 import com.example.campuscarpool.bean.RideRequestBean;
+import com.example.campuscarpool.bean.SearchRideBean;
 import com.example.campuscarpool.engineering.Session;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.exception.DuplicateRequestException;
@@ -42,9 +43,9 @@ public class CompatibleRidesItemGUIController {
 
     @FXML
     void sendRequest() throws IOException {
-        rideRequest.setIdRide(compatibleRide.getIdRide());
-        rideRequest.setPassengerEmail(Session.getCurrentSession().getPassengerBean().getEmail());
-        rideRequest.setStatus(0);
+        String passengerEmail = Session.getCurrentSession().getPassengerBean().getEmail();
+        int idRide = compatibleRide.getIdRide();
+        rideRequest = new RideRequestBean(idRide, passengerEmail, 0);
 
         BookRideController bookRideController = new BookRideController();
         try {

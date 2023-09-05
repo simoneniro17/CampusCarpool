@@ -99,7 +99,7 @@ public class SearchRideGUIController {
             Scene scene = new Scene(fxmlLoader.load());
 
             CompatibleRidesGUIController compatibleRidesGUIController = fxmlLoader.getController();
-            int count = compatibleRidesGUIController.displayCompatibleRides(rides, searchRideBean);
+            int count = compatibleRidesGUIController.displayCompatibleRides(rides);
 
             stage.setScene(scene);
             stage.show();
