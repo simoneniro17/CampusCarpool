@@ -2,6 +2,9 @@ package com.example.campuscarpool.bean;
 
 import com.example.campuscarpool.engineering.observer.Subject;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+
 public class RideRequestBean extends Subject {
 
     private int idRideRequest;
@@ -9,6 +12,19 @@ public class RideRequestBean extends Subject {
     private String passengerEmail;
     private int status;
 
+    private LocalDate departureDate;
+    private LocalTime departureTime;
+    private String departureLocation;
+    private String destinationLocation;
+    private String driverFirstName;
+    private String driverLastName;
+    private String driverEmail;
+    private String driverPhoneNumber;
+
+    private String passengerFirstName;
+    private String passengerLastName;
+    private LocalDate passengerBirth;
+    private String passengerPhoneNumber;
 
     public RideRequestBean(int idRideRequest, int idRide, String passengerEmail, int status) {
         this.idRideRequest = idRideRequest;
@@ -53,5 +69,101 @@ public class RideRequestBean extends Subject {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public void setDepartureDate(LocalDate departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public void setDepartureTime(LocalTime departureTime) {
+        this.departureTime = departureTime;
+    }
+
+    public void setDepartureLocation(String departureLocation) {
+        this.departureLocation = departureLocation;
+    }
+
+    public void setDestinationLocation(String destinationLocation) {
+        this.destinationLocation = destinationLocation;
+    }
+
+    public void setDriverFirstName(String driverFirstName) {
+        this.driverFirstName = driverFirstName;
+    }
+
+    public void setDriverLastName(String driverLastName) {
+        this.driverLastName = driverLastName;
+    }
+
+    public void setDriverEmail(String driverEmail) {
+        this.driverEmail = driverEmail;
+    }
+
+    public void setDriverPhoneNumber(String driverPhoneNumber) {
+        this.driverPhoneNumber = driverPhoneNumber;
+    }
+
+    public void setPassengerFirstName(String passengerFirstName) {
+        this.passengerFirstName = passengerFirstName;
+    }
+
+    public void setPassengerLastName(String passengerLastName) {
+        this.passengerLastName = passengerLastName;
+    }
+
+    public void setPassengerBirth(LocalDate passengerBirth) {
+        this.passengerBirth = passengerBirth;
+    }
+
+    public void setPassengerPhoneNumber(String passengerPhoneNumber) {
+        this.passengerPhoneNumber = passengerPhoneNumber;
+    }
+
+    public LocalDate getDepartureDate() {
+        return departureDate;
+    }
+
+    public LocalTime getDepartureTime() {
+        return departureTime;
+    }
+
+    public String getDepartureLocation() {
+        return departureLocation;
+    }
+
+    public String getDestinationLocation() {
+        return destinationLocation;
+    }
+
+    public String getDriverFirstName() {
+        return driverFirstName;
+    }
+
+    public String getDriverLastName() {
+        return driverLastName;
+    }
+
+    public String getDriverEmail() {
+        return driverEmail;
+    }
+
+    public String getDriverPhoneNumber() {
+        return driverPhoneNumber;
+    }
+
+    public String getPassengerFirstName() {
+        return passengerFirstName;
+    }
+
+    public String getPassengerLastName() {
+        return passengerLastName;
+    }
+
+    public LocalDate getPassengerBirth() {
+        return passengerBirth;
+    }
+
+    public String getPassengerPhoneNumber() {
+        return passengerPhoneNumber;
     }
 }

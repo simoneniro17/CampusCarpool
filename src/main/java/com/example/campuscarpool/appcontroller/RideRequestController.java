@@ -1,6 +1,7 @@
 package com.example.campuscarpool.appcontroller;
 
 import com.example.campuscarpool.bean.PassengerBean;
+import com.example.campuscarpool.bean.RideRequestBean;
 import com.example.campuscarpool.bean.RideRequestsListBean;
 import com.example.campuscarpool.dao.RideDAO;
 import com.example.campuscarpool.dao.RideRequestDAO;
@@ -15,22 +16,34 @@ import java.util.List;
 public class RideRequestController {
 
     // Recupero richieste in sospeso
-    public RideRequestsListBean retrievePassengerPendingRequests(PassengerBean passengerBean) {
+    /*$$$public RideRequestsListBean retrievePassengerPendingRequests(PassengerBean passengerBean) {
+        return retrievePassengerRequests(passengerBean, 0);
+    }*/
+
+    public List<RideRequestBean> retrievePassengerPendingRequests(PassengerBean passengerBean) {
         return retrievePassengerRequests(passengerBean, 0);
     }
 
-    // Recupero richieste accettate
-    public RideRequestsListBean retrievePassengerAcceptedRequests(PassengerBean passengerBean) {
+    public List<RideRequestBean> retrievePassengerAcceptedRequests(PassengerBean passengerBean) {
         return retrievePassengerRequests(passengerBean, 1);
     }
 
-    // Recupero richieste rifiutate
-    public RideRequestsListBean retrievePassengerRejectedRequests(PassengerBean passengerBean) {
+    public List<RideRequestBean> retrievePassengerRejectedRequests(PassengerBean passengerBean) {
         return retrievePassengerRequests(passengerBean, 2);
     }
 
+    // Recupero richieste accettate
+    /*$$$public RideRequestsListBean retrievePassengerAcceptedRequests(PassengerBean passengerBean) {
+        return retrievePassengerRequests(passengerBean, 1);
+    }*/
+
+    // Recupero richieste rifiutate
+    /*$$$public RideRequestsListBean retrievePassengerRejectedRequests(PassengerBean passengerBean) {
+        return retrievePassengerRequests(passengerBean, 2);
+    }*/
+
     // Recupero delle richieste di passaggio di un passeggero in base allo stato
-    private RideRequestsListBean retrievePassengerRequests(PassengerBean passengerBean, int status) {
+    /*private RideRequestsListBean retrievePassengerRequests(PassengerBean passengerBean, int status) {
         RideDAO rideDAO = RideDAOFactory.getInstance().createRideDAO();
 
         List<RideRequest> rideRequestList = new ArrayList<>();
@@ -46,10 +59,43 @@ public class RideRequestController {
         setPassengerRideRequestDetails(rideRequestList, rideDAO);
 
         return new RideRequestsListBean(rideRequestList);
+    }*/
+    private List<RideRequestBean> retrievePassengerRequests(PassengerBean passengerBean, int status) {
+        RideDAO rideDAO = RideDAOFactory.getInstance().createRideDAO();
+
+        List<RideRequestBean> rideRequestBeanList = new ArrayList<>();
+
+        if (status == 0) {
+            rideRequestBeanList = RideRequestDAO.retrievePendingPassengersRequests(passengerBean.getEmail());
+        } else if (status == 1) {
+            rideRequestBeanList = RideRequestDAO.retrieveConfirmedPassengersRequests(passengerBean.getEmail());
+        } else if (status == 2) {
+            rideRequestBeanList = RideRequestDAO.retrieveRejectedPassengersRequests(passengerBean.getEmail());
+        }
+
+        setPassengerRideRequestDetails(rideRequestBeanList, rideDAO);
+
+        return rideRequestBeanList;
     }
 
+    private void setPassengerRideRequestDetails(List<RideRequestBean> rideRequestBeanList, RideDAO rideDAO) {
+        for (RideRequestBean rideRequestBean : rideRequestBeanList) {
+            Ride ride = rideDAO.findRideById(rideRequestBean.getIdRide());
+
+            rideRequestBean.setDepartureDate(ride.getDepartureDate().toLocalDate());
+            rideRequestBean.setDepartureTime(ride.getDepartureTime());
+            rideRequestBean.setDepartureLocation(ride.getDepartureLocation());
+            rideRequestBean.setDestinationLocation(ride.getDestinationLocation());
+            rideRequestBean.setDriverFirstName(ride.getDriverFirstName());
+            rideRequestBean.setDriverLastName(ride.getDriverLastName());
+            rideRequestBean.setDriverEmail(ride.getDriverEmail());
+            rideRequestBean.setDriverPhoneNumber(ride.getDriverPhoneNumber());
+        }
+    }
+
+
     // Inserimento dettagli delle richieste di passaggio con le informazioni della corsa
-    private void setPassengerRideRequestDetails(List<RideRequest> rideRequestList, RideDAO rideDAO) {
+    /*$$$private void setPassengerRideRequestDetails(List<RideRequest> rideRequestList, RideDAO rideDAO) {
         for (RideRequest rideRequest : rideRequestList) {
             Ride ride = rideDAO.findRideById(rideRequest.getIdRide());
 
@@ -63,4 +109,6 @@ public class RideRequestController {
             rideRequest.setDriverPhoneNumber(ride.getDriverPhoneNumber());
         }
     }
+
+     */
 }

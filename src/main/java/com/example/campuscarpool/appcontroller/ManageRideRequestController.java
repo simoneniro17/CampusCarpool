@@ -18,11 +18,20 @@ import java.util.List;
 
 public class ManageRideRequestController {
 
-    public RideRequestsListBean retrieveDriverPendingRequests(DriverBean driverBean) throws NotFoundException {
+    /*$$$public RideRequestsListBean retrieveDriverPendingRequests(DriverBean driverBean) throws NotFoundException {
         return retrieveDriverRequests(driverBean, 0);
     }
 
     public RideRequestsListBean retrieveDriverConfirmedRequests(DriverBean driverBean) throws NotFoundException {
+        return retrieveDriverRequests(driverBean, 1);
+    }
+    */
+
+    public List<RideRequestBean> retrieveDriverPendingRequests(DriverBean driverBean) throws NotFoundException {
+        return retrieveDriverRequests(driverBean, 0);
+    }
+
+    public List<RideRequestBean> retrieveDriverConfirmedRequests(DriverBean driverBean) throws NotFoundException {
         return retrieveDriverRequests(driverBean, 1);
     }
 
@@ -42,6 +51,7 @@ public class ManageRideRequestController {
         }
     }
 
+    /* $$$
     private RideRequestsListBean retrieveDriverRequests(DriverBean driverBean, int status) throws NotFoundException {
         RideDAO rideDAO = RideDAOFactory.getInstance().createRideDAO();
 
@@ -56,8 +66,42 @@ public class ManageRideRequestController {
         setDriverRideRequestDetails(rideRequestList, rideDAO);
 
         return new RideRequestsListBean(rideRequestList);
+    }*/
+
+    private List<RideRequestBean> retrieveDriverRequests(DriverBean driverBean, int status) throws NotFoundException {
+        RideDAO rideDAO = RideDAOFactory.getInstance().createRideDAO();
+
+        List<RideRequestBean> rideRequestBeanList = new ArrayList<>();
+
+        if (status == 0) {
+            rideRequestBeanList = RideRequestDAO.retrievePendingDriverRequests(driverBean.getEmail());
+        } else if (status == 1) {
+            rideRequestBeanList = RideRequestDAO.retrieveConfirmedDriverRequests(driverBean.getEmail());
+        }
+
+        setDriverRideRequestDetails(rideRequestBeanList, rideDAO);
+
+        return rideRequestBeanList;
     }
 
+    private void setDriverRideRequestDetails(List<RideRequestBean> rideRequestBeanList, RideDAO rideDAO) throws NotFoundException {
+        for (RideRequestBean rideRequestBean : rideRequestBeanList) {
+            Ride ride = rideDAO.findRideById(rideRequestBean.getIdRide());
+            Passenger passenger = PassengerDAO.findPassengerByUsername(rideRequestBean.getPassengerEmail());
+
+            rideRequestBean.setDepartureDate(ride.getDepartureDate().toLocalDate());
+            rideRequestBean.setDepartureTime(ride.getDepartureTime());
+            rideRequestBean.setDepartureLocation(ride.getDepartureLocation());
+            rideRequestBean.setDestinationLocation(ride.getDestinationLocation());
+            rideRequestBean.setPassengerFirstName(passenger.getFirstName());
+            rideRequestBean.setPassengerLastName(passenger.getLastName());
+            rideRequestBean.setPassengerBirth(passenger.getDateOfBirth());
+            rideRequestBean.setPassengerEmail(passenger.getEmail());
+            rideRequestBean.setPassengerPhoneNumber(passenger.getPhoneNumber());
+        }
+    }
+
+    /* $$$
     private void setDriverRideRequestDetails(List<RideRequest> rideRequestList, RideDAO rideDAO) throws NotFoundException {
         for (RideRequest rideRequest : rideRequestList) {
             Ride ride = rideDAO.findRideById(rideRequest.getIdRide());
@@ -74,7 +118,7 @@ public class ManageRideRequestController {
             rideRequest.setPassengerPhoneNumber(passenger.getPhoneNumber());
         }
     }
-
+     */
     private void updateRideRequestStatus(RideRequestBean rideRequestBean, int newStatus) {
         RideRequestDAO.updateStatus(rideRequestBean.getIdRideRequest(), newStatus);
 

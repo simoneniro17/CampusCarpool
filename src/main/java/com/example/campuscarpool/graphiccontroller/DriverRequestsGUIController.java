@@ -27,7 +27,7 @@ public class DriverRequestsGUIController implements Observer {
     @FXML
     private HBox pendingReqList;
 
-    public void displayDriverRequests() throws IOException, NotFoundException {
+    /*$$$public void displayDriverRequests() throws IOException, NotFoundException {
         DriverBean driverBean = Session.getCurrentSession().getDriverBean();
 
         ManageRideRequestController manageRideRequestController = new ManageRideRequestController();
@@ -38,7 +38,35 @@ public class DriverRequestsGUIController implements Observer {
         loadRequests(confirmedRequestsList, confirmedReqList, "driverConfirmedRequestsItem.fxml");
     }
 
-    public void loadRequests(List<RideRequest> rideRequestList, HBox container, String fxmlResource) throws IOException {
+     */
+
+    public void displayDriverRequests() throws IOException, NotFoundException {
+        DriverBean driverBean = Session.getCurrentSession().getDriverBean();
+
+        ManageRideRequestController manageRideRequestController = new ManageRideRequestController();
+        List<RideRequestBean> pendingRequestsList = (manageRideRequestController.retrieveDriverPendingRequests(driverBean));
+        List<RideRequestBean> confirmedRequestsList = (manageRideRequestController.retrieveDriverConfirmedRequests(driverBean));
+
+        loadRequests(pendingRequestsList, pendingReqList, "driverPendingRequestsItem.fxml");
+        loadRequests(confirmedRequestsList, confirmedReqList, "driverConfirmedRequestsItem.fxml");
+    }
+
+    public void loadRequests(List<RideRequestBean> rideRequestBeanList, HBox container, String fxmlResource) throws IOException {
+        for (RideRequestBean rideRequestBean : rideRequestBeanList) {
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(Main.class.getResource(fxmlResource));
+            Pane requestBox = fxmlLoader.load();
+            rideRequestBean.register(this);
+
+            DriverRequestsItemGUIController driverRequestsItemGUIController = fxmlLoader.getController();
+            driverRequestsItemGUIController.setPane(requestBox);
+            driverRequestsItemGUIController.setRideRequest(rideRequestBean);
+
+            container.getChildren().add(requestBox);
+        }
+    }
+
+    /*$$$public void loadRequests(List<RideRequest> rideRequestList, HBox container, String fxmlResource) throws IOException {
         for (RideRequest rideRequest : rideRequestList) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(Main.class.getResource(fxmlResource));
@@ -51,7 +79,7 @@ public class DriverRequestsGUIController implements Observer {
 
             container.getChildren().add(requestBox);
         }
-    }
+    }*/
 
     @Override
     public void update() {

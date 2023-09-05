@@ -1,6 +1,7 @@
 package com.example.campuscarpool.graphiccontroller.cli;
 
 import com.example.campuscarpool.appcontroller.ManageRideRequestController;
+import com.example.campuscarpool.appcontroller.RideRequestController;
 import com.example.campuscarpool.bean.*;
 import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.Session;
@@ -9,6 +10,7 @@ import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.model.RideRequest;
 import com.example.campuscarpool.viewcli.DriverRequestsViewCLI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DriverRequestsCLIController implements GraphicCLIController {
@@ -23,8 +25,11 @@ public class DriverRequestsCLIController implements GraphicCLIController {
     private static final String REJECT = "2";
 
     // Liste per le richieste in sospeso e quelle confermate
-    private List<RideRequest> pendingRequestsList;
+    /*$$$private List<RideRequest> pendingRequestsList;
     private List<RideRequest> confirmedRequestsList;
+     */
+    private List<RideRequestBean> pendingRequestsList;
+    private List<RideRequestBean> confirmedRequestsList;
 
     private RideRequestBean rideRequestBean;
 
@@ -69,6 +74,31 @@ public class DriverRequestsCLIController implements GraphicCLIController {
         ManageRideRequestController manageRideRequestController = new ManageRideRequestController();
         DriverBean driverBean = Session.getCurrentSession().getDriverBean();
 
+        List<RideRequestBean> rideRequestBeanList;
+
+        switch (requestType) {
+            case PENDING -> {
+                rideRequestBeanList = manageRideRequestController.retrieveDriverPendingRequests(driverBean);
+                this.pendingRequestsList = rideRequestBeanList;
+            }
+
+            case CONFIRMED -> {
+                rideRequestBeanList = manageRideRequestController.retrieveDriverConfirmedRequests(driverBean);
+                this.confirmedRequestsList = rideRequestBeanList;
+            }
+
+            default -> throw new CommandErrorException();
+        }
+
+        List<RideRequestBean> driverRequests = rideRequestBeanList;
+
+        printRideRequestDetails(driverRequests);
+    }
+    /* $$$
+    public void displayDriverRequests(String requestType) throws CommandErrorException, NotFoundException {
+        ManageRideRequestController manageRideRequestController = new ManageRideRequestController();
+        DriverBean driverBean = Session.getCurrentSession().getDriverBean();
+
         RideRequestsListBean rideRequestsListBean;
 
         switch (requestType) {
@@ -89,6 +119,7 @@ public class DriverRequestsCLIController implements GraphicCLIController {
 
         printRideRequestDetails(driverRequests);
     }
+     */
 
     // Per eseguire l'opzione scelta
     public void executeOption(String choice) throws CommandErrorException {
@@ -129,11 +160,27 @@ public class DriverRequestsCLIController implements GraphicCLIController {
         }
     }
 
+
     // Per gestire la richiesta selezionata
-    public void manageRequest(int idRideRequest) {
+    /* $$$ public void manageRequest(int idRideRequest) {
         for(RideRequest rideRequest : pendingRequestsList) {
             if(rideRequest.getIdRideRequest() == idRideRequest) {
                 this.rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(), rideRequest.getPassengerEmail(), rideRequest.getStatus());
+                driverRequestsViewCLI.printOption();
+                return;
+            }
+        }
+
+        driverRequestsViewCLI.rePrintAction();
+    }
+
+     */
+
+    public void manageRequest(int idRideRequest) {
+        for(RideRequestBean rideRequestBean : pendingRequestsList) {
+            if(rideRequestBean.getIdRideRequest() == idRideRequest) {
+                this.rideRequestBean = new RideRequestBean(rideRequestBean.getIdRideRequest(), rideRequestBean.getIdRide(),
+                        rideRequestBean.getPassengerEmail(), rideRequestBean.getStatus());
                 driverRequestsViewCLI.printOption();
                 return;
             }
@@ -162,8 +209,29 @@ public class DriverRequestsCLIController implements GraphicCLIController {
         driverRequestsViewCLI.printContinue();
     }
 
+
+    private static void printRideRequestDetails(List<RideRequestBean> rideRequestBeanList) {
+        if(!rideRequestBeanList.isEmpty()) {
+            Printer.printMessage("\n------------------------------------------------------------------------------------------------ RIDE REQUESTS -------------------------------------------------------------------------------------------------");
+            System.out.printf("%-10s | %-10s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s%n",
+                    "RequestID", "RideID", "Departure Date", "Departure Time", "Departure Location",
+                    "Destination Location", "Passenger First Name", "Passenger Last Name", "Passenger Birth", "Passenger Phone");
+            System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            for (RideRequestBean rideRequestBean : rideRequestBeanList) {
+                System.out.printf("%-10s | %-10s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s%n",
+                        rideRequestBean.getIdRideRequest(), rideRequestBean.getIdRide(), rideRequestBean.getDepartureDate(),
+                        rideRequestBean.getDepartureTime(), rideRequestBean.getDepartureLocation(),
+                        rideRequestBean.getDestinationLocation(), rideRequestBean.getPassengerFirstName(),
+                        rideRequestBean.getPassengerLastName(), rideRequestBean.getPassengerBirth(),
+                        rideRequestBean.getPassengerPhoneNumber());
+            }
+            System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+        }
+    }
+
+
     // Per stampare i dettagli di un richiesta
-    private static void printRideRequestDetails(List<RideRequest> rideRequestList) {
+    /*$$$private static void printRideRequestDetails(List<RideRequest> rideRequestList) {
         if(!rideRequestList.isEmpty()) {
             Printer.printMessage("\n------------------------------------------------------------------------------------------------ RIDE REQUESTS -------------------------------------------------------------------------------------------------");
             System.out.printf("%-10s | %-10s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s%n",
@@ -181,4 +249,6 @@ public class DriverRequestsCLIController implements GraphicCLIController {
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         }
     }
+
+     */
 }

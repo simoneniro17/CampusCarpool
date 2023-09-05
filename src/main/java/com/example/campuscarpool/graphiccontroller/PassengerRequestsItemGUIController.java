@@ -43,6 +43,7 @@ public class PassengerRequestsItemGUIController implements Observer {
         this.pane = pane;
     }
 
+    /*
     public void setRideRequest(RideRequest rideRequest) {
         setRideRequestBean(rideRequest);
 
@@ -55,10 +56,30 @@ public class PassengerRequestsItemGUIController implements Observer {
         emailLabel.setText(rideRequest.getDriverEmail());
         phoneLabel.setText(rideRequest.getDriverPhoneNumber());
     }
+*/
+    public void setRideRequest(RideRequestBean rideRequestBean) {
+        setRideRequestBean(rideRequestBean);
 
-    private void setRideRequestBean(RideRequest rideRequest) {
+        departureDateLabel.setText(rideRequestBean.getDepartureDate().toString());
+        departureTimeLabel.setText(rideRequestBean.getDepartureTime().toString());
+        departureLocationLabel.setText(rideRequestBean.getDepartureLocation());
+        destinationLocationLabel.setText(rideRequestBean.getDestinationLocation());
+        firstNameLabel.setText(rideRequestBean.getDriverFirstName());
+        lastNameLabel.setText(rideRequestBean.getDriverLastName());
+        emailLabel.setText(rideRequestBean.getDriverEmail());
+        phoneLabel.setText(rideRequestBean.getDriverPhoneNumber());
+    }
+
+    private void setRideRequestBean(RideRequestBean rideRequestBean) {
+        this.rideRequestBean = new RideRequestBean(rideRequestBean.getIdRideRequest(),rideRequestBean.getIdRide(),
+                rideRequestBean.getPassengerEmail(), rideRequestBean.getStatus());
+    }
+
+    /* $$$ private void setRideRequestBean(RideRequest rideRequest) {
         this.rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(), rideRequest.getPassengerEmail(), rideRequest.getStatus());
     }
+
+     */
 
     @Override
     public void update() {

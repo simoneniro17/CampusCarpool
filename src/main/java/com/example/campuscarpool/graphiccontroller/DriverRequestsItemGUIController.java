@@ -41,6 +41,7 @@ public class DriverRequestsItemGUIController implements Observer {
         this.pane = pane;
     }
 
+    /* $$$
     public void setRideRequest(RideRequest rideRequest) {
         setRideRequestBean(rideRequest);
 
@@ -58,9 +59,36 @@ public class DriverRequestsItemGUIController implements Observer {
         }
     }
 
+     */
+
+    public void setRideRequest(RideRequestBean rideRequestBean) {
+        setRideRequestBean(rideRequestBean);
+
+        departureDateLabel.setText(rideRequestBean.getDepartureDate().toString());
+        departureTimeLabel.setText(rideRequestBean.getDepartureTime().toString());
+        departureLocationLabel.setText(rideRequestBean.getDepartureLocation());
+        destinationLocationLabel.setText(rideRequestBean.getDestinationLocation());
+        firstNameLabel.setText(rideRequestBean.getPassengerFirstName());
+        lastNameLabel.setText(rideRequestBean.getPassengerLastName());
+        dateOfBirthLabel.setText(rideRequestBean.getPassengerBirth().toString());
+        phoneLabel.setText(rideRequestBean.getPassengerPhoneNumber());
+
+        if(rideRequestBean.getStatus() == 1) {
+            reqPane.getChildren().removeAll(rejectRequestButton, acceptRequestButton);
+        }
+    }
+
+    private void setRideRequestBean(RideRequestBean rideRequestBean) {
+        this.rideRequestBean = new RideRequestBean(rideRequestBean.getIdRideRequest(), rideRequestBean.getIdRide(),
+                rideRequestBean.getPassengerEmail(), rideRequestBean.getStatus());
+    }
+
+    /*$$$
     private void setRideRequestBean(RideRequest rideRequest) {
         this.rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(), rideRequest.getPassengerEmail(), rideRequest.getStatus());
     }
+
+ */
 
     public void acceptRequest() {
         ManageRideRequestController manageRideRequestController = new ManageRideRequestController();
