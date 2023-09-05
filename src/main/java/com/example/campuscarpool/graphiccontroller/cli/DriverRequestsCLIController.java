@@ -1,16 +1,13 @@
 package com.example.campuscarpool.graphiccontroller.cli;
 
 import com.example.campuscarpool.appcontroller.ManageRideRequestController;
-import com.example.campuscarpool.appcontroller.RideRequestController;
 import com.example.campuscarpool.bean.*;
 import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.Session;
 import com.example.campuscarpool.exception.CommandErrorException;
 import com.example.campuscarpool.exception.NotFoundException;
-import com.example.campuscarpool.model.RideRequest;
 import com.example.campuscarpool.viewcli.DriverRequestsViewCLI;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DriverRequestsCLIController implements GraphicCLIController {
@@ -177,10 +174,10 @@ public class DriverRequestsCLIController implements GraphicCLIController {
      */
 
     public void manageRequest(int idRideRequest) {
-        for(RideRequestBean rideRequestBean : pendingRequestsList) {
-            if(rideRequestBean.getIdRideRequest() == idRideRequest) {
-                this.rideRequestBean = new RideRequestBean(rideRequestBean.getIdRideRequest(), rideRequestBean.getIdRide(),
-                        rideRequestBean.getPassengerEmail(), rideRequestBean.getStatus());
+        for(RideRequestBean ride : pendingRequestsList) {
+            if(ride.getIdRideRequest() == idRideRequest) {
+                this.rideRequestBean = new RideRequestBean(ride.getIdRideRequest(), ride.getIdRide(),
+                        ride.getPassengerEmail(), ride.getStatus());
                 driverRequestsViewCLI.printOption();
                 return;
             }

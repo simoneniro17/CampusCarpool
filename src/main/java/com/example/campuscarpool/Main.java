@@ -34,7 +34,6 @@ public class Main extends Application {
                 // Avvio CLI
                 LoginCLIController loginCLIController = new LoginCLIController();
                 loginCLIController.start();
-                break;
             } else {
                 Printer.printError("Number not valid, please insert 1 or 2");
             }

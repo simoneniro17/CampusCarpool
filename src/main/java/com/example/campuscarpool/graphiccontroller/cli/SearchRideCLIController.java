@@ -2,12 +2,10 @@ package com.example.campuscarpool.graphiccontroller.cli;
 
 import com.example.campuscarpool.appcontroller.SearchRideController;
 import com.example.campuscarpool.bean.CompatibleRideBean;
-import com.example.campuscarpool.bean.CompatibleRidesListBean;
 import com.example.campuscarpool.bean.SearchRideBean;
 import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.exception.MessageException;
-import com.example.campuscarpool.model.Ride;
 import com.example.campuscarpool.viewcli.SearchRideFormViewCLI;
 
 import java.time.LocalDate;

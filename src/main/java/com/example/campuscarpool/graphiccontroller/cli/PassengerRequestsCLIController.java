@@ -3,11 +3,9 @@ package com.example.campuscarpool.graphiccontroller.cli;
 import com.example.campuscarpool.appcontroller.RideRequestController;
 import com.example.campuscarpool.bean.PassengerBean;
 import com.example.campuscarpool.bean.RideRequestBean;
-import com.example.campuscarpool.bean.RideRequestsListBean;
 import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.Session;
 import com.example.campuscarpool.exception.CommandErrorException;
-import com.example.campuscarpool.model.RideRequest;
 import com.example.campuscarpool.viewcli.PassengerRequestsViewCLI;
 
 import java.util.List;
