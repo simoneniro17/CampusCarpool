@@ -62,8 +62,7 @@ public class DriverRequestsItemGUIController implements Observer {
         dateOfBirthLabel.setText(rideRequestBean.getPassengerBirth().toString());
         phoneLabel.setText(rideRequestBean.getPassengerPhoneNumber());
 
-        if (rideRequestBean.getStatus() == 1){
-            Printer.printMessage(reqPane.getChildren().toString());
+        if (rideRequestBean.getStatus() == 1) {
             hboxButton.getChildren().removeAll(acceptReqButton, rejectReqButton);
             trashIcon.setVisible(true);
             reqPane.setStyle("-fx-background-color: rgba(44,105,95,0.37);");

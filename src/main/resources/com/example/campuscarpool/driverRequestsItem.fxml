@@ -11,10 +11,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="reqPane" prefHeight="200.0" prefWidth="440.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.campuscarpool.graphiccontroller.DriverRequestsItemGUIController">
+<AnchorPane fx:id="reqPane" prefHeight="190.0" prefWidth="442.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.campuscarpool.graphiccontroller.DriverRequestsItemGUIController">
     <children>
-        <Pane layoutX="436.0" prefHeight="200.0" prefWidth="6.0" style="-fx-background-color: #3A887C;" />
-        <VBox alignment="TOP_CENTER" layoutX="41.0" layoutY="-18.0" prefHeight="200.0" prefWidth="100.0" spacing="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
+        <Pane layoutX="436.0" prefHeight="190.0" prefWidth="6.0" style="-fx-background-color: #3A887C;" />
+        <VBox alignment="TOP_CENTER" layoutX="41.0" layoutY="-18.0" prefHeight="190.0" prefWidth="442.0" spacing="3.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
             <children>
                 <HBox alignment="CENTER" prefHeight="28.0" prefWidth="205.0">
                     <children>
@@ -144,7 +144,7 @@
                                 <Insets bottom="5.0" />
                             </HBox.margin>
                         </Button>
-                        <ImageView fx:id="trashIcon" fitHeight="19.0" fitWidth="19.0" pickOnBounds="true" onMouseClicked="#toTrash" preserveRatio="true" styleClass="clickableImageView" visible="false">
+                        <ImageView fx:id="trashIcon" fitHeight="19.0" fitWidth="19.0" onMouseClicked="#toTrash" pickOnBounds="true" preserveRatio="true" styleClass="clickableImageView" visible="false">
                             <image>
                                 <Image url="@../../../img/trash.png" />
                             </image>
@@ -161,13 +161,5 @@
                 </HBox>
             </children>
         </VBox>
-        <HBox fx:id="manageReqBox" alignment="CENTER" layoutX="10.0" layoutY="10.0">
-            <children>
-                <Pane HBox.hgrow="ALWAYS" />
-                <Pane HBox.hgrow="ALWAYS" />
-            </children>
-        </HBox>
-        <Pane layoutX="10.0" layoutY="10.0" />
-        <Pane layoutX="10.0" layoutY="10.0" />
     </children>
 </AnchorPane>

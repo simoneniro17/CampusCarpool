@@ -5,7 +5,9 @@ import com.example.campuscarpool.bean.RideRequestBean;
 import com.example.campuscarpool.dao.PassengerDAO;
 import com.example.campuscarpool.dao.RideDAO;
 import com.example.campuscarpool.dao.RideRequestDAO;
+import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.engineering.factory.RideDAOFactory;
+import com.example.campuscarpool.exception.MessageException;
 import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.model.Passenger;
 import com.example.campuscarpool.model.Ride;
@@ -74,11 +76,11 @@ public class ManageRideRequestController {
     }
 
     private void updateRideRequestStatus(RideRequestBean rideRequestBean, int newStatus) {
-        RideRequestDAO.updateStatus(rideRequestBean.getIdRideRequest(), newStatus);
-
-        if(newStatus == 1) {
+        if (newStatus == 1) {
             RideDAO rideDAO = RideDAOFactory.getInstance().createRideDAO();
             rideDAO.updateRideAvailableSeats(rideRequestBean.getIdRide());
+
         }
+        RideRequestDAO.updateStatus(rideRequestBean.getIdRideRequest(), newStatus);
     }
 }
