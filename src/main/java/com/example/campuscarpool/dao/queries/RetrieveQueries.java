@@ -64,16 +64,6 @@ public class RetrieveQueries {
         return preparedStatement.executeQuery();
     }
 
-    public static ResultSet retrieveRidesByDepartureLocation(Connection connection, String departureLocation) throws SQLException {
-        String sql = "SELECT * FROM ride WHERE departureLocation = ?";
-
-        preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-
-        preparedStatement.setString(1, departureLocation);
-
-        return preparedStatement.executeQuery();
-    }
-
     public static ResultSet retrieveRidesById(Connection connection, int idRide) throws SQLException {
         String sql = "SELECT * FROM ride WHERE idRide = ?";
 
@@ -194,26 +184,6 @@ public class RetrieveQueries {
         preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
         preparedStatement.setString(1, passengerEmail);
-
-        return preparedStatement.executeQuery();
-    }
-
-    public static ResultSet retrievePassengerBookedRide(Connection connection, String passengerEmail) throws SQLException {
-        String sql = "SELECT * FROM ride_request WHERE (status = 2 AND passengerEmail = ?)";
-
-        preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-
-        preparedStatement.setString(1, passengerEmail);
-
-        return preparedStatement.executeQuery();
-    }
-
-    public static ResultSet getNumberOfRequests(Connection connection, int idRide) throws SQLException {
-        String sql = "SELECT count(*) as requests FROM ride_request WHERE idRide = ?";
-
-        preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-
-        preparedStatement.setInt(1, idRide);
 
         return preparedStatement.executeQuery();
     }

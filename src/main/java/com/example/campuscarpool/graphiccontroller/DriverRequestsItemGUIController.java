@@ -86,6 +86,7 @@ public class DriverRequestsItemGUIController implements Observer {
     public void updateDriverPage(RideRequestBean rideRequestBean, Pane pane) {
         if (this.rideRequestBean.getStatus() == 1) {
             hboxButton.getChildren().removeAll(acceptReqButton, rejectReqButton);
+            trashIcon.setVisible(true);
             reqPane.setStyle("-fx-background-color: rgba(44,105,95,0.37);");
         }
     }

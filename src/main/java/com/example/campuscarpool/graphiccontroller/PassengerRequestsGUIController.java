@@ -48,10 +48,6 @@ public class PassengerRequestsGUIController {
             fxmlLoader.setLocation(Main.class.getResource("passengerRequestsItem.fxml"));
             Pane requestBox = fxmlLoader.load();
 
-            //TODO
-            /*if(container == pendingReqList || container == rejectedReqList )
-                rideRequestBean.register(this);
-*/
             PassengerRequestsItemGUIController passengerRequestsItemGUIController = fxmlLoader.getController();
             passengerRequestsItemGUIController.setRideRequest(rideRequestBean);
 

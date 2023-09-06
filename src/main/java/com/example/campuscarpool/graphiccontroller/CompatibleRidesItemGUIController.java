@@ -1,5 +1,6 @@
 package com.example.campuscarpool.graphiccontroller;
 
+import com.example.campuscarpool.Main;
 import com.example.campuscarpool.appcontroller.BookRideController;
 import com.example.campuscarpool.bean.CompatibleRideBean;
 import com.example.campuscarpool.bean.RideRequestBean;
@@ -8,11 +9,16 @@ import com.example.campuscarpool.engineering.Session;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.exception.DuplicateRequestException;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class CompatibleRidesItemGUIController {
 
@@ -50,7 +56,8 @@ public class CompatibleRidesItemGUIController {
         BookRideController bookRideController = new BookRideController();
         try {
             bookRideController.sendRequest(rideRequest);
-            ShowExceptionSupport.showException("Your request has been successfully saved!");
+            ShowExceptionSupport.showException("Your request has been successfully sent!\nYou have been redirected to homepage.");
+            toHomepage();
         } catch (DuplicateRequestException e) {
             ShowExceptionSupport.showException(e.getMessage());
         }
@@ -69,5 +76,13 @@ public class CompatibleRidesItemGUIController {
 
     public void setPane(Pane pane) {
         this.pane = pane;
+    }
+
+    public void toHomepage() throws IOException {
+        Stage stage = Main.getStage();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("passengerHomepage.fxml")));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
     }
 }
