@@ -33,14 +33,14 @@ public class DriverRequestsGUIController implements Observer {
         List<RideRequestBean> pendingRequestsList = manageRideRequestController.retrieveDriverPendingRequests(driverBean);
         List<RideRequestBean> confirmedRequestsList = manageRideRequestController.retrieveDriverConfirmedRequests(driverBean);
 
-        loadRequests(pendingRequestsList, pendingReqList, "driverPendingRequestsItem.fxml");
-        loadRequests(confirmedRequestsList, confirmedReqList, "driverConfirmedRequestsItem.fxml");
+        loadRequests(pendingRequestsList, pendingReqList);
+        loadRequests(confirmedRequestsList, confirmedReqList);
     }
 
-    public void loadRequests(List<RideRequestBean> rideRequestBeanList, HBox container, String fxmlResource) throws IOException {
+    public void loadRequests(List<RideRequestBean> rideRequestBeanList, HBox container) throws IOException {
         for (RideRequestBean rideRequestBean : rideRequestBeanList) {
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(Main.class.getResource(fxmlResource));
+            fxmlLoader.setLocation(Main.class.getResource("driverRequestsItem.fxml"));
             Pane requestBox = fxmlLoader.load();
             rideRequestBean.register(this);
 

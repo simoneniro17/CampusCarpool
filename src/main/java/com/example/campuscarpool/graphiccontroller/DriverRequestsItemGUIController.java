@@ -2,12 +2,15 @@ package com.example.campuscarpool.graphiccontroller;
 
 import com.example.campuscarpool.appcontroller.ManageRideRequestController;
 import com.example.campuscarpool.bean.RideRequestBean;
+import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.engineering.observer.Observer;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 import java.io.IOException;
@@ -33,9 +36,13 @@ public class DriverRequestsItemGUIController implements Observer {
     @FXML
     private Label phoneLabel;
     @FXML
-    private Button rejectRequestButton;
+    private Button rejectReqButton;
     @FXML
-    private Button acceptRequestButton;
+    private Button acceptReqButton;
+    @FXML
+    private HBox hboxButton;
+    @FXML
+    private ImageView trashIcon;
     @FXML
     private AnchorPane reqPane;
 
@@ -56,7 +63,9 @@ public class DriverRequestsItemGUIController implements Observer {
         phoneLabel.setText(rideRequestBean.getPassengerPhoneNumber());
 
         if (rideRequestBean.getStatus() == 1){
-            reqPane.getChildren().removeAll(acceptRequestButton, rejectRequestButton);
+            Printer.printMessage(reqPane.getChildren().toString());
+            hboxButton.getChildren().removeAll(acceptReqButton, rejectReqButton);
+            trashIcon.setVisible(true);
             reqPane.setStyle("-fx-background-color: rgba(44,105,95,0.37);");
         }
     }
@@ -77,8 +86,12 @@ public class DriverRequestsItemGUIController implements Observer {
     @Override
     public void updateDriverPage(RideRequestBean rideRequestBean, Pane pane) {
         if (this.rideRequestBean.getStatus() == 1) {
-            reqPane.getChildren().removeAll(acceptRequestButton, rejectRequestButton);
+            hboxButton.getChildren().removeAll(acceptReqButton, rejectReqButton);
             reqPane.setStyle("-fx-background-color: rgba(44,105,95,0.37);");
         }
+    }
+
+    public void toTrash() throws IOException {
+        ShowExceptionSupport.showException("Not implemented yet!");
     }
 }
