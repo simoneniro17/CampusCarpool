@@ -74,6 +74,7 @@ public class PassengerRequestsCLIController implements GraphicCLIController {
         printRideRequestDetails(passengerRequests);
     }
 
+    // Per stampare i dettagli della richiesta
     private static void printRideRequestDetails(List<RideRequestBean> rideRequestBeanList) {
         if(!rideRequestBeanList.isEmpty()) {
             Printer.printMessage("\n------------------------------------------------------------------------------------------------ RIDE REQUESTS -------------------------------------------------------------------------------------------------");
@@ -92,45 +93,4 @@ public class PassengerRequestsCLIController implements GraphicCLIController {
             System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         }
     }
-    /*$$$public void displayPassengerRequests(String requestType) throws CommandErrorException {
-        RideRequestController rideRequestController = new RideRequestController();
-        PassengerBean passengerBean = Session.getCurrentSession().getPassengerBean();
-
-        RideRequestsListBean rideRequestsListBean;
-
-        switch (requestType) {
-            case PENDING_REQUESTS -> rideRequestsListBean = rideRequestController.retrievePassengerPendingRequests(passengerBean);
-            case ACCEPTED_REQUESTS -> rideRequestsListBean = rideRequestController.retrievePassengerAcceptedRequests(passengerBean);
-            case REJECTED_REQUESTS -> rideRequestsListBean = rideRequestController.retrievePassengerRejectedRequests(passengerBean);
-
-            default -> throw new CommandErrorException();
-        }
-
-        List<RideRequest> passengerRequests = rideRequestsListBean.getRideRequestsList();
-
-        // Stampa la lista delle richieste
-        printRideRequestDetails(passengerRequests);
-    }
-
-     */
-
-    // Per stampare i dettagli della richiesta
-    /*$$$ private static void printRideRequestDetails(List<RideRequest> rideRequestList) {
-        if(!rideRequestList.isEmpty()) {
-            Printer.printMessage("\n------------------------------------------------------------------------------------------------ RIDE REQUESTS -------------------------------------------------------------------------------------------------");
-            System.out.printf("%-10s | %-10s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s%n",
-                    "RequestID", "RideID", "Departure Date", "Departure Time", "Departure Location",
-                    "Destination Location", "Driver First Name", "Driver Last Name", "Driver Email", "Driver Phone");
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-            for (RideRequest rideRequest : rideRequestList) {
-                System.out.printf("%-10s | %-10s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s%n",
-                        rideRequest.getIdRideRequest(), rideRequest.getIdRide(), rideRequest.getDepartureDate(),
-                        rideRequest.getDepartureTime(), rideRequest.getDepartureLocation(),
-                        rideRequest.getDestinationLocation(), rideRequest.getDriverFirstName(),
-                        rideRequest.getDriverLastName(), rideRequest.getDriverEmail(),
-                        rideRequest.getDriverPhoneNumber());
-            }
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-        }
-    }*/
 }

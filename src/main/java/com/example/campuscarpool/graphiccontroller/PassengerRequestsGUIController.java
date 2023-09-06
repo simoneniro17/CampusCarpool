@@ -21,28 +21,13 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-public class PassengerRequestsGUIController implements Observer {
+public class PassengerRequestsGUIController {
     @FXML
     private HBox confirmedReqList;
     @FXML
     private HBox pendingReqList;
     @FXML
     private HBox rejectedReqList;
-
-    /* $$$
-    public void displayRequests() throws IOException {
-        PassengerBean passengerBean = Session.getCurrentSession().getPassengerBean();
-
-        RideRequestController rideRequestController = new RideRequestController();
-        List<RideRequest> pendingRequestsList = (rideRequestController.retrievePassengerPendingRequests(passengerBean).getRideRequestsList());
-        List<RideRequest> acceptedRequestsList = (rideRequestController.retrievePassengerAcceptedRequests(passengerBean).getRideRequestsList());
-        List<RideRequest> rejectedRequestsList = (rideRequestController.retrievePassengerRejectedRequests(passengerBean).getRideRequestsList());
-
-        loadRequests(pendingRequestsList, pendingReqList);
-        loadRequests(acceptedRequestsList, confirmedReqList);
-        loadRequests(rejectedRequestsList, rejectedReqList);
-    }
-     */
 
     public void displayRequests() throws IOException {
         PassengerBean passengerBean = Session.getCurrentSession().getPassengerBean();
@@ -64,56 +49,14 @@ public class PassengerRequestsGUIController implements Observer {
             Pane requestBox = fxmlLoader.load();
 
             //TODO
-            if(container == pendingReqList || container == rejectedReqList )
+            /*if(container == pendingReqList || container == rejectedReqList )
                 rideRequestBean.register(this);
-
+*/
             PassengerRequestsItemGUIController passengerRequestsItemGUIController = fxmlLoader.getController();
             passengerRequestsItemGUIController.setRideRequest(rideRequestBean);
 
             container.getChildren().add(requestBox);
         }
-    }
-
-    /* $$$
-    private void loadRequests(List<RideRequest> rideRequestList, HBox container) throws IOException {
-        for (RideRequest rideRequest : rideRequestList) {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(Main.class.getResource("passengerRequestsItem.fxml"));
-            Pane requestBox = fxmlLoader.load();
-
-            //TODO
-            if(container == pendingReqList || container == rejectedReqList )
-                rideRequest.register(this);
-
-            PassengerRequestsItemGUIController passengerRequestsItemGUIController = fxmlLoader.getController();
-            passengerRequestsItemGUIController.setRideRequest(rideRequest);
-
-            container.getChildren().add(requestBox);
-        }
-    }
-
-     */
-
-    @Override
-    public void update() {
-        // Ignore
-    }
-
-    @Override
-    public void updatePassengerPage(RideRequestBean rideRequestBean, Pane pane) {
-        if (pendingReqList.getChildren().contains(pane))
-            pendingReqList.getChildren().remove(pane);
-
-        if(rideRequestBean.getStatus() == 1) {
-            confirmedReqList.getChildren().add(pane);
-        } else if (rideRequestBean.getStatus() == 2) {
-            rejectedReqList.getChildren().add(pane);
-        }
-    }
-
-    @Override
-    public void updateDriverPage(RideRequestBean rideRequestBean, Pane pane) {
-        // IGNORE
     }
 
     public void logout() throws IOException {

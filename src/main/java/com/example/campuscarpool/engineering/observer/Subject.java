@@ -1,6 +1,7 @@
 package com.example.campuscarpool.engineering.observer;
 
 import com.example.campuscarpool.bean.RideRequestBean;
+import com.example.campuscarpool.engineering.Printer;
 import javafx.scene.layout.Pane;
 
 import java.util.List;
@@ -43,16 +44,7 @@ public abstract class Subject {
     // Modifica tutti gli observer e aggiorna la pagina del guidatore
     public void notifyObserversDriver(RideRequestBean rideRequestBean, Pane pane) {
         for (Observer observer : observersList) {
-            observer.update();
             observer.updateDriverPage(rideRequestBean, pane);
-        }
-    }
-
-    // Modifica tutti gli observer e aggiorna la pagina del passeggero
-    public void notifyObserversPassenger(RideRequestBean rideRequestBean, Pane pane) {
-        for (Observer observer : observersList) {
-            observer.update();
-            observer.updatePassengerPage(rideRequestBean, pane);
         }
     }
 }

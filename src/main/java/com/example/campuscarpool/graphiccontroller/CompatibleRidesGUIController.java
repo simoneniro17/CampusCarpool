@@ -43,10 +43,10 @@ public class CompatibleRidesGUIController {
 
                 compatibleRidesItemGUIController.setData(ride);
 
-                /*if (column == 2) {
+                if (column == 2) {
                     column = 0;
                     row++;
-                } */
+                }
 
                 grid.add(anchorPane, column++, row);
 

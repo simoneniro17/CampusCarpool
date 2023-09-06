@@ -4,7 +4,6 @@ import com.example.campuscarpool.appcontroller.ManageRideRequestController;
 import com.example.campuscarpool.bean.RideRequestBean;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.engineering.observer.Observer;
-import com.example.campuscarpool.model.RideRequest;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -44,28 +43,8 @@ public class DriverRequestsItemGUIController implements Observer {
         this.pane = pane;
     }
 
-    /* $$$
-    public void setRideRequest(RideRequest rideRequest) {
-        setRideRequestBean(rideRequest);
-
-        departureDateLabel.setText(rideRequest.getDepartureDate().toString());
-        departureTimeLabel.setText(rideRequest.getDepartureTime().toString());
-        departureLocationLabel.setText(rideRequest.getDepartureLocation());
-        destinationLocationLabel.setText(rideRequest.getDestinationLocation());
-        firstNameLabel.setText(rideRequest.getPassengerFirstName());
-        lastNameLabel.setText(rideRequest.getPassengerLastName());
-        dateOfBirthLabel.setText(rideRequest.getPassengerBirth().toString());
-        phoneLabel.setText(rideRequest.getPassengerPhoneNumber());
-
-        if(rideRequest.getStatus() == 1) {
-            reqPane.getChildren().removeAll(rejectRequestButton, acceptRequestButton);
-        }
-    }
-
-     */
-
-    public void setRideRequest(RideRequestBean rideRequestBean) {
-        setRideRequestBean(rideRequestBean);
+    public void setRideRequest(RideRequestBean rideRequestBeanPar) {
+        this.rideRequestBean = rideRequestBeanPar;
 
         departureDateLabel.setText(rideRequestBean.getDepartureDate().toString());
         departureTimeLabel.setText(rideRequestBean.getDepartureTime().toString());
@@ -76,28 +55,16 @@ public class DriverRequestsItemGUIController implements Observer {
         dateOfBirthLabel.setText(rideRequestBean.getPassengerBirth().toString());
         phoneLabel.setText(rideRequestBean.getPassengerPhoneNumber());
 
-        if(rideRequestBean.getStatus() == 1) {
-            reqPane.getChildren().removeAll(rejectRequestButton, acceptRequestButton);
+        if (rideRequestBean.getStatus() == 1){
+            reqPane.getChildren().removeAll(acceptRequestButton, rejectRequestButton);
+            reqPane.setStyle("-fx-background-color: rgba(44,105,95,0.37);");
         }
     }
 
-    private void setRideRequestBean(RideRequestBean rideRequestBean) {
-        this.rideRequestBean = new RideRequestBean(rideRequestBean.getIdRideRequest(), rideRequestBean.getIdRide(),
-                rideRequestBean.getPassengerEmail(), rideRequestBean.getStatus());
-    }
-
-    /*$$$
-    private void setRideRequestBean(RideRequest rideRequest) {
-        this.rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(), rideRequest.getPassengerEmail(), rideRequest.getStatus());
-    }
-
- */
-
-    public void acceptRequest() throws IOException {
+    public void acceptRequest() {
         ManageRideRequestController manageRideRequestController = new ManageRideRequestController();
         this.rideRequestBean.register(this);
         manageRideRequestController.confirmRideRequest(this.rideRequestBean, this.pane);
-        ShowExceptionSupport.showException("Request accepted successfully!");
     }
 
     public void rejectRequest() throws IOException {
@@ -108,17 +75,10 @@ public class DriverRequestsItemGUIController implements Observer {
     }
 
     @Override
-    public void update() {
-        // Ignore
-    }
-
-    @Override
-    public void updatePassengerPage(RideRequestBean rideRequestBean, Pane pane) {
-        // Ignore
-    }
-
-    @Override
     public void updateDriverPage(RideRequestBean rideRequestBean, Pane pane) {
-        // Ignore
+        if (this.rideRequestBean.getStatus() == 1) {
+            reqPane.getChildren().removeAll(acceptRequestButton, rejectRequestButton);
+            reqPane.setStyle("-fx-background-color: rgba(44,105,95,0.37);");
+        }
     }
 }

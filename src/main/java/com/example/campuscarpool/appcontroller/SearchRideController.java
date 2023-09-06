@@ -1,7 +1,6 @@
 package com.example.campuscarpool.appcontroller;
 
 import com.example.campuscarpool.bean.CompatibleRideBean;
-import com.example.campuscarpool.bean.CompatibleRidesListBean;
 import com.example.campuscarpool.bean.SearchRideBean;
 import com.example.campuscarpool.dao.RideDAO;
 import com.example.campuscarpool.engineering.factory.RideDAOFactory;
@@ -36,16 +35,6 @@ public class SearchRideController {
 
         return compatibleRides;
     }
-
-    /*$$$public CompatibleRidesListBean compatibleRides(SearchRideBean searchRideBean) throws MessageException {
-        checkSearchedLocations(searchRideBean.getDepartureLocation(), searchRideBean.getDestinationLocation());
-        checkSearchedDeparture(searchRideBean.getDepartureDate(), searchRideBean.getDepartureTime());
-
-        RideDAO rideDAO = RideDAOFactory.getInstance().createRideDAO();
-
-        return  new CompatibleRidesListBean(rideDAO.retrieveRides(searchRideBean.getDepartureDate(), searchRideBean.getDepartureTime(),
-                searchRideBean.getDepartureLocation(), searchRideBean.getDestinationLocation()));
-    }*/
 
     private void checkSearchedLocations(String departureLocation, String destinationLocation) throws MessageException {
         if (departureLocation.equalsIgnoreCase(destinationLocation)) {

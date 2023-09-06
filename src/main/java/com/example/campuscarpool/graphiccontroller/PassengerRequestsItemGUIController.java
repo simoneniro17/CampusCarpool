@@ -1,14 +1,12 @@
 package com.example.campuscarpool.graphiccontroller;
 
 import com.example.campuscarpool.bean.RideRequestBean;
-import com.example.campuscarpool.engineering.observer.Observer;
-import com.example.campuscarpool.model.RideRequest;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 
-public class PassengerRequestsItemGUIController implements Observer {
+public class PassengerRequestsItemGUIController {
     @FXML
     private Label departureDateLabel;
 
@@ -43,22 +41,8 @@ public class PassengerRequestsItemGUIController implements Observer {
         this.pane = pane;
     }
 
-    /*
-    public void setRideRequest(RideRequest rideRequest) {
-        setRideRequestBean(rideRequest);
-
-        departureDateLabel.setText(rideRequest.getDepartureDate().toString());
-        departureTimeLabel.setText(rideRequest.getDepartureTime().toString());
-        departureLocationLabel.setText(rideRequest.getDepartureLocation());
-        destinationLocationLabel.setText(rideRequest.getDestinationLocation());
-        firstNameLabel.setText(rideRequest.getDriverFirstName());
-        lastNameLabel.setText(rideRequest.getDriverLastName());
-        emailLabel.setText(rideRequest.getDriverEmail());
-        phoneLabel.setText(rideRequest.getDriverPhoneNumber());
-    }
-*/
-    public void setRideRequest(RideRequestBean rideRequestBean) {
-        setRideRequestBean(rideRequestBean);
+    public void setRideRequest(RideRequestBean rideRequestBeanPar) {
+        this.rideRequestBean = rideRequestBeanPar;
 
         departureDateLabel.setText(rideRequestBean.getDepartureDate().toString());
         departureTimeLabel.setText(rideRequestBean.getDepartureTime().toString());
@@ -75,31 +59,4 @@ public class PassengerRequestsItemGUIController implements Observer {
             reqPane.setStyle("-fx-background-color: rgba(44,105,95,0.37);");
         }
     }
-
-    private void setRideRequestBean(RideRequestBean rideRequestBean) {
-        this.rideRequestBean = new RideRequestBean(rideRequestBean.getIdRideRequest(),rideRequestBean.getIdRide(),
-                rideRequestBean.getPassengerEmail(), rideRequestBean.getStatus());
-    }
-
-    /* $$$ private void setRideRequestBean(RideRequest rideRequest) {
-        this.rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(), rideRequest.getPassengerEmail(), rideRequest.getStatus());
-    }
-
-     */
-
-    @Override
-    public void update() {
-        // Ignore
-    }
-
-    @Override
-    public void updatePassengerPage(RideRequestBean rideRequestBean, Pane pane) {
-        // Ignore
-    }
-
-    @Override
-    public void updateDriverPage(RideRequestBean rideRequestBean, Pane pane) {
-        // Ignore
-    }
-
 }
