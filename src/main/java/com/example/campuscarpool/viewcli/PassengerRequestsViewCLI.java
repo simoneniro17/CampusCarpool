@@ -3,6 +3,7 @@ package com.example.campuscarpool.viewcli;
 import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.exception.CommandErrorException;
+import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.graphiccontroller.cli.PassengerRequestsCLIController;
 
 import java.util.Scanner;
@@ -24,7 +25,7 @@ public class PassengerRequestsViewCLI {
 
         try {
             this.passengerRequestsCLIController.executeCommand(inputLine);
-        } catch (CommandErrorException e) {
+        } catch (CommandErrorException | NotFoundException e) {
             ShowExceptionSupport.showExceptionCLI(e.getMessage());
             run();
         }

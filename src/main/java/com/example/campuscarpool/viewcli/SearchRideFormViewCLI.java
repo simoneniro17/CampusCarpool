@@ -4,6 +4,7 @@ import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.ScannerSupport;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.exception.MessageException;
+import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.graphiccontroller.cli.BookRideCLIController;
 import com.example.campuscarpool.graphiccontroller.cli.SearchRideCLIController;
 
@@ -37,7 +38,7 @@ public class SearchRideFormViewCLI {
             // Ricerca e stampa delle corse compatibili
             searchRideCLIController.compatibleRides(departureDate, departureTime, departureLocation, destinationLocation);
             searchRideCLIController.displayCompatibleRides();
-        } catch (MessageException e) {
+        } catch (MessageException | NotFoundException e) {
             ShowExceptionSupport.showExceptionCLI(e.getMessage());
         }
     }

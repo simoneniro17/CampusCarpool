@@ -32,7 +32,7 @@ public class RideDAOCSV extends RideDAO {
 
     // Per trovare una corsa dato il suo ID
     @Override
-    public Ride findRideById(int idRide) {
+    public Ride findRideById(int idRide) throws NotFoundException {
         Ride ride = null;
         File file = new File(CSV_FILE_NAME);
 
@@ -60,7 +60,7 @@ public class RideDAOCSV extends RideDAO {
             if (ride == null) {
                 throw new NotFoundException("No ride found with id:" + idRide);
             }
-        } catch (NotFoundException | IOException e) {
+        } catch (IOException e) {
             Printer.printError(e.getMessage());
         }
 
@@ -69,7 +69,7 @@ public class RideDAOCSV extends RideDAO {
 
     // Per recuperare le corse con determinati parametri di ricerca
     @Override
-    public List<Ride> retrieveRides(LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation) {
+    public List<Ride> retrieveRides(LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation) throws NotFoundException{
         List<Ride> rides = new ArrayList<>();
         File file = new File(CSV_FILE_NAME);
 
@@ -105,6 +105,10 @@ public class RideDAOCSV extends RideDAO {
                     rides.add(ride);
                 }
             }
+
+            if(rides.isEmpty()) {
+                throw new NotFoundException("No rides found this parameters");
+            }
         } catch (IOException e) {
             Printer.printError(e.getMessage());
         }
@@ -113,7 +117,7 @@ public class RideDAOCSV extends RideDAO {
     }
 
     // Per aggiornare i posti disponibili di una corsa
-    public void updateRideAvailableSeats(int idRide) {
+    public void updateRideAvailableSeats(int idRide) throws MessageException {
         File file = new File(CSV_FILE_NAME);
         List<String> updatedLines = new ArrayList<>();
 
@@ -130,7 +134,7 @@ public class RideDAOCSV extends RideDAO {
                 // Confronto ID fornito con quello iterato
                 if (currentId == idRide) {
                     if((currentSeats - 1) < 0) {
-                        throw new MessageException("There are no more seats available!");
+                        throw new MessageException("WARNING: you accepted a new request \neven if there are no more\nseats available!");
                     }
                     data[AVAILABLE_SEATS] = String.valueOf(currentSeats - 1);
                 }
@@ -139,7 +143,7 @@ public class RideDAOCSV extends RideDAO {
                 String updatedRow = String.join(",", data);
                 updatedLines.add(updatedRow);
             }
-        } catch (IOException | MessageException e) {
+        } catch (IOException e) {
             Printer.printError(e.getMessage());
         }
 

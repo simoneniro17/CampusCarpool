@@ -8,6 +8,7 @@ import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.Session;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.engineering.observer.Observer;
+import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.model.RideRequest;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +30,7 @@ public class PassengerRequestsGUIController {
     @FXML
     private HBox rejectedReqList;
 
-    public void displayRequests() throws IOException {
+    public void displayRequests() throws IOException, NotFoundException {
         PassengerBean passengerBean = Session.getCurrentSession().getPassengerBean();
 
         RideRequestController rideRequestController = new RideRequestController();

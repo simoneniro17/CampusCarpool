@@ -58,23 +58,20 @@ public class RideRequestDAO {
             connection = ConnectionDB.getConnection();
             ResultSet resultSet = RetrieveQueries.retrievePendingPassengerRequests(connection, passengerEmail);
 
-            // Non ci sono richieste in sospeso
-            if (!resultSet.first()) {
-                throw new NotFoundException("You don't have any pending request!");
+            // Ci sono richieste in sospeso
+            if (resultSet.first()) {
+                resultSet.first();
+                do {
+                    rideRequest = setRideRequestData(resultSet);
+                    rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(),
+                            rideRequest.getPassengerEmail(), rideRequest.getStatus());
+                    rideRequestBeanList.add(rideRequestBean);
+                } while (resultSet.next());
             }
-
-            resultSet.first();
-
-            do {
-                rideRequest = setRideRequestData(resultSet);
-                rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(),
-                        rideRequest.getPassengerEmail(), rideRequest.getStatus());
-                rideRequestBeanList.add(rideRequestBean);
-            } while (resultSet.next());
 
             resultSet.close();
 
-        } catch (SQLException | NotFoundException e) {
+        } catch (SQLException e) {
             Printer.printError(e.getMessage());
         }
 

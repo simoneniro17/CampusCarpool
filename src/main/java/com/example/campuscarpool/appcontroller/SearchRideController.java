@@ -5,6 +5,7 @@ import com.example.campuscarpool.bean.SearchRideBean;
 import com.example.campuscarpool.dao.RideDAO;
 import com.example.campuscarpool.engineering.factory.RideDAOFactory;
 import com.example.campuscarpool.exception.MessageException;
+import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.model.Ride;
 
 import java.time.LocalDate;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class SearchRideController {
 
-    public List<CompatibleRideBean> compatibleRides(SearchRideBean searchRideBean) throws MessageException {
+    public List<CompatibleRideBean> compatibleRides(SearchRideBean searchRideBean) throws MessageException, NotFoundException {
         checkSearchedLocations(searchRideBean.getDepartureLocation(), searchRideBean.getDestinationLocation());
         checkSearchedDeparture(searchRideBean.getDepartureDate(), searchRideBean.getDepartureTime());
 

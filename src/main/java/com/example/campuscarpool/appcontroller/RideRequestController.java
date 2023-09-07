@@ -5,6 +5,7 @@ import com.example.campuscarpool.bean.RideRequestBean;
 import com.example.campuscarpool.dao.RideDAO;
 import com.example.campuscarpool.dao.RideRequestDAO;
 import com.example.campuscarpool.engineering.factory.RideDAOFactory;
+import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.model.Ride;
 
 import java.util.ArrayList;
@@ -14,22 +15,22 @@ import java.util.List;
 public class RideRequestController {
 
     // Recupero richieste in sospeso
-    public List<RideRequestBean> retrievePassengerPendingRequests(PassengerBean passengerBean) {
+    public List<RideRequestBean> retrievePassengerPendingRequests(PassengerBean passengerBean) throws NotFoundException {
         return retrievePassengerRequests(passengerBean, 0);
     }
 
     // Recupero richieste accettate
-    public List<RideRequestBean> retrievePassengerAcceptedRequests(PassengerBean passengerBean) {
+    public List<RideRequestBean> retrievePassengerAcceptedRequests(PassengerBean passengerBean) throws NotFoundException {
         return retrievePassengerRequests(passengerBean, 1);
     }
 
     // Recupero richieste rifiutate
-    public List<RideRequestBean> retrievePassengerRejectedRequests(PassengerBean passengerBean) {
+    public List<RideRequestBean> retrievePassengerRejectedRequests(PassengerBean passengerBean) throws NotFoundException {
         return retrievePassengerRequests(passengerBean, 2);
     }
 
     // Recupero delle richieste di passaggio di un passeggero in base allo stato
-    private List<RideRequestBean> retrievePassengerRequests(PassengerBean passengerBean, int status) {
+    private List<RideRequestBean> retrievePassengerRequests(PassengerBean passengerBean, int status) throws NotFoundException {
         RideDAO rideDAO = RideDAOFactory.getInstance().createRideDAO();
 
         List<RideRequestBean> rideRequestBeanList = new ArrayList<>();
@@ -48,7 +49,7 @@ public class RideRequestController {
     }
 
     // Inserimento dettagli delle richieste di passaggio con le informazioni della corsa
-    private void setPassengerRideRequestDetails(List<RideRequestBean> rideRequestBeanList, RideDAO rideDAO) {
+    private void setPassengerRideRequestDetails(List<RideRequestBean> rideRequestBeanList, RideDAO rideDAO) throws NotFoundException {
         for (RideRequestBean rideRequestBean : rideRequestBeanList) {
             Ride ride = rideDAO.findRideById(rideRequestBean.getIdRide());
 

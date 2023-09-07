@@ -6,6 +6,7 @@ import com.example.campuscarpool.dao.PassengerDAO;
 import com.example.campuscarpool.dao.RideDAO;
 import com.example.campuscarpool.dao.RideRequestDAO;
 import com.example.campuscarpool.engineering.factory.RideDAOFactory;
+import com.example.campuscarpool.exception.MessageException;
 import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.model.Passenger;
 import com.example.campuscarpool.model.Ride;
@@ -24,22 +25,6 @@ public class ManageRideRequestController {
         return retrieveDriverRequests(driverBean, 1);
     }
 
-    public void confirmRideRequest(RideRequestBean rideRequestBean, Pane pane) {
-        rideRequestBean.setStatus(1);
-        if(pane != null) {
-            rideRequestBean.notifyObserversDriver(rideRequestBean, pane);
-        }
-        updateRideRequestStatus(rideRequestBean, 1);
-    }
-
-    public void rejectRideRequest(RideRequestBean rideRequestBean, Pane pane) {
-        rideRequestBean.setStatus(2);
-        if (pane != null) {
-            rideRequestBean.notifyObserversDriver(rideRequestBean, pane);
-        }
-        updateRideRequestStatus(rideRequestBean, 2);
-    }
-
     private List<RideRequestBean> retrieveDriverRequests(DriverBean driverBean, int status) throws NotFoundException {
         RideDAO rideDAO = RideDAOFactory.getInstance().createRideDAO();
 
@@ -54,6 +39,22 @@ public class ManageRideRequestController {
         setDriverRideRequestDetails(rideRequestBeanList, rideDAO);
 
         return rideRequestBeanList;
+    }
+
+    public void confirmRideRequest(RideRequestBean rideRequestBean, Pane pane) throws MessageException {
+        rideRequestBean.setStatus(1);
+        if(pane != null) {
+            rideRequestBean.notifyObserversDriver(rideRequestBean, pane);
+        }
+        updateRideRequestStatus(rideRequestBean, 1);
+    }
+
+    public void rejectRideRequest(RideRequestBean rideRequestBean, Pane pane) throws MessageException {
+        rideRequestBean.setStatus(2);
+        if (pane != null) {
+            rideRequestBean.notifyObserversDriver(rideRequestBean, pane);
+        }
+        updateRideRequestStatus(rideRequestBean, 2);
     }
 
     private void setDriverRideRequestDetails(List<RideRequestBean> rideRequestBeanList, RideDAO rideDAO) throws NotFoundException {
@@ -73,7 +74,7 @@ public class ManageRideRequestController {
         }
     }
 
-    private void updateRideRequestStatus(RideRequestBean rideRequestBean, int newStatus) {
+    private void updateRideRequestStatus(RideRequestBean rideRequestBean, int newStatus) throws MessageException {
         if (newStatus == 1) {
             RideDAO rideDAO = RideDAOFactory.getInstance().createRideDAO();
             rideDAO.updateRideAvailableSeats(rideRequestBean.getIdRide());

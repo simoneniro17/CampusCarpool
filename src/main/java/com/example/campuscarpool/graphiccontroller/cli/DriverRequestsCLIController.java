@@ -5,6 +5,7 @@ import com.example.campuscarpool.bean.*;
 import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.Session;
 import com.example.campuscarpool.exception.CommandErrorException;
+import com.example.campuscarpool.exception.MessageException;
 import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.viewcli.DriverRequestsViewCLI;
 
@@ -90,7 +91,7 @@ public class DriverRequestsCLIController implements GraphicCLIController {
     }
 
     // Per eseguire l'opzione scelta
-    public void executeOption(String choice) throws CommandErrorException {
+    public void executeOption(String choice) throws CommandErrorException, MessageException {
 
         switch(choice) {
             case ACCEPT -> {
@@ -110,7 +111,7 @@ public class DriverRequestsCLIController implements GraphicCLIController {
     }
 
     // Per aggiornare lo stato della richiesta
-    public void updateRideRequestStatus(String newStatus) throws CommandErrorException {
+    public void updateRideRequestStatus(String newStatus) throws CommandErrorException, MessageException {
         switch (newStatus) {
             case ACCEPT ->  acceptRequest();
             case REJECT ->  rejectRequest();
@@ -144,7 +145,7 @@ public class DriverRequestsCLIController implements GraphicCLIController {
     }
 
     // Per accettare la richiesta
-    private void acceptRequest() {
+    private void acceptRequest() throws MessageException {
         ManageRideRequestController manageRideRequestController = new ManageRideRequestController();
         manageRideRequestController.confirmRideRequest(rideRequestBean, null);
         rideRequestBean = null;
@@ -154,7 +155,7 @@ public class DriverRequestsCLIController implements GraphicCLIController {
     }
 
     // Per rifiutare la richiesta
-    private void rejectRequest() {
+    private void rejectRequest() throws MessageException {
         ManageRideRequestController manageRideRequestController = new ManageRideRequestController();
         manageRideRequestController.rejectRideRequest(rideRequestBean, null);
         rideRequestBean = null;

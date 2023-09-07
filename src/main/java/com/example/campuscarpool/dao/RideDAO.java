@@ -5,6 +5,8 @@ import com.example.campuscarpool.dao.queries.CRUDQueries;
 import com.example.campuscarpool.dao.queries.RetrieveQueries;
 import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.exception.DuplicateRideException;
+import com.example.campuscarpool.exception.MessageException;
+import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.model.Ride;
 
 import java.io.*;
@@ -95,7 +97,7 @@ public abstract class RideDAO {
     }
 
     // Metodi astratti per il recupero, la ricerca e l'aggiornamento delle corse
-    public abstract List<Ride> retrieveRides(LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation);
-    public abstract Ride findRideById(int idRide);
-    public abstract void updateRideAvailableSeats(int idRide);
+    public abstract List<Ride> retrieveRides(LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation) throws NotFoundException;
+    public abstract Ride findRideById(int idRide) throws NotFoundException;
+    public abstract void updateRideAvailableSeats(int idRide) throws MessageException;
 }

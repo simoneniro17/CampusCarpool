@@ -6,5 +6,5 @@ import javafx.scene.layout.Pane;
 // Interfaccia Observer per il pattern Observer
 public interface Observer {
     // Per aggiornare la pagina del guidatore con una richiesta di corsa
-    public void updateDriverPage(RideRequestBean rideRequestBean, Pane pane);
+    void updateDriverPage(RideRequestBean rideRequestBean, Pane pane);
 }

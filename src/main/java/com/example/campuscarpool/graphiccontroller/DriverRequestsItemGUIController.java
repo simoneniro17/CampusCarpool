@@ -5,6 +5,7 @@ import com.example.campuscarpool.bean.RideRequestBean;
 import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.engineering.observer.Observer;
+import com.example.campuscarpool.exception.MessageException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -69,16 +70,24 @@ public class DriverRequestsItemGUIController implements Observer {
         }
     }
 
-    public void acceptRequest() {
+    public void acceptRequest() throws IOException {
         ManageRideRequestController manageRideRequestController = new ManageRideRequestController();
         this.rideRequestBean.register(this);
-        manageRideRequestController.confirmRideRequest(this.rideRequestBean, this.pane);
+        try {
+            manageRideRequestController.confirmRideRequest(this.rideRequestBean, this.pane);
+        } catch (MessageException e) {
+            ShowExceptionSupport.showException(e.getMessage());
+        }
     }
 
     public void rejectRequest() throws IOException {
         ManageRideRequestController manageRideRequestController = new ManageRideRequestController();
         this.rideRequestBean.register(this);
-        manageRideRequestController.rejectRideRequest(this.rideRequestBean, this.pane);
+        try {
+            manageRideRequestController.rejectRideRequest(this.rideRequestBean, this.pane);
+        } catch (MessageException e) {
+            ShowExceptionSupport.showException(e.getMessage());
+        }
         ShowExceptionSupport.showException("Request rejected");
     }
 

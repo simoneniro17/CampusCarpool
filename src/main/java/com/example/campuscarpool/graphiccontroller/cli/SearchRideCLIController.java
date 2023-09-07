@@ -6,6 +6,7 @@ import com.example.campuscarpool.bean.SearchRideBean;
 import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.exception.MessageException;
+import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.viewcli.SearchRideFormViewCLI;
 
 import java.time.LocalDate;
@@ -31,7 +32,7 @@ public class SearchRideCLIController implements GraphicCLIController {
     }
 
     // Per trovare le corse compatibili
-    public void displayCompatibleRides() throws MessageException {
+    public void displayCompatibleRides() throws MessageException, NotFoundException {
         SearchRideController searchRideController = new SearchRideController();
         this.compatibleRideBeanList = searchRideController.compatibleRides(searchRideBean);
 

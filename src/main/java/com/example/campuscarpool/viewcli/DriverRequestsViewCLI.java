@@ -4,6 +4,7 @@ import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.ScannerSupport;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.exception.CommandErrorException;
+import com.example.campuscarpool.exception.MessageException;
 import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.graphiccontroller.cli.DriverRequestsCLIController;
 
@@ -67,7 +68,7 @@ public class DriverRequestsViewCLI {
 
         try {
             driverRequestsCLIController.executeOption(choice);
-        } catch (CommandErrorException e) {
+        } catch (CommandErrorException | MessageException e) {
             ShowExceptionSupport.showExceptionCLI(e.getMessage());
         }
     }

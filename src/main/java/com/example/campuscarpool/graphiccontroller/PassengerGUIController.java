@@ -2,6 +2,7 @@ package com.example.campuscarpool.graphiccontroller;
 
 import com.example.campuscarpool.Main;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
+import com.example.campuscarpool.exception.NotFoundException;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -29,7 +30,11 @@ public class PassengerGUIController {
         Scene scene = new Scene(fxmlLoader.load());
 
         PassengerRequestsGUIController passengerRequestsGUIController = fxmlLoader.getController();
-        passengerRequestsGUIController.displayRequests();
+        try {
+            passengerRequestsGUIController.displayRequests();
+        } catch (NotFoundException e) {
+            ShowExceptionSupport.showException(e.getMessage());
+        }
 
         stage.setScene(scene);
         stage.show();

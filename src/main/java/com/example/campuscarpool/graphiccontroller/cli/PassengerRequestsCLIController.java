@@ -6,6 +6,7 @@ import com.example.campuscarpool.bean.RideRequestBean;
 import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.Session;
 import com.example.campuscarpool.exception.CommandErrorException;
+import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.viewcli.PassengerRequestsViewCLI;
 
 import java.util.List;
@@ -24,7 +25,7 @@ public class PassengerRequestsCLIController implements GraphicCLIController {
         passengerRequestsViewCLI.run();
     }
 
-    public void executeCommand(String inputLine) throws CommandErrorException {
+    public void executeCommand(String inputLine) throws CommandErrorException, NotFoundException {
 
         switch(inputLine) {
             case PENDING_REQUESTS -> {
@@ -54,7 +55,7 @@ public class PassengerRequestsCLIController implements GraphicCLIController {
     }
 
     // Mostra le richieste inviate da un Passenger in base al tipo
-    public void displayPassengerRequests(String requestType) throws CommandErrorException {
+    public void displayPassengerRequests(String requestType) throws CommandErrorException, NotFoundException {
         RideRequestController rideRequestController = new RideRequestController();
         PassengerBean passengerBean = Session.getCurrentSession().getPassengerBean();
 

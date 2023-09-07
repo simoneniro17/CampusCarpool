@@ -31,7 +31,7 @@ public class DriverGUIController {
         stage.show();
     }
 
-    public void toManageRequests() throws IOException, NotFoundException {
+    public void toManageRequests() throws IOException {
         Stage stage = Main.getStage();
 
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -40,7 +40,11 @@ public class DriverGUIController {
         Scene scene = new Scene(fxmlLoader.load());
 
         DriverRequestsGUIController driverRequestsGUIController = fxmlLoader.getController();
-        driverRequestsGUIController.displayDriverRequests();
+        try {
+            driverRequestsGUIController.displayDriverRequests();
+        } catch (NotFoundException e) {
+            ShowExceptionSupport.showException(e.getMessage());
+        }
 
         stage.setScene(scene);
         stage.show();

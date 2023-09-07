@@ -11,6 +11,7 @@ public class RideRequest extends Subject {
     private String passengerEmail;
     private int status;
 
+    /*
     private LocalDate departureDate;
     private LocalTime departureTime;
     private String departureLocation;
@@ -24,6 +25,8 @@ public class RideRequest extends Subject {
     private String passengerLastName;
     private LocalDate passengerBirth;
     private String passengerPhoneNumber;
+
+     */
 
     public RideRequest(int idRideRequest, int idRide, String passengerEmail, int status) {
         this.idRideRequest = idRideRequest;
@@ -48,6 +51,7 @@ public class RideRequest extends Subject {
         return status;
     }
 
+    /*
     public LocalDate getDepartureDate() {
         return departureDate;
     }
@@ -147,4 +151,6 @@ public class RideRequest extends Subject {
     public void setPassengerPhoneNumber(String passengerPhoneNumber) {
         this.passengerPhoneNumber = passengerPhoneNumber;
     }
+
+     */
 }

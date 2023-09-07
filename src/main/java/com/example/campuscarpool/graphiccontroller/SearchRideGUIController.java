@@ -7,6 +7,7 @@ import com.example.campuscarpool.engineering.Session;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.exception.FormEmptyException;
 import com.example.campuscarpool.exception.MessageException;
+import com.example.campuscarpool.exception.NotFoundException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -91,7 +92,6 @@ public class SearchRideGUIController {
 
             SearchRideController searchRideController = new SearchRideController();
             List<CompatibleRideBean> rides = searchRideController.compatibleRides(searchRideBean);
-            //$$$ CompatibleRidesListBean rides = searchRideController.compatibleRides(searchRideBean);
 
             Stage stage = Main.getStage();
 
@@ -109,7 +109,7 @@ public class SearchRideGUIController {
                 stage.setScene(scene);
                 stage.show();
             }
-        } catch (FormEmptyException | MessageException e) {
+        } catch (FormEmptyException | MessageException | NotFoundException e) {
             ShowExceptionSupport.showException(e.getMessage());
         }
     }

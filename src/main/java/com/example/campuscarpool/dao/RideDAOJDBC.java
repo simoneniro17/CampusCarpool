@@ -30,7 +30,7 @@ public class RideDAOJDBC extends RideDAO {
 
     // Per recuperare una corsa dal database in base al suo ID
     @Override
-    public Ride findRideById(int idRide) {
+    public Ride findRideById(int idRide) throws NotFoundException {
         Connection connection;
         Ride ride = null;
 
@@ -48,7 +48,7 @@ public class RideDAOJDBC extends RideDAO {
             } while(resultSet.next());
 
             resultSet.close();
-        } catch (SQLException | NotFoundException e) {
+        } catch (SQLException e) {
             Printer.printError(e.getMessage());
         }
 
@@ -57,7 +57,7 @@ public class RideDAOJDBC extends RideDAO {
 
     // Per recuperare una lista di viaggi in base a dei parametri di ricerca
     @Override
-    public List<Ride> retrieveRides(LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation) {
+    public List<Ride> retrieveRides(LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation) throws NotFoundException {
         Connection connection;
         Ride ride;
         List<Ride> rideList = new ArrayList<>();
@@ -79,7 +79,7 @@ public class RideDAOJDBC extends RideDAO {
 
             resultSet.close();
 
-        } catch (SQLException | NotFoundException e) {
+        } catch (SQLException e) {
             Printer.printError(e.getMessage());
         }
 
@@ -105,7 +105,7 @@ public class RideDAOJDBC extends RideDAO {
 
     // Per aggiornare il numero di posti disponibili di una corsa
     @Override
-    public void updateRideAvailableSeats(int idRide) {
+    public void updateRideAvailableSeats(int idRide) throws MessageException {
         Connection connection;
 
         try {
@@ -121,9 +121,9 @@ public class RideDAOJDBC extends RideDAO {
             if(currentSeats > 0) {
                 CRUDQueries.updateRideAvailableSeats(connection, idRide);
             } else {
-                throw new MessageException("There are no more seats available!");
+                throw new MessageException("WARNING: you accepted a new request \neven if there are no more\nseats available!");
             }
-        } catch (SQLException | MessageException e) {
+        } catch (SQLException e) {
             Printer.printError(e.getMessage());
         }
     }
