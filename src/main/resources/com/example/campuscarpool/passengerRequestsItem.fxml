@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="reqPane" prefHeight="125.0" prefWidth="450.0" style="-fx-background-color: 000;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.campuscarpool.graphiccontroller.PassengerRequestsItemGUIController">
+<AnchorPane fx:id="reqPane" prefHeight="125.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.campuscarpool.graphiccontroller.PassengerRequestsItemGUIController">
     <children>
       <Pane layoutX="446.0" prefHeight="125.0" prefWidth="6.0" style="-fx-background-color: #D5DCDC;" />
         <VBox alignment="TOP_CENTER" layoutX="41.0" layoutY="-18.0" prefHeight="125.0" prefWidth="450.0" spacing="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
@@ -55,7 +55,7 @@
                   <Label fx:id="departureLocationLabel" prefHeight="38.0" prefWidth="140.0" text="via A" />
                   <HBox prefHeight="28.0" prefWidth="186.0">
                      <children>
-                        <Label prefHeight="28.0" prefWidth="85.0" text="Destination">
+                        <Label prefHeight="28.0" prefWidth="85.0" text="Destination:">
                            <HBox.margin>
                               <Insets left="5.0" />
                            </HBox.margin>

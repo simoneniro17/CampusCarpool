@@ -6,7 +6,6 @@ import com.example.campuscarpool.dao.queries.CRUDQueries;
 import com.example.campuscarpool.dao.queries.RetrieveQueries;
 import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.exception.DuplicateRequestException;
-import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.model.RideRequest;
 
 import java.sql.Connection;
@@ -89,23 +88,26 @@ public class RideRequestDAO {
             connection = ConnectionDB.getConnection();
             ResultSet resultSet = RetrieveQueries.retrieveConfirmedPassengerRequests(connection, passengerEmail);
 
+            /*
             // Non ci sono richieste confermate
             if (!resultSet.first()) {
                 throw new NotFoundException("You don't have any confirmed request!");
+            }*/
+
+            //  Il passeggero ha delle richieste confermata
+            if (resultSet.first()) {
+                resultSet.first();
+
+                do {
+                    rideRequest = setRideRequestData(resultSet);
+                    rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(),
+                            rideRequest.getPassengerEmail(), rideRequest.getStatus());
+                    rideRequestBeanList.add(rideRequestBean);
+                } while (resultSet.next());
             }
-
-            resultSet.first();
-
-            do {
-                rideRequest = setRideRequestData(resultSet);
-                rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(),
-                        rideRequest.getPassengerEmail(), rideRequest.getStatus());
-                rideRequestBeanList.add(rideRequestBean);
-            } while (resultSet.next());
-
             resultSet.close();
 
-        } catch (SQLException | NotFoundException e) {
+        } catch (SQLException e) {
             Printer.printError(e.getMessage());
         }
 
@@ -123,23 +125,26 @@ public class RideRequestDAO {
             connection = ConnectionDB.getConnection();
             ResultSet resultSet = RetrieveQueries.retrieveRejectedPassengerRequests(connection, passengerEmail);
 
+            /*
             // Non ci sono richieste rifiutate
             if (!resultSet.first()) {
                 throw new NotFoundException("You don't have any rejected request!");
+            }*/
+
+            //  Il passeggero ha delle richieste rifiutate
+            if(resultSet.first()) {
+                resultSet.first();
+
+                do {
+                    rideRequest = setRideRequestData(resultSet);
+                    rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(),
+                            rideRequest.getPassengerEmail(), rideRequest.getStatus());
+                    rideRequestBeanList.add(rideRequestBean);
+                } while (resultSet.next());
             }
-
-            resultSet.first();
-
-            do {
-                rideRequest = setRideRequestData(resultSet);
-                rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(),
-                        rideRequest.getPassengerEmail(), rideRequest.getStatus());
-                rideRequestBeanList.add(rideRequestBean);
-            } while (resultSet.next());
-
             resultSet.close();
 
-        } catch (SQLException | NotFoundException e) {
+        } catch (SQLException e) {
             Printer.printError(e.getMessage());
         }
 
@@ -157,23 +162,26 @@ public class RideRequestDAO {
             connection = ConnectionDB.getConnection();
             ResultSet resultSet = RetrieveQueries.retrievePendingDriverRequests(connection, driverEmail);
 
+            /*
             // Il guidatore non ha ricevuto richieste
             if (!resultSet.first()) {
                 throw new NotFoundException("No pending request yet!");
+            }*/
+
+            //  Il guidatore ha ricevuto richieste
+            if(resultSet.first()) {
+                resultSet.first();
+
+                do {
+                    rideRequest = setRideRequestData(resultSet);
+                    rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(),
+                            rideRequest.getPassengerEmail(), rideRequest.getStatus());
+                    rideRequestBeanList.add(rideRequestBean);
+                } while (resultSet.next());
             }
-
-            resultSet.first();
-
-            do {
-                rideRequest = setRideRequestData(resultSet);
-                rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(),
-                        rideRequest.getPassengerEmail(), rideRequest.getStatus());
-                rideRequestBeanList.add(rideRequestBean);
-            } while (resultSet.next());
-
             resultSet.close();
 
-        } catch (SQLException | NotFoundException e) {
+        } catch (SQLException e) {
             Printer.printError(e.getMessage());
         }
 
@@ -191,23 +199,26 @@ public class RideRequestDAO {
             connection = ConnectionDB.getConnection();
             ResultSet resultSet = RetrieveQueries.retrieveConfirmedDriverRequests(connection, driverEmail);
 
+            /*
             // Il guidatore non ha confermato richieste per corse future
             if (!resultSet.first()) {
                 throw new NotFoundException("No confirmed request yet!");
+            }*/
+
+            //  Il guidatore ha confermato richieste per corse future
+            if(resultSet.first()) {
+                resultSet.first();
+
+                do {
+                    rideRequest = setRideRequestData(resultSet);
+                    rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(),
+                            rideRequest.getPassengerEmail(), rideRequest.getStatus());
+                    rideRequestBeanList.add(rideRequestBean);
+                } while (resultSet.next());
             }
-
-            resultSet.first();
-
-            do {
-                rideRequest = setRideRequestData(resultSet);
-                rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(),
-                        rideRequest.getPassengerEmail(), rideRequest.getStatus());
-                rideRequestBeanList.add(rideRequestBean);
-            } while (resultSet.next());
-
             resultSet.close();
 
-        } catch (SQLException | NotFoundException e) {
+        } catch (SQLException e) {
             Printer.printError(e.getMessage());
         }
 

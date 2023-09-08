@@ -43,7 +43,7 @@ public class CompatibleRidesGUIController {
 
                 compatibleRidesItemGUIController.setData(ride);
 
-                if (column == 2) {
+                if (column == 1) {
                     column = 0;
                     row++;
                 }

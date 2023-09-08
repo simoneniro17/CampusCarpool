@@ -75,7 +75,7 @@ public class RetrieveQueries {
     }
 
     public static ResultSet retrieveRidesByInfo(Connection connection, LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation) throws SQLException {
-        String sql = "SELECT * FROM ride WHERE (departureDate = ? AND departureTime >= ? AND departureLocation = ? AND destinationLocation = ? AND availableSeats > 0)";
+        String sql = "SELECT * FROM ride WHERE (departureDate = ? AND departureTime >= ? AND departureLocation = ? AND destinationLocation = ? AND availableSeats > 0) ORDER BY departureTime ASC";
 
         preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
