@@ -53,18 +53,21 @@ public class SearchRideCLIController implements GraphicCLIController {
     // Per stampare la lista delle corse compatibili
     private static void printCompatibleRides(List<CompatibleRideBean> compatibleRidesList) {
         if (!compatibleRidesList.isEmpty()) {
-            Printer.printMessage("\n------------------------------------------------------------------------------------------------ COMPATIBLE RIDES ----------------------------------------------------------------------------------------------");
-            System.out.printf("%-10s | %-20s | %-15s | %-20s | %-20s | %-15s | %-20s | %-20s | %-20s | %-20s%n",
+            StringBuilder table = new StringBuilder();
+            table.append("\n------------------------------------------------------------------------------------------------ COMPATIBLE RIDES ----------------------------------------------------------------------------------------------\n");
+            table.append(String.format("%-10s | %-20s | %-15s | %-20s | %-20s | %-15s | %-20s | %-20s | %-20s | %-20s%n",
                     "RideID", "Departure Date", "Departure Time", "Departure Location", "Destination Location",
-                    "Available Seats", "Driver's First Name", "Driver's Last Name", "Driver's Email", "Driver's Phone Number");
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                    "Available Seats", "Driver's First Name", "Driver's Last Name", "Driver's Email", "Driver's Phone Number"));
+            table.append("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
             for (CompatibleRideBean ride : compatibleRidesList) {
-                System.out.printf("%-10s | %-20s | %-15s | %-20s | %-20s | %-15s | %-20s | %-20s | %-20s | %-20s%n",
+                table.append(String.format("%-10s | %-20s | %-15s | %-20s | %-20s | %-15s | %-20s | %-20s | %-20s | %-20s%n",
                         ride.getIdRide(), ride.getDepartureDate(), ride.getDepartureTime(), ride.getDepartureLocation(),
                         ride.getDestinationLocation(), ride.getAvailableSeats(), ride.getDriverFirstName(),
-                        ride.getDriverLastName(), ride.getDriverEmail(), ride.getDriverPhoneNumber());
+                        ride.getDriverLastName(), ride.getDriverEmail(), ride.getDriverPhoneNumber()));
             }
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            table.append("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+
+            Printer.printMessage(table.toString());
         }
     }
 

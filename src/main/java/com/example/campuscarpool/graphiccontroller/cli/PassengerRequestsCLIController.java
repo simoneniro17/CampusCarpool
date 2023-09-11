@@ -78,20 +78,23 @@ public class PassengerRequestsCLIController implements GraphicCLIController {
     // Per stampare i dettagli della richiesta
     private static void printRideRequestDetails(List<RideRequestBean> rideRequestBeanList) {
         if(!rideRequestBeanList.isEmpty()) {
-            Printer.printMessage("\n------------------------------------------------------------------------------------------------ RIDE REQUESTS -------------------------------------------------------------------------------------------------");
-            System.out.printf("%-10s | %-10s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s%n",
+            StringBuilder table = new StringBuilder();
+            table.append("\n------------------------------------------------------------------------------------------------ RIDE REQUESTS -------------------------------------------------------------------------------------------------\n");
+            table.append(String.format("%-10s | %-10s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s%n",
                     "RequestID", "RideID", "Departure Date", "Departure Time", "Departure Location",
-                    "Destination Location", "Driver First Name", "Driver Last Name", "Driver Email", "Driver Phone");
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+                    "Destination Location", "Driver First Name", "Driver Last Name", "Driver Email", "Driver Phone"));
+            table.append("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
             for (RideRequestBean rideRequestBean : rideRequestBeanList) {
-                System.out.printf("%-10s | %-10s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s%n",
+                table.append(String.format("%-10s | %-10s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s | %-20s%n",
                         rideRequestBean.getIdRideRequest(), rideRequestBean.getIdRide(), rideRequestBean.getDepartureDate(),
                         rideRequestBean.getDepartureTime(), rideRequestBean.getDepartureLocation(),
                         rideRequestBean.getDestinationLocation(), rideRequestBean.getDriverFirstName(),
                         rideRequestBean.getDriverLastName(), rideRequestBean.getDriverEmail(),
-                        rideRequestBean.getDriverPhoneNumber());
+                        rideRequestBean.getDriverPhoneNumber()));
             }
-            System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+            table.append("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n");
+
+            Printer.printMessage(table.toString());
         }
     }
 }
