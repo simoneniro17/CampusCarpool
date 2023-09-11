@@ -21,16 +21,6 @@ public class DriverBean {
         this.phoneNumber = phoneNumber;
     }
 
-    /* public DriverBean(String firstName, String lastName, LocalDate dateOfBirth, char gender, String email, String phoneNumber, String password) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-        this.gender = gender;
-        this.email = email;
-        this.setPhoneNumber(phoneNumber);
-        this.password = password;
-    } */
-
     public String getFirstName() {
         return firstName;
     }

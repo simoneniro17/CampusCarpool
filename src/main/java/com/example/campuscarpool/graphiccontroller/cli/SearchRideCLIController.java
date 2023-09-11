@@ -17,7 +17,6 @@ public class SearchRideCLIController implements GraphicCLIController {
     private SearchRideFormViewCLI searchRideFormViewCLI;
 
     private List<CompatibleRideBean> compatibleRideBeanList;
-    //$$$private CompatibleRidesListBean compatibleRidesListBean;
     private SearchRideBean searchRideBean;
 
     @Override

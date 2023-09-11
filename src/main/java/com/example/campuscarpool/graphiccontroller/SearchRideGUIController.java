@@ -69,7 +69,6 @@ public class SearchRideGUIController {
     }
 
     public void toCompatibleRides() throws IOException {
-        PassengerBean passengerBean = Session.getCurrentSession().getPassengerBean();
 
         try {
             if (dateDataPicker.getValue() == null)

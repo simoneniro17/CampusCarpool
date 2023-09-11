@@ -22,11 +22,6 @@ public class LoginDAOFactory {
 
     // Crea e restituisce un'istanza di LoginDAO
     public LoginDAO createLoginDAO(){
-        /*if (LocalTime.now().getMinute()%2 == 0) {
-            return new LoginDAOJDBC();
-        } else {
-            return new LoginDAOCSV();
-        }*/
         return new LoginDAOJDBC();
         // return new LoginDAOCSV();
     }

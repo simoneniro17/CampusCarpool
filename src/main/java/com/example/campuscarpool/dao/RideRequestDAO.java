@@ -1,6 +1,5 @@
 package com.example.campuscarpool.dao;
 
-import com.example.campuscarpool.bean.RideRequestBean;
 import com.example.campuscarpool.connection.ConnectionDB;
 import com.example.campuscarpool.dao.queries.CRUDQueries;
 import com.example.campuscarpool.dao.queries.RetrieveQueries;

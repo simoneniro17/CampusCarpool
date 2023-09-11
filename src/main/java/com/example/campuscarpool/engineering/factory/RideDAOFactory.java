@@ -22,13 +22,8 @@ public class RideDAOFactory {
 
     // Crea e restituisce un'istanza di RideDAO
     public RideDAO createRideDAO(){
-        /*if (LocalTime.now().getMinute()%2 == 0) {
-            return new RideDAOJDBC();
-        } else {
-            return new RideDAOCSV();
-        }*/
         return new RideDAOJDBC();
-        //return nre RideDAOCSV();
+        //return new RideDAOCSV();
     }
 
 }
