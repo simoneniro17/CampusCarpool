@@ -39,12 +39,30 @@ public class RideRequestBean extends Subject {
         this.status = status;
     }
 
-    public int getIdRideRequest() {
-        return idRideRequest;
+    public void setRideInfo(LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation) {
+        this.departureDate = departureDate;
+        this.departureTime = departureTime;
+        this.departureLocation = departureLocation;
+        this.destinationLocation = destinationLocation;
     }
 
-    public void setIdRideRequest(int idRideRequest) {
-        this.idRideRequest = idRideRequest;
+    public void setDriverInfo(String driverFirstName, String driverLastName, String driverEmail, String driverPhoneNumber) {
+        this.driverFirstName = driverFirstName;
+        this.driverLastName = driverLastName;
+        this.driverEmail = driverEmail;
+        this.driverPhoneNumber = driverPhoneNumber;
+    }
+
+    public void setPassengerInfo(String passengerFirstName, String passengerLastName, LocalDate passengerBirth, String passengerEmail, String passengerPhoneNumber) {
+        this.passengerFirstName = passengerFirstName;
+        this.passengerLastName = passengerLastName;
+        this.passengerBirth = passengerBirth;
+        this.passengerEmail = passengerEmail;
+        this.passengerPhoneNumber = passengerPhoneNumber;
+    }
+
+    public int getIdRideRequest() {
+        return idRideRequest;
     }
 
     public int getIdRide() {
@@ -57,10 +75,6 @@ public class RideRequestBean extends Subject {
 
     public String getPassengerEmail() {
         return passengerEmail;
-    }
-
-    public void setPassengerEmail(String passengerEmail) {
-        this.passengerEmail = passengerEmail;
     }
 
     public int getStatus() {
@@ -87,36 +101,8 @@ public class RideRequestBean extends Subject {
         this.destinationLocation = destinationLocation;
     }
 
-    public void setDriverFirstName(String driverFirstName) {
-        this.driverFirstName = driverFirstName;
-    }
-
-    public void setDriverLastName(String driverLastName) {
-        this.driverLastName = driverLastName;
-    }
-
     public void setDriverEmail(String driverEmail) {
         this.driverEmail = driverEmail;
-    }
-
-    public void setDriverPhoneNumber(String driverPhoneNumber) {
-        this.driverPhoneNumber = driverPhoneNumber;
-    }
-
-    public void setPassengerFirstName(String passengerFirstName) {
-        this.passengerFirstName = passengerFirstName;
-    }
-
-    public void setPassengerLastName(String passengerLastName) {
-        this.passengerLastName = passengerLastName;
-    }
-
-    public void setPassengerBirth(LocalDate passengerBirth) {
-        this.passengerBirth = passengerBirth;
-    }
-
-    public void setPassengerPhoneNumber(String passengerPhoneNumber) {
-        this.passengerPhoneNumber = passengerPhoneNumber;
     }
 
     public LocalDate getDepartureDate() {

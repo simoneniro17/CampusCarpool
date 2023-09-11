@@ -47,11 +47,10 @@ public class RideRequestDAO {
     }
 
     // Per recuperare la lista delle richieste in sospeso di un passeggero
-    public static List<RideRequestBean> retrievePendingPassengersRequests(String passengerEmail) {
+    public static List<RideRequest> retrievePendingPassengersRequests(String passengerEmail) {
         Connection connection;
         RideRequest rideRequest;
-        RideRequestBean rideRequestBean;
-        List<RideRequestBean> rideRequestBeanList = new ArrayList<>();
+        List<RideRequest> rideRequestList = new ArrayList<>();
 
         try {
             connection = ConnectionDB.getConnection();
@@ -62,9 +61,7 @@ public class RideRequestDAO {
                 resultSet.first();
                 do {
                     rideRequest = setRideRequestData(resultSet);
-                    rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(),
-                            rideRequest.getPassengerEmail(), rideRequest.getStatus());
-                    rideRequestBeanList.add(rideRequestBean);
+                    rideRequestList.add(rideRequest);
                 } while (resultSet.next());
             }
 
@@ -74,25 +71,18 @@ public class RideRequestDAO {
             Printer.printError(e.getMessage());
         }
 
-        return rideRequestBeanList;
+        return rideRequestList;
     }
 
     // Per recuperare la lista delle richieste confermate di un passeggero
-    public static List<RideRequestBean> retrieveConfirmedPassengersRequests(String passengerEmail) {
+    public static List<RideRequest> retrieveConfirmedPassengersRequests(String passengerEmail) {
         Connection connection;
-        RideRequestBean rideRequestBean;
         RideRequest rideRequest;
-        List<RideRequestBean> rideRequestBeanList = new ArrayList<>();
+        List<RideRequest> rideRequestList = new ArrayList<>();
 
         try {
             connection = ConnectionDB.getConnection();
             ResultSet resultSet = RetrieveQueries.retrieveConfirmedPassengerRequests(connection, passengerEmail);
-
-            /*
-            // Non ci sono richieste confermate
-            if (!resultSet.first()) {
-                throw new NotFoundException("You don't have any confirmed request!");
-            }*/
 
             //  Il passeggero ha delle richieste confermata
             if (resultSet.first()) {
@@ -100,36 +90,28 @@ public class RideRequestDAO {
 
                 do {
                     rideRequest = setRideRequestData(resultSet);
-                    rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(),
-                            rideRequest.getPassengerEmail(), rideRequest.getStatus());
-                    rideRequestBeanList.add(rideRequestBean);
+                    rideRequestList.add(rideRequest);
                 } while (resultSet.next());
             }
+
             resultSet.close();
 
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
         }
 
-        return rideRequestBeanList;
+        return rideRequestList;
     }
 
     // Per recuperare la lista delle richieste rifiutate di un passeggero
-    public static List<RideRequestBean> retrieveRejectedPassengersRequests(String passengerEmail) {
+    public static List<RideRequest> retrieveRejectedPassengersRequests(String passengerEmail) {
         Connection connection;
         RideRequest rideRequest;
-        RideRequestBean rideRequestBean;
-        List<RideRequestBean> rideRequestBeanList = new ArrayList<>();
+        List<RideRequest> rideRequestList = new ArrayList<>();
 
         try {
             connection = ConnectionDB.getConnection();
             ResultSet resultSet = RetrieveQueries.retrieveRejectedPassengerRequests(connection, passengerEmail);
-
-            /*
-            // Non ci sono richieste rifiutate
-            if (!resultSet.first()) {
-                throw new NotFoundException("You don't have any rejected request!");
-            }*/
 
             //  Il passeggero ha delle richieste rifiutate
             if(resultSet.first()) {
@@ -137,9 +119,7 @@ public class RideRequestDAO {
 
                 do {
                     rideRequest = setRideRequestData(resultSet);
-                    rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(),
-                            rideRequest.getPassengerEmail(), rideRequest.getStatus());
-                    rideRequestBeanList.add(rideRequestBean);
+                    rideRequestList.add(rideRequest);
                 } while (resultSet.next());
             }
             resultSet.close();
@@ -148,25 +128,19 @@ public class RideRequestDAO {
             Printer.printError(e.getMessage());
         }
 
-        return rideRequestBeanList;
+        return rideRequestList;
     }
 
+
     // Per recuperare la lista delle richieste di corse future in sospeso a un guidatore
-    public static List<RideRequestBean> retrievePendingDriverRequests(String driverEmail) {
+    public static List<RideRequest> retrievePendingDriverRequests(String driverEmail) {
         Connection connection;
-        RideRequestBean rideRequestBean;
         RideRequest rideRequest;
-        List<RideRequestBean> rideRequestBeanList = new ArrayList<>();
+        List<RideRequest> rideRequestList = new ArrayList<>();
 
         try {
             connection = ConnectionDB.getConnection();
             ResultSet resultSet = RetrieveQueries.retrievePendingDriverRequests(connection, driverEmail);
-
-            /*
-            // Il guidatore non ha ricevuto richieste
-            if (!resultSet.first()) {
-                throw new NotFoundException("No pending request yet!");
-            }*/
 
             //  Il guidatore ha ricevuto richieste
             if(resultSet.first()) {
@@ -174,9 +148,7 @@ public class RideRequestDAO {
 
                 do {
                     rideRequest = setRideRequestData(resultSet);
-                    rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(),
-                            rideRequest.getPassengerEmail(), rideRequest.getStatus());
-                    rideRequestBeanList.add(rideRequestBean);
+                    rideRequestList.add(rideRequest);
                 } while (resultSet.next());
             }
             resultSet.close();
@@ -185,25 +157,19 @@ public class RideRequestDAO {
             Printer.printError(e.getMessage());
         }
 
-        return rideRequestBeanList;
+        return rideRequestList;
     }
 
+
     // Per recuperare la lista delle richieste di corse future confermate da un guidatore
-    public static List<RideRequestBean> retrieveConfirmedDriverRequests(String driverEmail) {
+    public static List<RideRequest> retrieveConfirmedDriverRequests(String driverEmail) {
         Connection connection;
-        RideRequestBean rideRequestBean;
         RideRequest rideRequest;
-        List<RideRequestBean> rideRequestBeanList = new ArrayList<>();
+        List<RideRequest> rideRequestList = new ArrayList<>();
 
         try {
             connection = ConnectionDB.getConnection();
             ResultSet resultSet = RetrieveQueries.retrieveConfirmedDriverRequests(connection, driverEmail);
-
-            /*
-            // Il guidatore non ha confermato richieste per corse future
-            if (!resultSet.first()) {
-                throw new NotFoundException("No confirmed request yet!");
-            }*/
 
             //  Il guidatore ha confermato richieste per corse future
             if(resultSet.first()) {
@@ -211,18 +177,17 @@ public class RideRequestDAO {
 
                 do {
                     rideRequest = setRideRequestData(resultSet);
-                    rideRequestBean = new RideRequestBean(rideRequest.getIdRideRequest(), rideRequest.getIdRide(),
-                            rideRequest.getPassengerEmail(), rideRequest.getStatus());
-                    rideRequestBeanList.add(rideRequestBean);
+                    rideRequestList.add(rideRequest);
                 } while (resultSet.next());
             }
+
             resultSet.close();
 
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
         }
 
-        return rideRequestBeanList;
+        return rideRequestList;
     }
 
     // Per aggiornare lo stato di una richiesta

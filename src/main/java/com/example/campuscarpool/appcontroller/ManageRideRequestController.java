@@ -10,6 +10,7 @@ import com.example.campuscarpool.exception.MessageException;
 import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.model.Passenger;
 import com.example.campuscarpool.model.Ride;
+import com.example.campuscarpool.model.RideRequest;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
@@ -29,17 +30,17 @@ public class ManageRideRequestController {
         RideDAO rideDAO = RideDAOFactory.getInstance().createRideDAO();
 
         List<RideRequestBean> rideRequestBeanList = new ArrayList<>();
+        List<RideRequest> requests = null;
 
         if (status == 0) {
-            rideRequestBeanList = RideRequestDAO.retrievePendingDriverRequests(driverBean.getEmail());
+            requests = RideRequestDAO.retrievePendingDriverRequests(driverBean.getEmail());
         } else if (status == 1) {
-            rideRequestBeanList = RideRequestDAO.retrieveConfirmedDriverRequests(driverBean.getEmail());
+            requests = RideRequestDAO.retrieveConfirmedDriverRequests(driverBean.getEmail());
         }
 
-        setDriverRideRequestDetails(rideRequestBeanList, rideDAO);
-
-        return rideRequestBeanList;
+        return setDriverRideRequestDetails(requests, rideRequestBeanList, rideDAO);
     }
+
 
     public void confirmRideRequest(RideRequestBean rideRequestBean, Pane pane) throws MessageException {
         rideRequestBean.setStatus(1);
@@ -57,21 +58,19 @@ public class ManageRideRequestController {
         updateRideRequestStatus(rideRequestBean, 2);
     }
 
-    private void setDriverRideRequestDetails(List<RideRequestBean> rideRequestBeanList, RideDAO rideDAO) throws NotFoundException {
-        for (RideRequestBean rideRequestBean : rideRequestBeanList) {
-            Ride ride = rideDAO.findRideById(rideRequestBean.getIdRide());
-            Passenger passenger = PassengerDAO.findPassengerByUsername(rideRequestBean.getPassengerEmail());
+    private List<RideRequestBean> setDriverRideRequestDetails(List<RideRequest> requests, List<RideRequestBean> rideRequestBeanList, RideDAO rideDAO) throws NotFoundException {
+        for (RideRequest request : requests) {
+            Ride ride = rideDAO.findRideById(request.getIdRide());
+            Passenger passenger = PassengerDAO.findPassengerByUsername(request.getPassengerEmail());
 
-            rideRequestBean.setDepartureDate(ride.getDepartureDate().toLocalDate());
-            rideRequestBean.setDepartureTime(ride.getDepartureTime());
-            rideRequestBean.setDepartureLocation(ride.getDepartureLocation());
-            rideRequestBean.setDestinationLocation(ride.getDestinationLocation());
-            rideRequestBean.setPassengerFirstName(passenger.getFirstName());
-            rideRequestBean.setPassengerLastName(passenger.getLastName());
-            rideRequestBean.setPassengerBirth(passenger.getDateOfBirth());
-            rideRequestBean.setPassengerEmail(passenger.getEmail());
-            rideRequestBean.setPassengerPhoneNumber(passenger.getPhoneNumber());
+            RideRequestBean rideRequestBean = new RideRequestBean(request.getIdRideRequest(), request.getIdRide(), request.getPassengerEmail(), request.getStatus());
+            rideRequestBean.setRideInfo(ride.getDepartureDate().toLocalDate(), ride.getDepartureTime(), ride.getDepartureLocation(), ride.getDestinationLocation());
+            rideRequestBean.setPassengerInfo(passenger.getFirstName(), passenger.getLastName(), passenger.getDateOfBirth(), passenger.getEmail(), passenger.getPhoneNumber());
+
+            rideRequestBeanList.add(rideRequestBean);
         }
+
+        return rideRequestBeanList;
     }
 
     private void updateRideRequestStatus(RideRequestBean rideRequestBean, int newStatus) throws MessageException {

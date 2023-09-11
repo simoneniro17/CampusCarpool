@@ -7,6 +7,7 @@ import com.example.campuscarpool.dao.RideRequestDAO;
 import com.example.campuscarpool.engineering.factory.RideDAOFactory;
 import com.example.campuscarpool.exception.NotFoundException;
 import com.example.campuscarpool.model.Ride;
+import com.example.campuscarpool.model.RideRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,33 +35,33 @@ public class RideRequestController {
         RideDAO rideDAO = RideDAOFactory.getInstance().createRideDAO();
 
         List<RideRequestBean> rideRequestBeanList = new ArrayList<>();
+        List<RideRequest> requests = null;
 
         if (status == 0) {
-            rideRequestBeanList = RideRequestDAO.retrievePendingPassengersRequests(passengerBean.getEmail());
+            requests = RideRequestDAO.retrievePendingPassengersRequests(passengerBean.getEmail());
         } else if (status == 1) {
-            rideRequestBeanList = RideRequestDAO.retrieveConfirmedPassengersRequests(passengerBean.getEmail());
+            requests = RideRequestDAO.retrieveConfirmedPassengersRequests(passengerBean.getEmail());
         } else if (status == 2) {
-            rideRequestBeanList = RideRequestDAO.retrieveRejectedPassengersRequests(passengerBean.getEmail());
+            requests = RideRequestDAO.retrieveRejectedPassengersRequests(passengerBean.getEmail());
         }
 
-        setPassengerRideRequestDetails(rideRequestBeanList, rideDAO);
+        setPassengerRideRequestDetails(requests, rideRequestBeanList, rideDAO);
 
         return rideRequestBeanList;
     }
 
     // Inserimento dettagli delle richieste di passaggio con le informazioni della corsa
-    private void setPassengerRideRequestDetails(List<RideRequestBean> rideRequestBeanList, RideDAO rideDAO) throws NotFoundException {
-        for (RideRequestBean rideRequestBean : rideRequestBeanList) {
-            Ride ride = rideDAO.findRideById(rideRequestBean.getIdRide());
+    private List<RideRequestBean> setPassengerRideRequestDetails(List<RideRequest> requests, List<RideRequestBean> rideRequestBeanList, RideDAO rideDAO) throws NotFoundException {
+        for (RideRequest request : requests) {
+            Ride ride = rideDAO.findRideById(request.getIdRide());
 
-            rideRequestBean.setDepartureDate(ride.getDepartureDate().toLocalDate());
-            rideRequestBean.setDepartureTime(ride.getDepartureTime());
-            rideRequestBean.setDepartureLocation(ride.getDepartureLocation());
-            rideRequestBean.setDestinationLocation(ride.getDestinationLocation());
-            rideRequestBean.setDriverFirstName(ride.getDriverFirstName());
-            rideRequestBean.setDriverLastName(ride.getDriverLastName());
-            rideRequestBean.setDriverEmail(ride.getDriverEmail());
-            rideRequestBean.setDriverPhoneNumber(ride.getDriverPhoneNumber());
+            RideRequestBean rideRequestBean = new RideRequestBean(request.getIdRideRequest(), request.getIdRide(), request.getPassengerEmail(), request.getStatus());
+            rideRequestBean.setRideInfo(ride.getDepartureDate().toLocalDate(), ride.getDepartureTime(), ride.getDepartureLocation(), ride.getDestinationLocation());
+            rideRequestBean.setDriverInfo(ride.getDriverFirstName(), ride.getDriverLastName(), ride.getDriverEmail(), ride.getDriverPhoneNumber());
+
+            rideRequestBeanList.add(rideRequestBean);
         }
+
+        return rideRequestBeanList;
     }
 }
