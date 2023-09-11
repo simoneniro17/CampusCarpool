@@ -20,10 +20,8 @@ public class RideDAOFactory {
         return instance;
     }
 
-    // Crea e restituisce un'istanza di RideDAO
+    // Crea e restituisce un'istanza di RideDAO [return new RideDAOCSV();]
     public RideDAO createRideDAO(){
         return new RideDAOJDBC();
-        //return new RideDAOCSV();
     }
-
 }

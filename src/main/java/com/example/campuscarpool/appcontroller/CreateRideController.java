@@ -17,13 +17,11 @@ public class CreateRideController {
         checkLocations(rideBean.getDepartureLocation(), rideBean.getDestinationLocation());
         checkDeparture(rideBean.getDepartureDate(), rideBean.getDepartureTime());
 
-        RideDAO rideDAO = RideDAOFactory.getInstance().createRideDAO();
-
         Ride ride = new Ride(rideBean.getDepartureDate(), rideBean.getDepartureTime(), rideBean.getDepartureLocation(),
                 rideBean.getDestinationLocation(), rideBean.getAvailableSeats(),
                 rideBean.getDriverFirstName(), rideBean.getDriverLastName(), rideBean.getDriverEmail(), rideBean.getDriverPhoneNumber());
 
-        rideDAO.addRide(ride);
+        RideDAO.addRide(ride);
     }
 
     private void checkLocations(String departureLocation, String destinationLocation) throws MessageException {

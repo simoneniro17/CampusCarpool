@@ -2,7 +2,6 @@ package com.example.campuscarpool.graphiccontroller;
 
 import com.example.campuscarpool.appcontroller.ManageRideRequestController;
 import com.example.campuscarpool.bean.RideRequestBean;
-import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.engineering.observer.Observer;
 import com.example.campuscarpool.exception.MessageException;

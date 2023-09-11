@@ -129,12 +129,7 @@ public class RetrieveQueries {
     }
 
     public static ResultSet retrievePendingDriverRequests(Connection connection, String driverEmail) throws SQLException {
-        String sql = "SELECT *\n" +
-                "FROM ride_request rr\n" +
-                "JOIN ride r ON rr.idRide = r.idRide\n" +
-                "JOIN driver d ON r.driverEmail = d.email\n" +
-                "WHERE (d.email = ? AND rr.status = 0 AND r.departureDate > CURRENT_DATE())" +
-                "ORDER BY r.departureDate";
+        String sql = "SELECT * FROM ride_request rr JOIN ride r ON rr.idRide = r.idRide JOIN driver d ON r.driverEmail = d.email WHERE (d.email = ? AND rr.status = 0 AND r.departureDate > CURRENT_DATE()) ORDER BY r.departureDate";
 
         preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
@@ -144,12 +139,7 @@ public class RetrieveQueries {
     }
 
     public static ResultSet retrieveConfirmedDriverRequests(Connection connection, String driverEmail) throws SQLException {
-        String sql = "SELECT *\n" +
-                "FROM ride_request rr\n" +
-                "JOIN ride r ON rr.idRide = r.idRide\n" +
-                "JOIN driver d ON r.driverEmail = d.email\n" +
-                "WHERE (d.email = ? AND rr.status = 1 AND r.departureDate > CURRENT_DATE())" +
-                "ORDER BY r.departureDate";
+        String sql = "SELECT * FROM ride_request rr JOIN ride r ON rr.idRide = r.idRide JOIN driver d ON r.driverEmail = d.email WHERE (d.email = ? AND rr.status = 1 AND r.departureDate > CURRENT_DATE()) ORDER BY r.departureDate";
 
         preparedStatement = connection.prepareStatement(sql, ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
 
