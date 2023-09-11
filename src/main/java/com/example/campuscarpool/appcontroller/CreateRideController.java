@@ -2,7 +2,6 @@ package com.example.campuscarpool.appcontroller;
 
 import com.example.campuscarpool.bean.RideBean;
 import com.example.campuscarpool.dao.RideDAO;
-import com.example.campuscarpool.engineering.factory.RideDAOFactory;
 import com.example.campuscarpool.exception.DuplicateRideException;
 import com.example.campuscarpool.exception.MessageException;
 import com.example.campuscarpool.model.Ride;
@@ -17,9 +16,8 @@ public class CreateRideController {
         checkLocations(rideBean.getDepartureLocation(), rideBean.getDestinationLocation());
         checkDeparture(rideBean.getDepartureDate(), rideBean.getDepartureTime());
 
-        Ride ride = new Ride(rideBean.getDepartureDate(), rideBean.getDepartureTime(), rideBean.getDepartureLocation(),
-                rideBean.getDestinationLocation(), rideBean.getAvailableSeats(),
-                rideBean.getDriverFirstName(), rideBean.getDriverLastName(), rideBean.getDriverEmail(), rideBean.getDriverPhoneNumber());
+        Ride ride = new Ride(rideBean.getDepartureDate(), rideBean.getDepartureTime(), rideBean.getDepartureLocation(), rideBean.getDestinationLocation(), rideBean.getAvailableSeats());
+        ride.setRideDriverInfo(rideBean.getDriverFirstName(), rideBean.getDriverLastName(), rideBean.getDriverEmail(), rideBean.getDriverPhoneNumber());
 
         RideDAO.addRide(ride);
     }

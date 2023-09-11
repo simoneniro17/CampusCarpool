@@ -37,8 +37,8 @@ public class PassengerRequestsItemGUIController {
     private RideRequestBean rideRequestBean;
     private Pane pane;
 
-    private static final String rejected = "-fx-background-color: rgba(255, 0, 0, 0.2);";
-    private static final String accepted = "-fx-background-color: rgba(44, 105, 95, 0.37);";
+    private static final String REJECTED = "-fx-background-color: rgba(255, 0, 0, 0.2);";
+    private static final String ACCEPTED = "-fx-background-color: rgba(44, 105, 95, 0.37);";
 
     public void setPane(Pane pane) {
         this.pane = pane;
@@ -57,9 +57,9 @@ public class PassengerRequestsItemGUIController {
         phoneLabel.setText(rideRequestBean.getDriverPhoneNumber());
 
         if(rideRequestBean.getStatus() == 2) {
-            reqPane.setStyle(rejected);
+            reqPane.setStyle(REJECTED);
         } else if (rideRequestBean.getStatus() == 1) {
-            reqPane.setStyle(accepted);
+            reqPane.setStyle(ACCEPTED);
         }
     }
 }

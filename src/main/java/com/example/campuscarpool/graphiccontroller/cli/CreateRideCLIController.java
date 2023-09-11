@@ -27,8 +27,8 @@ public class CreateRideCLIController implements GraphicCLIController {
     public void createRide(LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation, int availableSeats) {
         DriverBean driverBean = Session.getCurrentSession().getDriverBean();
 
-        this.rideBean = new RideBean(departureDate, departureTime, departureLocation, destinationLocation, availableSeats,
-                driverBean.getFirstName(), driverBean.getLastName(), driverBean.getEmail(), driverBean.getPhoneNumber());
+        this.rideBean = new RideBean(departureDate, departureTime, departureLocation, destinationLocation, availableSeats);
+        this.rideBean.setRideBeanDriverInfo(driverBean.getFirstName(), driverBean.getLastName(), driverBean.getEmail(), driverBean.getPhoneNumber());
     }
 
     // Aggiunta corsa al database

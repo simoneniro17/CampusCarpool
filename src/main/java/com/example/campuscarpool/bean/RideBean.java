@@ -20,13 +20,28 @@ public class RideBean {
 
     private String driverPhoneNumber;
 
-    public RideBean(LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation,
+    /* public RideBean(LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation,
                     int availableSeats, String driverFirstName, String driverLastName, String driverEmail, String driverPhoneNumber) {
         this.departureDate = departureDate;
         this.departureTime = departureTime;
         this.departureLocation = departureLocation;
         this.destinationLocation = destinationLocation;
         this.availableSeats = availableSeats;
+        this.driverFirstName = driverFirstName;
+        this.driverLastName = driverLastName;
+        this.driverEmail = driverEmail;
+        this.driverPhoneNumber = driverPhoneNumber;
+    } */
+
+    public RideBean(LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation, int availableSeats) {
+        this.departureDate = departureDate;
+        this.departureTime = departureTime;
+        this.departureLocation = departureLocation;
+        this.destinationLocation = destinationLocation;
+        this.availableSeats = availableSeats;
+    }
+
+    public void setRideBeanDriverInfo (String driverFirstName, String driverLastName, String driverEmail, String driverPhoneNumber) {
         this.driverFirstName = driverFirstName;
         this.driverLastName = driverLastName;
         this.driverEmail = driverEmail;

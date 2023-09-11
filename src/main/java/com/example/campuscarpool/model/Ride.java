@@ -21,6 +21,7 @@ public class Ride {
 
     private String driverPhoneNumber;
 
+    /*
     public Ride(int idRide, LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation,
                 int availableSeats, String driverFirstName, String driverLastName, String driverEmail, String driverPhoneNumber) {
         this.idRide = idRide;
@@ -33,15 +34,27 @@ public class Ride {
         this.driverLastName = driverLastName;
         this.driverEmail = driverEmail;
         this.driverPhoneNumber = driverPhoneNumber;
-    }
+    }*/
 
-    public Ride(LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation,
-                int availableSeats, String driverFirstName, String driverLastName, String driverEmail, String driverPhoneNumber) {
+    public Ride(int idRide, LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation,
+                int availableSeats)  {
+        this.idRide = idRide;
         this.departureDate = Date.valueOf(departureDate);
         this.departureTime = departureTime;
         this.departureLocation = departureLocation;
         this.destinationLocation = destinationLocation;
         this.availableSeats = availableSeats;
+    }
+
+    public Ride(LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation, int availableSeats) {
+        this.departureDate = Date.valueOf(departureDate);
+        this.departureTime = departureTime;
+        this.departureLocation = departureLocation;
+        this.destinationLocation = destinationLocation;
+        this.availableSeats = availableSeats;
+    }
+
+    public void setRideDriverInfo(String driverFirstName, String driverLastName, String driverEmail, String driverPhoneNumber) {
         this.driverFirstName = driverFirstName;
         this.driverLastName = driverLastName;
         this.driverEmail = driverEmail;

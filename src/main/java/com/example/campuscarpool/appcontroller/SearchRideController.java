@@ -28,8 +28,8 @@ public class SearchRideController {
 
         for (Ride ride : rideList) {
             compatibleRideBean = new CompatibleRideBean(ride.getIdRide(), ride.getDepartureDate().toLocalDate(), ride.getDepartureTime(),
-                    ride.getDepartureLocation(), ride.getDestinationLocation(), ride.getAvailableSeats(),
-                    ride.getDriverFirstName(), ride.getDriverLastName(), ride.getDriverEmail(), ride.getDriverPhoneNumber());
+                    ride.getDepartureLocation(), ride.getDestinationLocation(), ride.getAvailableSeats());
+            compatibleRideBean.setCompatibleRideBeanDriverInfo(ride.getDriverFirstName(), ride.getDriverLastName(), ride.getDriverEmail(), ride.getDriverPhoneNumber());
 
             compatibleRides.add(compatibleRideBean);
         }

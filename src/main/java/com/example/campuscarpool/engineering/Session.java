@@ -12,10 +12,10 @@ public class Session {
 
     // Costruttore privato per inizializzare la sessione con un oggetto specifico
     private Session (Object obj) {
-        if(obj instanceof DriverBean driverBean) {
-            this.driverBean = driverBean;
-        } else if (obj instanceof PassengerBean passengerBean) {
-            this.passengerBean = passengerBean;
+        if(obj instanceof DriverBean drivBean) {
+            this.driverBean = drivBean;
+        } else if (obj instanceof PassengerBean passBean) {
+            this.passengerBean = passBean;
         }
     }
 

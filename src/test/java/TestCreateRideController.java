@@ -14,8 +14,8 @@ class TestCreateRideController {
     @Test
     void testCreateRide() {
         int validDate = 0;
-        RideBean rideBean = new RideBean(LocalDate.parse("2023-06-14"), LocalTime.parse("10:00:00"), "A", "B", 2,
-                "Simone", "Niro", "driver1@gmail.com", "3731044423");
+        RideBean rideBean = new RideBean(LocalDate.parse("2023-06-14"), LocalTime.parse("10:00:00"), "A", "B", 2);
+        rideBean.setRideBeanDriverInfo("Simone", "Niro", "driver1@gmail.com", "3731044423");
 
         CreateRideController createRideController = new CreateRideController();
 

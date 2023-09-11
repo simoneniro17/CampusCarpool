@@ -105,8 +105,8 @@ public class CreateRideGUIController {
                 throw new FormEmptyException("Available Seats");
 
             RideBean rideBean = new RideBean(dateDataPicker.getValue(), getTime(), departureLocationTextField.getText().trim(),
-                    destinationLocationTextField.getText().trim(), (Integer) availableSeatsSpinner.getValue(),
-                    driverFirstName, driverLastName, driverEmail, driverPhoneNumber);
+                    destinationLocationTextField.getText().trim(), (Integer) availableSeatsSpinner.getValue());
+            rideBean.setRideBeanDriverInfo(driverFirstName, driverLastName, driverEmail, driverPhoneNumber);
 
             CreateRideController createRideController = new CreateRideController();
             createRideController.createRide(rideBean);

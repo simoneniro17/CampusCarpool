@@ -51,9 +51,8 @@ public class RideDAOCSV extends RideDAO {
                     LocalTime departureTime = LocalTime.parse(data[DEPARTURE_TIME], timeFormatter);
                     int availableSeats = Integer.parseInt(data[AVAILABLE_SEATS]);
 
-                    ride = new Ride(departureDate, departureTime, data[DEPARTURE_LOCATION], data[DESTINATION_LOCATION],
-                            availableSeats, data[DRIVER_FIRST_NAME], data[DRIVER_LAST_NAME],
-                            data[DRIVER_EMAIL], data[DRIVER_PHONE]);
+                    ride = new Ride(departureDate, departureTime, data[DEPARTURE_LOCATION], data[DESTINATION_LOCATION], availableSeats);
+                    ride.setRideDriverInfo(data[DRIVER_FIRST_NAME], data[DRIVER_LAST_NAME], data[DRIVER_EMAIL], data[DRIVER_PHONE]);
                 }
             }
 
@@ -97,9 +96,8 @@ public class RideDAOCSV extends RideDAO {
                     int idRide = Integer.parseInt(data[ID_RIDE]);
 
                     // Creazione oggetto Ride con i dati corrispondenti
-                    Ride ride = new Ride(idRide, rideDepartureDate, rideDepartureTime, data[DEPARTURE_LOCATION], data[DESTINATION_LOCATION],
-                            availableSeats, data[DRIVER_FIRST_NAME], data[DRIVER_LAST_NAME],
-                            data[DRIVER_EMAIL], data[DRIVER_PHONE]);
+                    Ride ride = new Ride(idRide, rideDepartureDate, rideDepartureTime, data[DEPARTURE_LOCATION], data[DESTINATION_LOCATION], availableSeats);
+                    ride.setRideDriverInfo(data[DRIVER_FIRST_NAME], data[DRIVER_LAST_NAME], data[DRIVER_EMAIL], data[DRIVER_PHONE]);
 
                     // Aggiunta della corsa alla lista
                     rides.add(ride);

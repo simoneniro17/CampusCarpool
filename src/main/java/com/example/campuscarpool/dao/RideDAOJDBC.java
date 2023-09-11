@@ -99,8 +99,10 @@ public class RideDAOJDBC extends RideDAO {
         String driverEmail = resultSet.getString(DRIVER_EMAIL);
         String driverPhone = resultSet.getString(DRIVER_PHONE);
 
-        return new Ride(idRide, departureDate.toLocalDate(), departureTime.toLocalTime(), departureLocation, destinationLocation, availableSeats,
-                driverFirstName, driverLastName, driverEmail, driverPhone);
+        Ride ride = new Ride(idRide, departureDate.toLocalDate(), departureTime.toLocalTime(), departureLocation, destinationLocation, availableSeats);
+        ride.setRideDriverInfo(driverFirstName, driverLastName, driverEmail, driverPhone);
+
+        return ride;
     }
 
     // Per aggiornare il numero di posti disponibili di una corsa
