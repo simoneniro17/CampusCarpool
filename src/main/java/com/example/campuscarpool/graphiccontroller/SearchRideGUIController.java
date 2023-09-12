@@ -28,19 +28,15 @@ import java.util.Objects;
 public class SearchRideGUIController {
 
     @FXML
-    private DatePicker dateDataPicker;
-
-    @FXML
     private Spinner<Integer> hourSpinner;
-
     @FXML
     private Spinner<Integer> minuteSpinner;
-
     @FXML
-    private TextField departureLocationTextField;
-
+    private DatePicker dateDataPicker;
     @FXML
     private TextField destinationLocationTextField;
+    @FXML
+    private TextField departureLocationTextField;
 
     public void initialize() {
         hourSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23));
@@ -49,13 +45,6 @@ public class SearchRideGUIController {
         minuteSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59));
         minuteSpinner.getValueFactory().setConverter(new IntegerStringConverter());
 
-        // Listener per formattare le prime ore con due cifre
-        hourSpinner.getValueFactory().valueProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue >= 0 && newValue <= 9) {
-                hourSpinner.getEditor().setText(String.format("0%d", newValue));
-            }
-        });
-
         // Listener per formattare i primi 10 minuti con due cifre
         minuteSpinner.getValueFactory().valueProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue >= 0 && newValue <= 9) {
@@ -63,28 +52,35 @@ public class SearchRideGUIController {
             }
         });
 
+        // Listener per formattare le prime ore con due cifre
+        hourSpinner.getValueFactory().valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue >= 0 && newValue <= 9) {
+                hourSpinner.getEditor().setText(String.format("0%d", newValue));
+            }
+        });
+
+        minuteSpinner.getValueFactory().setValue(LocalTime.now().getMinute());
         dateDataPicker.setValue(LocalDate.now());
         hourSpinner.getValueFactory().setValue(LocalTime.now().getHour());
-        minuteSpinner.getValueFactory().setValue(LocalTime.now().getMinute());
     }
 
     public void toCompatibleRides() throws IOException {
 
         try {
-            if (dateDataPicker.getValue() == null)
-                throw new FormEmptyException("Date");
-
             if (hourSpinner.getValue() == null)
                 throw new FormEmptyException("Hour");
 
             if (minuteSpinner.getValue() == null)
                 throw new FormEmptyException("Minute");
 
-            if (departureLocationTextField.getText().trim().isEmpty())
-                throw new FormEmptyException("Departure Location");
+            if (dateDataPicker.getValue() == null)
+                throw new FormEmptyException("Date");
 
             if (destinationLocationTextField.getText().trim().isEmpty())
                 throw new FormEmptyException("Destination Location");
+
+            if (departureLocationTextField.getText().trim().isEmpty())
+                throw new FormEmptyException("Departure Location");
 
             SearchRideBean searchRideBean = new SearchRideBean(dateDataPicker.getValue(), getTime(),
                     departureLocationTextField.getText().trim(), destinationLocationTextField.getText().trim());
@@ -113,6 +109,10 @@ public class SearchRideGUIController {
         }
     }
 
+    public void toProfile() throws IOException {
+        ShowExceptionSupport.showException("Not implemented yet!");
+    }
+
     public LocalTime getTime() {
         int hour = hourSpinner.getValue();
         int minute = minuteSpinner.getValue();
@@ -125,11 +125,7 @@ public class SearchRideGUIController {
         logoutGUIController.logout();
     }
 
-    public void toProfile() throws IOException {
-        ShowExceptionSupport.showException("Not implemented yet!");
-    }
-
-    public void toHomepage() throws IOException {
+    public void toPreviousScreen() throws IOException {
         Stage stage = Main.getStage();
         Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("passengerHomepage.fxml")));
         Scene scene = new Scene(root);
@@ -137,7 +133,7 @@ public class SearchRideGUIController {
         stage.show();
     }
 
-    public void toPreviousScreen() throws IOException {
+    public void toHomepage() throws IOException {
         Stage stage = Main.getStage();
         Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("passengerHomepage.fxml")));
         Scene scene = new Scene(root);

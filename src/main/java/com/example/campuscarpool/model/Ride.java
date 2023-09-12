@@ -21,21 +21,6 @@ public class Ride {
 
     private String driverPhoneNumber;
 
-    /*
-    public Ride(int idRide, LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation,
-                int availableSeats, String driverFirstName, String driverLastName, String driverEmail, String driverPhoneNumber) {
-        this.idRide = idRide;
-        this.departureDate = Date.valueOf(departureDate);
-        this.departureTime = departureTime;
-        this.departureLocation = departureLocation;
-        this.destinationLocation = destinationLocation;
-        this.availableSeats = availableSeats;
-        this.driverFirstName = driverFirstName;
-        this.driverLastName = driverLastName;
-        this.driverEmail = driverEmail;
-        this.driverPhoneNumber = driverPhoneNumber;
-    }*/
-
     public Ride(int idRide, LocalDate departureDate, LocalTime departureTime, String departureLocation, String destinationLocation,
                 int availableSeats)  {
         this.idRide = idRide;
@@ -61,12 +46,8 @@ public class Ride {
         this.driverPhoneNumber = driverPhoneNumber;
     }
 
-    public int getIdRide() {
-        return idRide;
-    }
-
-    public Date getDepartureDate() {
-        return departureDate;
+    public int getAvailableSeats() {
+        return availableSeats;
     }
 
     public LocalTime getDepartureTime() {
@@ -81,8 +62,12 @@ public class Ride {
         return destinationLocation;
     }
 
-    public int getAvailableSeats() {
-        return availableSeats;
+    public int getIdRide() {
+        return idRide;
+    }
+
+    public String getDriverPhoneNumber() {
+        return driverPhoneNumber;
     }
 
     public String getDriverFirstName() {
@@ -93,11 +78,11 @@ public class Ride {
         return driverLastName;
     }
 
-    public String getDriverEmail() {
-        return driverEmail;
+    public Date getDepartureDate() {
+        return departureDate;
     }
 
-    public String getDriverPhoneNumber() {
-        return driverPhoneNumber;
+    public String getDriverEmail() {
+        return driverEmail;
     }
 }
