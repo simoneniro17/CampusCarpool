@@ -4,13 +4,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="reqPane" prefHeight="125.0" prefWidth="450.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.campuscarpool.graphiccontroller.PassengerRequestsItemGUIController">
+<AnchorPane fx:id="reqPane" prefHeight="125.0" prefWidth="450.0" style="-fx-border-color: #2C69605E; -fx-border-width: 3; -fx-border-radius: 20;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.campuscarpool.graphiccontroller.PassengerRequestsItemGUIController">
     <children>
-      <Pane layoutX="446.0" prefHeight="125.0" prefWidth="6.0" style="-fx-background-color: #D5DCDC;" />
         <VBox alignment="TOP_CENTER" layoutX="41.0" layoutY="-18.0" prefHeight="125.0" prefWidth="450.0" spacing="3.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="5.0">
             <children>
                 <HBox alignment="CENTER" prefHeight="28.0" prefWidth="205.0">

@@ -20,7 +20,7 @@ public class LoginDAOFactory {
         return instance;
     }
 
-    // Crea e restituisce un'istanza di LoginDAO [return new LoginDAOCSV();]
+    // Crea e restituisce un'istanza di LoginDAO [return new LoginDAOCSV(); return new LoginDAOJDBC();]
     public LoginDAO createLoginDAO(){
         return new LoginDAOJDBC();
     }

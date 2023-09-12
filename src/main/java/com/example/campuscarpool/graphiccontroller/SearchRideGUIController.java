@@ -3,7 +3,6 @@ package com.example.campuscarpool.graphiccontroller;
 import com.example.campuscarpool.Main;
 import com.example.campuscarpool.appcontroller.SearchRideController;
 import com.example.campuscarpool.bean.*;
-import com.example.campuscarpool.engineering.Session;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
 import com.example.campuscarpool.exception.FormEmptyException;
 import com.example.campuscarpool.exception.MessageException;
@@ -132,7 +131,6 @@ public class SearchRideGUIController {
         LogoutGUIController logoutGUIController = new LogoutGUIController();
         logoutGUIController.logout();
     }
-
 
     public void toHomepage() throws IOException {
         Stage stage = Main.getStage();

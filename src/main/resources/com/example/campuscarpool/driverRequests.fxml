@@ -57,9 +57,9 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ScrollPane fitToHeight="true" hbarPolicy="NEVER" minHeight="-Infinity" prefHeight="190.0" prefWidth="672.0" vbarPolicy="NEVER" VBox.vgrow="NEVER">
+                  <ScrollPane fitToHeight="true" hbarPolicy="NEVER" minHeight="-Infinity" prefHeight="190.0" prefWidth="672.0" stylesheets="@../../../values/style.css" vbarPolicy="NEVER" VBox.vgrow="NEVER">
                      <content>
-                        <HBox fx:id="pendingReqList" alignment="CENTER" />
+                        <HBox fx:id="pendingReqList" alignment="CENTER" spacing="5.0" style="-fx-background-color: #D5DCDC;" />
                      </content>
                      <VBox.margin>
                         <Insets right="15.0" />
@@ -70,9 +70,9 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ScrollPane fitToHeight="true" hbarPolicy="NEVER" layoutX="30.0" layoutY="68.0" minHeight="-Infinity" prefHeight="190.0" prefWidth="200.0" vbarPolicy="NEVER" VBox.vgrow="NEVER">
+                  <ScrollPane fitToHeight="true" hbarPolicy="NEVER" layoutX="30.0" layoutY="68.0" minHeight="-Infinity" prefHeight="190.0" prefWidth="200.0" stylesheets="@../../../values/style.css" vbarPolicy="NEVER" VBox.vgrow="NEVER">
                      <content>
-                        <HBox fx:id="confirmedReqList" alignment="CENTER" />
+                        <HBox fx:id="confirmedReqList" alignment="CENTER" spacing="5.0" style="-fx-background-color: #D5DCDC;" />
                      </content>
                      <VBox.margin>
                         <Insets right="15.0" />

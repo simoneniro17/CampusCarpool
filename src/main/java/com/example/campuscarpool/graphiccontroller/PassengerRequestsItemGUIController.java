@@ -37,8 +37,8 @@ public class PassengerRequestsItemGUIController {
     private RideRequestBean rideRequestBean;
     private Pane pane;
 
-    private static final String REJECTED = "-fx-background-color: rgba(255, 0, 0, 0.2);";
-    private static final String ACCEPTED = "-fx-background-color: rgba(44, 105, 95, 0.37);";
+    private static final String REJECTED = "-fx-border-color: #FF000077; -fx-border-width: 3; -fx-border-radius: 20;";
+    private static final String ACCEPTED = "-fx-border-color: #3A887C; -fx-border-width: 3; -fx-border-radius: 20;";
 
     public void setPane(Pane pane) {
         this.pane = pane;

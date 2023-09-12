@@ -111,6 +111,10 @@ C0C49B
     -fx-background-color: #D5DCDC;
 }
 
+.scroll-pane .viewport {
+    -fx-background-color: #D5DCDC;
+}
+
 #scroll .viewport {
     -fx-background-color: #D5DCDC;
 }

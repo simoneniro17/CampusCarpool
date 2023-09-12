@@ -65,7 +65,7 @@ public class DriverRequestsItemGUIController implements Observer {
         if (rideRequestBean.getStatus() == 1) {
             hboxButton.getChildren().removeAll(acceptReqButton, rejectReqButton);
             trashIcon.setVisible(true);
-            reqPane.setStyle("-fx-background-color: rgba(44,105,95,0.37);");
+            reqPane.setStyle("-fx-border-color: #3A887C; -fx-border-width: 3; -fx-border-radius: 20;");
         }
     }
 
@@ -95,7 +95,7 @@ public class DriverRequestsItemGUIController implements Observer {
         if (this.rideRequestBean.getStatus() == 1) {
             hboxButton.getChildren().removeAll(acceptReqButton, rejectReqButton);
             trashIcon.setVisible(true);
-            reqPane.setStyle("-fx-background-color: rgba(44,105,95,0.37);");
+            reqPane.setStyle("-fx-border-color: #3A887C; -fx-border-width: 3; -fx-border-radius: 20;");
         }
     }
 

@@ -85,7 +85,6 @@ public abstract class RideDAO {
         newRide = newRide.concat(String.valueOf(ride.getDriverEmail()));
         newRide = newRide.concat(",");
         newRide = newRide.concat(String.valueOf(ride.getDriverPhoneNumber()));
-        newRide = newRide.concat("\n");
 
         File fileRides = new File(CSV_FILE_RIDES);
 

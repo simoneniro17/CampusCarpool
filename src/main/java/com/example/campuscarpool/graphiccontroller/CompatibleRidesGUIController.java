@@ -2,12 +2,8 @@ package com.example.campuscarpool.graphiccontroller;
 
 import com.example.campuscarpool.Main;
 import com.example.campuscarpool.bean.CompatibleRideBean;
-import com.example.campuscarpool.bean.CompatibleRidesListBean;
-import com.example.campuscarpool.bean.RideRequestBean;
-import com.example.campuscarpool.bean.SearchRideBean;
 import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.engineering.ShowExceptionSupport;
-import com.example.campuscarpool.model.Ride;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;

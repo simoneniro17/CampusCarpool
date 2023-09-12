@@ -111,12 +111,8 @@ public class CreateRideGUIController {
             CreateRideController createRideController = new CreateRideController();
             createRideController.createRide(rideBean);
 
-            Stage stage = Main.getStage();
-            Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource(DRIVER_HP)));
-            Scene scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-
+            ShowExceptionSupport.showException("Ride created!\nYou have been redirected to homepage.");
+            toHomepage();
         } catch (FormEmptyException | DuplicateRideException | MessageException e) {
             ShowExceptionSupport.showException(e.getMessage());
         }
