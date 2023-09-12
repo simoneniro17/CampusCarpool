@@ -5,7 +5,6 @@ import com.example.campuscarpool.dao.queries.CRUDQueries;
 import com.example.campuscarpool.dao.queries.RetrieveQueries;
 import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.exception.DuplicateRequestException;
-import com.example.campuscarpool.model.Ride;
 import com.example.campuscarpool.model.RideRequest;
 
 import java.sql.Connection;

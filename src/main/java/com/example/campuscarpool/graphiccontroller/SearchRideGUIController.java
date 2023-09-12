@@ -120,11 +120,6 @@ public class SearchRideGUIController {
         return LocalTime.of(hour, minute);
     }
 
-    public void logout() throws IOException {
-        LogoutGUIController logoutGUIController = new LogoutGUIController();
-        logoutGUIController.logout();
-    }
-
     public void toPreviousScreen() throws IOException {
         Stage stage = Main.getStage();
         Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("passengerHomepage.fxml")));
@@ -132,6 +127,12 @@ public class SearchRideGUIController {
         stage.setScene(scene);
         stage.show();
     }
+
+    public void logout() throws IOException {
+        LogoutGUIController logoutGUIController = new LogoutGUIController();
+        logoutGUIController.logout();
+    }
+
 
     public void toHomepage() throws IOException {
         Stage stage = Main.getStage();
