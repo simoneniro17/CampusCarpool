@@ -24,24 +24,20 @@ public class Driver {
     public String getFirstName() {
         return firstName;
     }
-
     public String getLastName() {
         return lastName;
     }
-
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
-
     public char getGender() {
         return gender;
     }
 
     public String getEmail() {
         return email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
     }
 }

@@ -13,36 +13,26 @@ public class DriverBean {
     private String password;
 
     public DriverBean(String firstName, String lastName, LocalDate dateOfBirth, char gender, String email, String phoneNumber) {
+        this.email = email;
         this.firstName = firstName;
-        this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
-        this.email = email;
+        this.lastName = lastName;
         this.phoneNumber = phoneNumber;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public char getGender() {
-        return gender;
-    }
-
-    public String getEmail() {
-        return email;
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+    public String getFirstName() {
+        return firstName;
+    }
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getEmail() {
+        return email;
     }
 
     public String getPassword() {
