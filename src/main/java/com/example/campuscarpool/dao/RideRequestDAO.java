@@ -5,6 +5,7 @@ import com.example.campuscarpool.dao.queries.CRUDQueries;
 import com.example.campuscarpool.dao.queries.RetrieveQueries;
 import com.example.campuscarpool.engineering.Printer;
 import com.example.campuscarpool.exception.DuplicateRequestException;
+import com.example.campuscarpool.model.Ride;
 import com.example.campuscarpool.model.RideRequest;
 
 import java.sql.Connection;
@@ -48,7 +49,7 @@ public class RideRequestDAO {
     // Per recuperare la lista delle richieste in sospeso di un passeggero
     public static List<RideRequest> retrievePendingPassengersRequests(String passengerEmail) {
         Connection connection;
-        RideRequest rideRequest;
+        //RideRequest rideRequest;
         List<RideRequest> rideRequestList = new ArrayList<>();
 
         try {
@@ -56,16 +57,7 @@ public class RideRequestDAO {
             ResultSet resultSet = RetrieveQueries.retrievePendingPassengerRequests(connection, passengerEmail);
 
             // Ci sono richieste in sospeso
-            if (resultSet.first()) {
-                resultSet.first();
-                do {
-                    rideRequest = setRideRequestData(resultSet);
-                    rideRequestList.add(rideRequest);
-                } while (resultSet.next());
-            }
-
-            resultSet.close();
-
+            requestCheck(resultSet, rideRequestList);
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
         }
@@ -76,7 +68,7 @@ public class RideRequestDAO {
     // Per recuperare la lista delle richieste confermate di un passeggero
     public static List<RideRequest> retrieveConfirmedPassengersRequests(String passengerEmail) {
         Connection connection;
-        RideRequest rideRequest;
+        //RideRequest rideRequest;
         List<RideRequest> rideRequestList = new ArrayList<>();
 
         try {
@@ -84,17 +76,7 @@ public class RideRequestDAO {
             ResultSet resultSet = RetrieveQueries.retrieveConfirmedPassengerRequests(connection, passengerEmail);
 
             //  Il passeggero ha delle richieste confermata
-            if (resultSet.first()) {
-                resultSet.first();
-
-                do {
-                    rideRequest = setRideRequestData(resultSet);
-                    rideRequestList.add(rideRequest);
-                } while (resultSet.next());
-            }
-
-            resultSet.close();
-
+            requestCheck(resultSet, rideRequestList);
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
         }
@@ -105,7 +87,7 @@ public class RideRequestDAO {
     // Per recuperare la lista delle richieste rifiutate di un passeggero
     public static List<RideRequest> retrieveRejectedPassengersRequests(String passengerEmail) {
         Connection connection;
-        RideRequest rideRequest;
+        //RideRequest rideRequest;
         List<RideRequest> rideRequestList = new ArrayList<>();
 
         try {
@@ -113,16 +95,7 @@ public class RideRequestDAO {
             ResultSet resultSet = RetrieveQueries.retrieveRejectedPassengerRequests(connection, passengerEmail);
 
             //  Il passeggero ha delle richieste rifiutate
-            if(resultSet.first()) {
-                resultSet.first();
-
-                do {
-                    rideRequest = setRideRequestData(resultSet);
-                    rideRequestList.add(rideRequest);
-                } while (resultSet.next());
-            }
-            resultSet.close();
-
+            requestCheck(resultSet, rideRequestList);
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
         }
@@ -134,7 +107,7 @@ public class RideRequestDAO {
     // Per recuperare la lista delle richieste di corse future in sospeso a un guidatore
     public static List<RideRequest> retrievePendingDriverRequests(String driverEmail) {
         Connection connection;
-        RideRequest rideRequest;
+        //RideRequest rideRequest;
         List<RideRequest> rideRequestList = new ArrayList<>();
 
         try {
@@ -142,16 +115,7 @@ public class RideRequestDAO {
             ResultSet resultSet = RetrieveQueries.retrievePendingDriverRequests(connection, driverEmail);
 
             //  Il guidatore ha ricevuto richieste
-            if(resultSet.first()) {
-                resultSet.first();
-
-                do {
-                    rideRequest = setRideRequestData(resultSet);
-                    rideRequestList.add(rideRequest);
-                } while (resultSet.next());
-            }
-            resultSet.close();
-
+            requestCheck(resultSet, rideRequestList);
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
         }
@@ -163,7 +127,7 @@ public class RideRequestDAO {
     // Per recuperare la lista delle richieste di corse future confermate da un guidatore
     public static List<RideRequest> retrieveConfirmedDriverRequests(String driverEmail) {
         Connection connection;
-        RideRequest rideRequest;
+        //RideRequest rideRequest;
         List<RideRequest> rideRequestList = new ArrayList<>();
 
         try {
@@ -171,17 +135,7 @@ public class RideRequestDAO {
             ResultSet resultSet = RetrieveQueries.retrieveConfirmedDriverRequests(connection, driverEmail);
 
             //  Il guidatore ha confermato richieste per corse future
-            if(resultSet.first()) {
-                resultSet.first();
-
-                do {
-                    rideRequest = setRideRequestData(resultSet);
-                    rideRequestList.add(rideRequest);
-                } while (resultSet.next());
-            }
-
-            resultSet.close();
-
+            requestCheck(resultSet, rideRequestList);
         } catch (SQLException e) {
             Printer.printError(e.getMessage());
         }
@@ -209,5 +163,20 @@ public class RideRequestDAO {
         int status = resultSet.getInt(STATUS);
 
         return new RideRequest(idRideRequest, idRide, passengerEmail, status);
+    }
+
+    private static void requestCheck(ResultSet resultSet, List<RideRequest> rideRequestList) throws SQLException {
+        RideRequest rideRequest;
+
+        if(resultSet.first()) {
+            resultSet.first();
+
+            do {
+                rideRequest = setRideRequestData(resultSet);
+                rideRequestList.add(rideRequest);
+            } while (resultSet.next());
+        }
+
+        resultSet.close();
     }
 }
