@@ -61,16 +61,16 @@ public class PassengerRequestsGUIController {
         logoutGUIController.logout();
     }
 
-    public void toProfile() throws IOException {
-        ShowExceptionSupport.showException("Not implemented yet!");
-    }
-
     public void toHomepage() throws IOException {
         Stage stage = Main.getStage();
         Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("passengerHomepage.fxml")));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void toProfile() throws IOException {
+        ShowExceptionSupport.showException("Not implemented yet!");
     }
 
     public void toPreviousScreen() throws IOException {

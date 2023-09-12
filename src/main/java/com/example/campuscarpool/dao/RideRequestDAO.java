@@ -49,7 +49,6 @@ public class RideRequestDAO {
     // Per recuperare la lista delle richieste in sospeso di un passeggero
     public static List<RideRequest> retrievePendingPassengersRequests(String passengerEmail) {
         Connection connection;
-        //RideRequest rideRequest;
         List<RideRequest> rideRequestList = new ArrayList<>();
 
         try {
@@ -68,7 +67,6 @@ public class RideRequestDAO {
     // Per recuperare la lista delle richieste confermate di un passeggero
     public static List<RideRequest> retrieveConfirmedPassengersRequests(String passengerEmail) {
         Connection connection;
-        //RideRequest rideRequest;
         List<RideRequest> rideRequestList = new ArrayList<>();
 
         try {
@@ -87,7 +85,6 @@ public class RideRequestDAO {
     // Per recuperare la lista delle richieste rifiutate di un passeggero
     public static List<RideRequest> retrieveRejectedPassengersRequests(String passengerEmail) {
         Connection connection;
-        //RideRequest rideRequest;
         List<RideRequest> rideRequestList = new ArrayList<>();
 
         try {
@@ -107,7 +104,6 @@ public class RideRequestDAO {
     // Per recuperare la lista delle richieste di corse future in sospeso a un guidatore
     public static List<RideRequest> retrievePendingDriverRequests(String driverEmail) {
         Connection connection;
-        //RideRequest rideRequest;
         List<RideRequest> rideRequestList = new ArrayList<>();
 
         try {
@@ -127,7 +123,6 @@ public class RideRequestDAO {
     // Per recuperare la lista delle richieste di corse future confermate da un guidatore
     public static List<RideRequest> retrieveConfirmedDriverRequests(String driverEmail) {
         Connection connection;
-        //RideRequest rideRequest;
         List<RideRequest> rideRequestList = new ArrayList<>();
 
         try {
@@ -170,13 +165,11 @@ public class RideRequestDAO {
 
         if(resultSet.first()) {
             resultSet.first();
-
             do {
                 rideRequest = setRideRequestData(resultSet);
                 rideRequestList.add(rideRequest);
             } while (resultSet.next());
         }
-
         resultSet.close();
     }
 }

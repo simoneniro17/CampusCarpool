@@ -66,15 +66,6 @@ public class CompatibleRidesGUIController {
         return count;
     }
 
-    public void logout() throws IOException {
-        LogoutGUIController logoutGUIController = new LogoutGUIController();
-        logoutGUIController.logout();
-    }
-
-    public void toProfile() throws IOException {
-        ShowExceptionSupport.showException("Not implemented yet!");
-    }
-
     public void toHomepage() throws IOException {
         Stage stage = Main.getStage();
         Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("passengerHomepage.fxml")));
@@ -83,11 +74,20 @@ public class CompatibleRidesGUIController {
         stage.show();
     }
 
+    public void logout() throws IOException {
+        LogoutGUIController logoutGUIController = new LogoutGUIController();
+        logoutGUIController.logout();
+    }
+
     public void toPreviousScreen() throws IOException {
         Stage stage = Main.getStage();
         Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("searchRide.fxml")));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
+    }
+
+    public void toProfile() throws IOException {
+        ShowExceptionSupport.showException("Not implemented yet!");
     }
 }

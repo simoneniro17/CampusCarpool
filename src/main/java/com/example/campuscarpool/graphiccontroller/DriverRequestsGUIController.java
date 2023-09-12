@@ -63,21 +63,13 @@ public class DriverRequestsGUIController implements Observer {
         }
     }
 
-    public void logout() throws IOException {
-        LogoutGUIController logoutGUIController = new LogoutGUIController();
-        logoutGUIController.logout();
-    }
-
     public void toProfile() throws IOException {
         ShowExceptionSupport.showException("Not implemented yet!");
     }
 
-    public void toHomepage() throws IOException {
-        Stage stage = Main.getStage();
-        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("driverHomepage.fxml")));
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+    public void logout() throws IOException {
+        LogoutGUIController logoutGUIController = new LogoutGUIController();
+        logoutGUIController.logout();
     }
 
     public void toPreviousScreen() throws IOException {
@@ -88,4 +80,11 @@ public class DriverRequestsGUIController implements Observer {
         stage.show();
     }
 
+    public void toHomepage() throws IOException {
+        Stage stage = Main.getStage();
+        Parent root = FXMLLoader.load(Objects.requireNonNull(Main.class.getResource("driverHomepage.fxml")));
+        Scene scene = new Scene(root);
+        stage.setScene(scene);
+        stage.show();
+    }
 }
