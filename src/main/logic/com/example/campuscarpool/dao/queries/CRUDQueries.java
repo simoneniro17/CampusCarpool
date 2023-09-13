@@ -3,7 +3,6 @@ package com.example.campuscarpool.dao.queries;
 import com.example.campuscarpool.model.Ride;
 
 import java.sql.*;
-import java.time.LocalDate;
 
 public class CRUDQueries {
 
