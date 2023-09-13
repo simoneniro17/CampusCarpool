@@ -8,7 +8,7 @@ class TestLoginBean {
 
     /* Verifichiamo se viene lanciata l'eccezione EmailFormatException quando
        viene creata un'istanza di LoginBean passando una mail con un formato sintatticamente errato */
-   @Test
+    @Test
     void testValidEmail() {
 
         int validFormat;
