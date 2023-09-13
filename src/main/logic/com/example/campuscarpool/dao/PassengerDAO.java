@@ -51,7 +51,7 @@ public class PassengerDAO {
     }
 
     // Estrae i dati dal ResultSet e restituisce un nuovo oggetto Passenger
-    public static Passenger setPassengerData(ResultSet resultSet) throws SQLException {
+    private static Passenger setPassengerData(ResultSet resultSet) throws SQLException {
         String passengerFirstName = resultSet.getString(FIRST_NAME);
         String passengerLastName = resultSet.getString(LAST_NAME);
         LocalDate passengerDateOfBirth = resultSet.getDate(DATE_OF_BIRTH).toLocalDate();

@@ -43,7 +43,7 @@ public class DriverRequestsGUIController implements Observer {
     }
 
     //  Per caricare le richieste in un contenitore
-    public void loadRequests(List<RideRequestBean> rideRequestBeanList, HBox container) throws IOException {
+    private void loadRequests(List<RideRequestBean> rideRequestBeanList, HBox container) throws IOException {
         for (RideRequestBean rideRequestBean : rideRequestBeanList) {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(Main.class.getResource("driverRequestsItem.fxml"));
