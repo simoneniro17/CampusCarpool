@@ -25,6 +25,10 @@ public abstract class Subject {
         }
     }
 
+    /*
+    FORZA ROMA
+     */
+
     // Costruttore protetto con lista di observer
     protected Subject(List<Observer> observersList) {
         this.observersList = observersList;
