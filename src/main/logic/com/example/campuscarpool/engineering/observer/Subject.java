@@ -26,7 +26,9 @@ public abstract class Subject {
     }
 
     /*
-    FORZA ROMA
+    if (observer != null) {
+            this.register(observer);
+        }
      */
 
     // Costruttore protetto con lista di observer
